@@ -1,0 +1,22 @@
+.bg-black
+{
+  background-color: #000;
+}
+
+.bg-gray-800
+{
+  background-color: #343a40;
+}
+
+.stroke-img {
+  border:10px solid #ffffff;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px; /* Set the fixed height of the footer here */
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
