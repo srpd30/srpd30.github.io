@@ -2,5 +2,7 @@
     {
     -webkit-backdrop-filter: blur(15px);
     backdrop-filter: blur(15px);
+    padding: 1px;
     background-color: rgba(40, 44, 52, .9);
+    padding: 2px;
     }
