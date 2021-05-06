@@ -7,6 +7,9 @@
 {
   background-color: #343a40;
 }
+.text-gray{
+  color: #AAAAAA;
+}
 
 .stroke-img {
   border:10px solid #ffffff;
