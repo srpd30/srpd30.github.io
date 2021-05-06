@@ -18,19 +18,21 @@
   }
 
 .margin-close {
-    margin-top: -12px ;
+    margin-top: -24px ;
 }
 
-.margin-out {
-    margin-top: 4px ;
+.navbar-margin {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.nav-item {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 .tr-1{
   letter-spacing: 3px
-}
-
-.display-7 {
-  font-size: 19px;
 }
 
 .footer {
@@ -50,4 +52,12 @@
 
  .fs-0 {
    font-size: 10em; /* 40px/16=2.5em */
+ }
+
+ .srpd-title {
+   font-size: 3.5em; /* 40px/16=2.5em */
+ }
+
+ .entertaiment-title {
+   font-size: 21px; /* 40px/16=2.5em */
  }
