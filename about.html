@@ -18,21 +18,27 @@
   <!-- </nav> navbar utama diatas -->
   <nav class="navbar bg-dark p-5"></nav>
   <nav class="line-bottom d-flex justify-content-center py-3 mb-4 navbar fixed-top navbar-dark blur-box">
+    <style media="screen">
+      .margin-fix-nav{
+        margin-left: 1cm;
+        margin-right: 1cm;
+      }
+      .margin-fix-nav-left{
+        margin-left: 1cm;
+      }
+      .margin-fix-nav-right{
+        margin-right: 1cm;
+      }
+    </style>
     <div class="container-fluid">
-      <a href="index.html" class="navbar-margin d-flex align-items-center mb-3 mb-md-0 ">
-      <img class="font-concieliancondsemital" src="image/icon/SRPD-Entertainment.svg" alt="" width="72%" height="72%">
+      <a href="index.html" class="navbar-brand margin-fix-nav-left">
+      <img src="image/icon/SRPD-Entertainment.svg" alt="" width=220px height="65px">
       </a>
-      <style media="screen">
-        .margin-fix-nav{
-          margin-left: 1cm;
-          margin-right: 1cm;
-        }
-      </style>
-      <div class="navbar rounded-pill bg-dark">
+      <form class="margin-fix-nav-right d-flex rounded-pill bg-dark">
         <a class="margin-fix-nav nav-link text-gray fs-5 text-center font-concieliancondsemital" aria-current="page" href="index.html">Home</a>
         <a class="nav-link text-center fs-5 disabled font-concieliancondsemital" href="*" tabindex="-1" aria-disabled="true">Release-Now</a>
-        <a class="margin-fix-nav nav-link text-white fs-5 text-center active font-concieliancondsemital" href="#">About</a>
-      </div>
+        <a class="margin-fix-nav nav-link text-white fs-5 text-center active font-concieliancondsemital" href="about.html">About</a>
+      </form>
     </div>
   </nav>
 
