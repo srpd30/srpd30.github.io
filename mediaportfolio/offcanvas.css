@@ -4,7 +4,9 @@ body {
 }
 
 body {
-  padding-top: 56px;
+  background-color: #000;
+  width: 100%;
+  height: 100%;
 }
 
 @media (max-width: 991.98px) {
@@ -25,41 +27,6 @@ body {
     visibility: visible;
     transform: translateX(-100%);
   }
-}
-
-.nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
-}
-
-.nav-scroller .nav {
-  display: flex;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  color: rgba(255, 255, 255, .75);
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-
-.nav-underline .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  font-size: .875rem;
-  color: #6c757d;
-}
-
-.nav-underline .nav-link:hover {
-  color: #007bff;
-}
-
-.nav-underline .active {
-  font-weight: 500;
-  color: #343a40;
 }
 
 .text-white-50 { color: rgba(255, 255, 255, .5); }
@@ -93,4 +60,67 @@ body {
 .drop-shadow-big
 {
   filter: drop-shadow(0px 10px 16px #000);
+}
+
+.wrapper {
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  perspective: 300px;
+}
+
+.parallax_group {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  transform-style: preserve-3d;s
+}
+
+.parallax_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* .background_srpd {
+  background: url('aosrpdblur.png') no-repeat center;
+  background-size: cover;
+  transform: translateZ(-3000px) scale(18);
+  z-index: 1;
+} */
+
+.background_s1 {
+  background: url('smoke1.png') no-repeat center;
+  background-size: cover;
+  transform: translateZ(-3000px) scale(18);
+  z-index: 1;
+}
+
+.background_s2 {
+  background: url('smoke2.png') no-repeat center;
+  background-size: cover;
+  transform: translateZ(-2000px) scale(15);
+  z-index: 2;
+}
+
+.background_s3 {
+  background: url('smoke3.png') no-repeat center;
+  background-size: cover;
+  transform: translateZ(-350px) scale(4);
+  z-index: 3;
+}
+
+.hero-text {
+  background-size: cover;
+  transform: translateZ(0) scale(1);
+  z-index: 4;
+
+}
+
+@media (min-width: 1px) {
+  .background_s1,.background_s2,.background_s3,.hero-text {
+    background-size: contain;
+  }
 }

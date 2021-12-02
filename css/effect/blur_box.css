@@ -1,8 +1,17 @@
 .blur-box
-    {
-    -webkit-backdrop-filter: blur(15px);
-    backdrop-filter: blur(15px);
-    padding: 1px;
-    background-color: rgba(17, 17, 17, .75);
-    padding: 2px;
-    }
+{
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  padding: 1px;
+  background-color: rgba(17, 17, 17, .75);
+  padding: 2px;
+}
+
+.blur-box-sm
+{
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  padding: 1px;
+  background-color: rgba(17, 17, 17, .25);
+  padding: 2px;
+}
