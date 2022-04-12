@@ -1,7 +1,4 @@
-html,
-body {
-  overflow-x: hidden; /* Prevent scroll on narrow devices */
-}
+
 
 body {
   background-color: #000;
@@ -9,25 +6,7 @@ body {
   height: 100%;
 }
 
-@media (max-width: 991.98px) {
-  .offcanvas-collapse {
-    position: fixed;
-    top: 56px; /* Height of navbar */
-    bottom: 0;
-    left: 100%;
-    width: 100%;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    overflow-y: auto;
-    visibility: hidden;
-    background-color: #343a40;
-    transition: transform .3s ease-in-out, visibility .3s ease-in-out;
-  }
-  .offcanvas-collapse.open {
-    visibility: visible;
-    transform: translateX(-100%);
-  }
-}
+
 
 .text-white-50 { color: rgba(255, 255, 255, .5); }
 
@@ -66,7 +45,7 @@ body {
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  perspective: 300px;
+  perspective: 8600px;
 }
 
 .parallax_group {
@@ -91,31 +70,39 @@ body {
   z-index: 1;
 } */
 
-.background_s1 {
-  background: url('smoke1.png') no-repeat center;
+.background_blue_signal {
+  background: url('Blue_Signal.png') no-repeat center;
   background-size: cover;
-  transform: translateZ(-3000px) scale(18);
-  z-index: 1;
+  transform: translateZ(-12000px) scale(2.5);
+
+  z-index: 5;
+}
+
+.background_s1 {
+  background: url('smoke3.png') no-repeat center;
+  background-size: cover;
+  transform: translateZ(-4000px) scale(2.5);
+  z-index: 4;
 }
 
 .background_s2 {
   background: url('smoke2.png') no-repeat center;
   background-size: cover;
-  transform: translateZ(-2000px) scale(15);
-  z-index: 2;
+  transform: translateZ(-800px) scale(2.5);
+  z-index: 3;
 }
 
 .background_s3 {
-  background: url('smoke3.png') no-repeat center;
+  background: url('smoke1.png') no-repeat center;
   background-size: cover;
-  transform: translateZ(-350px) scale(4);
-  z-index: 3;
+  transform: translateZ(-600px) scale(2.5);
+  z-index: 2;
 }
 
 .hero-text {
   background-size: cover;
   transform: translateZ(0) scale(1);
-  z-index: 4;
+  z-index: 1;
 
 }
 

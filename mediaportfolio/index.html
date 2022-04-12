@@ -13,8 +13,6 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.84.0">
-
-  <link href="../css/effect/blur_box.css"rel="stylesheet">
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/offcanvas-navbar/">
 
 
@@ -36,21 +34,41 @@
     }
   }
   </style>
+<style>
+  .blur-box
+  {
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    padding: 1px;
+    background-color: rgba(17, 17, 17, .75);
+    padding: 2px;
+  }
 
+  .blur-box-sm
+  {
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(25px);
+    padding: 1px;
+    background-color: rgba(17, 17, 17, .25);
+    padding: 2px;
+  }
+</style>
 
   <!-- Custom styles for this template -->
   <link href="offcanvas.css" rel="stylesheet">
 </head>
 <body>
   <div class="wrapper">
-    <div class="parallax_group">
-      <div class="parallax_background background_s1"></div>
 
-      <div class="parallax_background background_s3"></div>
-      <div class="parallax_background">
-        <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+    <div class="parallax_group">
+
+
+      <div class="parallax_background background_s1"></div>
+      <br><br><br><br><br><br><br><br>
+      <div class="parallax_background background_blue_signal"></div>
+      <div class="hero-text">
         <main class="container">
-          <div class="blur-box-sm align-items-center p-3 my-3 text-white text-center rounded shadow-sm">
+          <div class="align-items-center p-3 my-3 text-white text-center rounded shadow-sm blur-box-sm">
             <img class="me-3 stroke-img drop-shadow-normal" src="https://yt3.ggpht.com/ytc/AAUvwngI2pcD-MFDYy5PynjNVgQhXXZjRMuuORl4rBisGQ=s176-c-k-c0x00ffffff-no-rj" alt="" width="72" height="72">
             <br></br>
             <div class="lh-1">
@@ -148,7 +166,7 @@
               </div>
               <br></br>
             </div>
-            <div class="text-center fs-5"><a>Work together on progress to get achievement support.</a></div>
+            <div class="text-center fs-5"><a>After together on progress to get achievement support.</a></div>
           </div>
         </main>
       </div>
