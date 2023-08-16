@@ -4,6 +4,7 @@
     src: url('Xolonium-Regular.eot?#iefix') format('embedded-opentype'),
         url('Xolonium-Regular.woff2') format('woff2'),
         url('Xolonium-Regular.woff') format('woff'),
+        url('Xolonium-Regular.ttf') format('truetype'),
         url('Xolonium-Regular.svg#Xolonium-Regular') format('svg');
     font-weight: normal;
     font-style: normal;
