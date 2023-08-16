@@ -7,9 +7,28 @@
 {
   background-color: #1a1a1a;
 }
+
+.bg-gray-xolonium
+{
+  background-color: #424242;
+}
+
 .text-gray{
   color: #AAAAAA;
 }
+
+.text-black{
+  color: #070707;
+}
+
+.text-red{
+  color: #df3232;
+}
+
+.text-yellow-xolonium{
+  color: #f1b541;
+}
+
 
 .stroke-img {
   border:10px solid #ffffff;
@@ -52,6 +71,12 @@
    font-weight:normal;
    font-style:normal;
  }
+
+ .font-xolonium-regular {
+    font-family: "Xolonium-Regular";
+    font-weight:normal;
+    font-style:normal;
+  }
 
  .fs-0 {
    font-size: 10em; /* 40px/16=2.5em */
