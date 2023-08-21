@@ -10,11 +10,23 @@
 
 .bg-gray-xolonium
 {
-  background-color: #424242;
+  background-color: #343a3f;
 }
 
 .text-gray{
   color: #AAAAAA;
+}
+
+.text-blue-sky{
+  color: #0d6efd;
+}
+
+.text-blue-sky-old{
+  color: #b8e6ff;
+}
+
+.text-gray-old{
+  color: #c6c6c6;
 }
 
 .text-black{
@@ -33,7 +45,9 @@
   color: #f1b541;
 }
 
-
+.text-green{
+  color: #7dff7d;
+}
 .stroke-img {
   border:10px solid #ffffff;
 }
