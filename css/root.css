@@ -13,9 +13,25 @@
   background-color: #343a3f;
 }
 
+.bg-red-warning
+{
+  background-color: #932121;
+}
+
 .text-gray{
   color: #AAAAAA;
 }
+
+.bg-dark-up
+{
+  background-color: #252525;
+}
+
+.bg-dark-down
+{
+  background-color: #161616;
+}
+
 
 .text-blue-sky{
   color: #0d6efd;
