@@ -1,0 +1,265 @@
+/* ================= ROOT (WAJIB ADA) ================= */
+:root {
+  --result-test: calc(var(--pos_y_planet) - var(--scrollYport));
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.bacgroundscreensolid {
+  background-color: black;
+  margin: 0;
+}
+
+.orignial-image-scene {
+  position: fixed;
+  inset: 0;
+
+  background-image: url("image/info/TestOriginalGlow.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+#layer2 .orignial-image-scene {
+  position: fixed;
+  inset: 0;
+
+  background-image: url("image/info/TestVFXGlow.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ================= BODY ================= */
+body {
+  background-color: rgb(6, 7, 12);
+  color: white;
+  position: relative;
+  z-index: 0;
+}
+
+body::after {
+  content: "result = " var(--result-test);
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  color: lime;
+  font-family: monospace;
+  z-index: 9999;
+}
+
+/* ================= SCENE ================= */
+.scene {
+  overflow: hidden;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  position: relative;
+  top: 0px;
+  left: 0px;
+  margin-bottom: 0px;
+
+  --speed-animation: 50s;
+  /* --get-rotX3d: calc(var(--rotX3d) - 15deg); */
+  --get-rotX3d: 0deg;
+}
+
+/* ================= bloomsurface ================= */
+.bloomsurface {
+  position: absolute;
+  transform-style: preserve-3d;
+}
+
+/* ================= FIXED ROTATE ================= */
+.fixed-rotate {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 30px;
+  height: 30px;
+
+  transform:
+    rotateX(8deg)
+    rotateY(calc((var(--i) - 1) * -36deg));
+
+  transform-style: preserve-3d;
+  animation: fixed-rotate var(--speed-animation) linear infinite;
+}
+
+.scene .planet .bloomsurface .fixed-rotate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(var(--brightness));
+}
+
+/* ================= ANIMATION ================= */
+@keyframes rotate {
+  from {
+    transform:
+      perspective(1000px)
+      rotateX(var(--get-rotX3d))
+      rotateY(calc((var(--i) - 1) * 36deg))
+      translateX(var(--radius));
+  }
+  to {
+    transform:
+      perspective(1000px)
+      rotateX(var(--get-rotX3d))
+      rotateY(calc(360deg + (var(--i) - 1) * 36deg))
+      translateX(var(--radius));
+  }
+}
+
+@keyframes fixed-rotate {
+  from {
+    transform:
+      rotateX(8deg)
+      rotateY(calc((var(--i) - 1) * -36deg));
+  }
+  to {
+    transform:
+      rotateX(8deg)
+      rotateY(calc(-360deg + (var(--i) - 1) * -36deg));
+  }
+}
+
+/* ================= INFO PANEL ================= */
+#info {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+  z-index: 9999;
+  border-radius: 6px;
+}
+
+/* ================= LAYERS ================= */
+#layer1 {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+#layer2 {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  background-color: black;
+  filter: blur(10px) brightness(calc(2 + var(--rand)));
+  mix-blend-mode: screen;
+}
+
+#layer2 .bloomsurface img {
+  filter: brightness(0);
+}
+
+#layer3 {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  background-color: black;
+  filter: blur(120px) brightness(calc(2 + var(--rand)));
+  mix-blend-mode: screen;
+}
+
+#layer3 .planet {
+  background-color: rgb(0, 26, 255);
+}
+
+#layer3 .bloomsurface img {
+  filter: brightness(0);
+}
+
+.fixed-rotate {
+  position: absolute;
+  margin: auto;
+  inset: 0 0 0 0;
+  width: 30px;
+  height: 30px;
+  /* background-color: rgb(255, 153, 0);
+  border-radius: 50%; */
+  transform: rotateY(calc( (var(--i) - 1) * -36deg ));
+  transform-style: preserve-3d;
+  animation: fixed-rotate var(--speed-animation) linear infinite;
+}
+
+.scene .planet .bloomsurface .fixed-rotate img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(var(--brightness));
+}
+
+@keyframes rotate {
+  from { transform: perspective(1000px) rotateX(var(--get-rotX3d)) rotateY(calc( (var(--i) - 1) * 36deg )) translateX(var(--radius)) translateZ(0); }
+  to   { transform: perspective(1000px) rotateX(var(--get-rotX3d)) rotateY(calc( 360deg + (var(--i) - 1) * 36deg )) translateX(var(--radius)) translateZ(0); }
+}
+
+@keyframes fixed-rotate {
+  from { transform: rotateX(8deg) rotateY(calc( (var(--i) - 1) * -36deg ))}
+  to   { transform: rotateX(8deg) rotateY(calc( -360deg + (var(--i) - 1) * -36deg ))}
+}
+
+/* //------------------- */
+
+#info {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.85);
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 14px;
+  padding: 10px;
+  z-index: 9999;
+  border-radius: 6px;
+}
+
+#layer1 {
+  position: relative; /* ikut aliran normal container */
+  transform-style: preserve-3d; /* rotasi tetap aman */
+}
+
+#layer2 {
+  position: absolute;
+  z-index: 100;       
+  pointer-events: none;
+  background-color: black;
+  filter: blur(10px) brightness(calc(2 + var(--rand)));  
+  mix-blend-mode: screen;
+}
+
+#layer2 .inanimate-objects img {
+  filter: brightness(0);
+}
+
+#layer3 {
+  position: absolute; 
+  z-index: 100;      
+  pointer-events: none;
+  background-color: black;
+  filter: blur(120px) brightness(calc(2 + var(--rand))); 
+  mix-blend-mode: screen;
+}
+
+#layer3 .planet {
+  background-color: rgb(0, 26, 255);
+}
+
+#layer3 .inanimate-objects img {
+  filter: brightness(0);
+}
