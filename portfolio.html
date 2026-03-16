@@ -116,12 +116,12 @@
             <span class="visually-hidden">Next</span>
           </a>
         </div>
-        <div class="inanimate-objects">
+        <div>
           <br></br>
           <!-- Marketing messaging and featurettes
           ================================================== -->
           <!-- Wrap the rest of the page in another container to center all the content. -->
-            <main>
+            <main class="inanimate-objects">
             <section class="py-5 text-center container">
               <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
@@ -374,7 +374,13 @@ document.querySelectorAll(".view-script-bloomsurface").forEach(view => {
     const el = clone.firstElementChild;
 
     if (el.classList.contains("orignial-image-scene")) {
-      document.body.prepend(el);   // penting
+
+      if (view.closest("#layer2")) {
+        view.appendChild(el);       // tetap di layer2
+      } else {
+        document.body.prepend(el);  // original glow
+      }
+
     } else {
       view.appendChild(el);
     }
