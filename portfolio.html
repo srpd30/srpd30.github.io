@@ -36,7 +36,8 @@
   </head>
 
   <div id="set-script-bloomsurface" hidden>
-        <div class="orignial-image-scene original-glow"></div>
+        <div class="orignial-image-scene"></div>
+
         <!-- </nav> navbar utama diatas -->
         <nav class="navbar bg-dark p-5 inanimate-objects"></nav>
         <nav class="line-bottom d-flex justify-content-center py-3 mb-4 navbar fixed-top blur-box inanimate-objects">
@@ -66,7 +67,7 @@
 
         <!-- text tulisan backdrop -->
 
-        <div id="myCarousel" class="carousel slide inanimate-objects" data-bs-ride="carousel">
+        <!-- <div id="myCarousel" class="carousel slide inanimate-objects" data-bs-ride="carousel">
           <ol class="carousel-indicators">
             <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
             <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
@@ -115,7 +116,7 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </a>
-        </div>
+        </div> -->
         <div>
           <br></br>
           <!-- Marketing messaging and featurettes
@@ -377,6 +378,8 @@ document.querySelectorAll(".view-script-bloomsurface").forEach(view => {
 
       if (view.closest("#layer2")) {
         view.appendChild(el);       // tetap di layer2
+      } else if (view.closest("#layer3")) {
+        view.appendChild(el);       // tetap di layer3
       } else {
         document.body.prepend(el);  // original glow
       }
@@ -391,5 +394,6 @@ document.querySelectorAll(".view-script-bloomsurface").forEach(view => {
 </script>
 
 <script src="scriptbloom.js"></script>
+<script src="scriptsystem.js"></script>
 <script src="random_value_px.js"></script>
 <script src="bloom.js"></script>

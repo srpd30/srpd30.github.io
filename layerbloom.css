@@ -60,36 +60,11 @@ body::after {
   --get-rotX3d: 0deg;
 }
 
-/* ================= bloomsurface ================= */
-.bloomsurface {
-  position: absolute;
-  transform-style: preserve-3d;
-}
-
-.scene .bloomsurface img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(var(--brightness));
-}
-
-/* ================= INFO PANEL ================= */
-#info {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  background: rgba(0, 0, 0, 0.85);
-  color: #00ff00;
-  font-family: monospace;
-  font-size: 14px;
-  padding: 10px;
-  z-index: 9999;
-  border-radius: 6px;
-}
-
 /* ================= LAYERS ================= */
-#layer1 {
-  position: relative;
+
+.layer-surface {
+  position: absolute;
+  inset: 0;
   z-index: 0;
 }
 
@@ -97,16 +72,15 @@ body::after {
   position: absolute;
   inset: 0;
   z-index: 1;
-
   pointer-events: none;
   background-color: black;
-
   filter: blur(10px) brightness(calc(2 + var(--rand)));
   mix-blend-mode: screen;
 }
 
 #layer3 {
   position: absolute;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
   background-color: black;
@@ -114,45 +88,19 @@ body::after {
   mix-blend-mode: screen;
 }
 
-.scene .planet .bloomsurface .fixed-rotate img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(var(--brightness));
-}
-/* //------------------- */
-
-#info {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  background: rgba(0,0,0,0.85);
-  color: #00ff00;
-  font-family: monospace;
-  font-size: 14px;
-  padding: 10px;
-  z-index: 9999;
-  border-radius: 6px;
+#layer2 .orignial-image-scene{
+  background-image:url("image/info/TestVFXGlow.png");
 }
 
-#layer1 {
-  position: relative; /* ikut aliran normal container */
-  transform-style: preserve-3d; /* rotasi tetap aman */
+#layer3 .orignial-image-scene{
+  background-image:url("image/info/TestVFXGlow.png");
 }
 
 #layer2 .inanimate-objects {
   filter: brightness(0);
-  background-color: black;
-}
-
-#layer2 .orignial-image-scene{
-  background-image:url("image/info/TestVFXGlow.png");
-  z-index:10;
-  filter: brightness(1);
 }
 
 #layer3 .inanimate-objects {
   filter: brightness(0);
-  background-color: black;
 }
 
