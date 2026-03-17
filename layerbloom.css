@@ -13,34 +13,16 @@ html, body {
   margin: 0;
 }
 
-.orignial-image-scene {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-
-  background-image: url("image/info/TestOriginalGlow.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  z-index: 0;
-  pointer-events: none;
-}
-
-#layer2 .orignial-image-scene {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 5; /* dipakai untuk cek apakah muncul */
-
-  background-image: url("image/info/TestVFXGlow.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
-  pointer-events: none;
+.orignial-image-scene{
+  background-image:url("image/info/TestOriginalGlow.png");
+  z-index:0;
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  background-size:cover;
+  background-position:center;
 }
 
 /* ================= BODY ================= */
@@ -84,7 +66,7 @@ body::after {
   transform-style: preserve-3d;
 }
 
-.scene .planet .bloomsurface .fixed-rotate img {
+.scene .bloomsurface img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -108,6 +90,7 @@ body::after {
 /* ================= LAYERS ================= */
 #layer1 {
   position: relative;
+  z-index: 0;
 }
 
 #layer2 {
@@ -117,6 +100,7 @@ body::after {
 
   pointer-events: none;
   background-color: black;
+
   filter: blur(10px) brightness(calc(2 + var(--rand)));
   mix-blend-mode: screen;
 }
@@ -161,7 +145,14 @@ body::after {
   background-color: black;
 }
 
+#layer2 .orignial-image-scene{
+  background-image:url("image/info/TestVFXGlow.png");
+  z-index:10;
+  filter: brightness(1);
+}
+
 #layer3 .inanimate-objects {
   filter: brightness(0);
   background-color: black;
 }
+
