@@ -7,6 +7,10 @@ article {
   display: grid;
 }
 
+:root {
+  --color-theme: rgb(0, 132, 255);
+}
+
 /* display: grid on html & body + min-height: 100% on html
  * avoids the 100vh height mobile problem
  * https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/
@@ -31,7 +35,7 @@ html {
   /* commonly used length value ¯\_(ツ)_/¯ */
   --size: .625em;
   /* timeline bar and markers */
-  --highlight: lime;
+  --highlight: var(--color-theme);
   /* default marker */
   --marker:
     radial-gradient(circle closest-side,
@@ -86,7 +90,7 @@ html {
 
 .timeline h1 {
   margin: 0 0 var(--size);
-  color: #88d55e;
+  color: var(--color-theme);
   font: italic 1.375em/1 rosario, sans-serif;
   text-transform: capitalize;
 }

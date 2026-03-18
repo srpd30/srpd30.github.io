@@ -3,7 +3,9 @@
 
 <head>
   <title> Syis Rama Putra Dityo - Portfolio | SRPD Entertainment </title>
-  <link rel = "icon" href ="https://yt3.ggpht.com/ytc/AAUvwngI2pcD-MFDYy5PynjNVgQhXXZjRMuuORl4rBisGQ=s176-c-k-c0x00ffffff-no-rj"type = "image/x-icon">
+  <link rel="icon"
+    href="https://yt3.ggpht.com/ytc/AAUvwngI2pcD-MFDYy5PynjNVgQhXXZjRMuuORl4rBisGQ=s176-c-k-c0x00ffffff-no-rj"
+    type="image/x-icon">
 
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cheatsheet/">
@@ -31,6 +33,53 @@
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
       }
+    }
+
+    div.gallery {
+      border: 1px solid #ccc;
+    }
+
+    div.gallery:hover {
+      border: 1px solid #777;
+    }
+
+    div.gallery img {
+      width: 100%;
+      height: auto;
+    }
+
+    div.desc {
+      padding: 15px;
+      text-align: center;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .responsive {
+      padding: 0 6px;
+      float: left;
+      width: 24.99999%;
+    }
+
+    @media only screen and (max-width: 700px) {
+      .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+      }
+    }
+
+    @media only screen and (max-width: 500px) {
+      .responsive {
+        width: 100%;
+      }
+    }
+
+    .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
     }
   </style>
 
@@ -207,216 +256,176 @@
       <img src='https://images.unsplash.com/photo-1755371033904-21dd8a9d002b?w=400' alt='mountain landscape' />
     </article>
   </section>
-  
+
   <main class="inanimate-objects">
 
     <div class="album py-5">
       <div class="container">
-        <h1><div class="hr-line">Heading</div></h1>
+
+        <!-- ========================================================= Graphic Design ========================================================= -->
+
+        <h1>
+          Graphic Design
+          <small class="text-muted">2017-2025</small>
+        </h1>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
 
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
 
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- =========================================================== Album Card Here =========================================================== -->
           <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
             </div>
           </div>
 
           <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
             </div>
           </div>
 
           <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
-
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
             </div>
           </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
 
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+          <div class="col">
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
             </div>
           </div>
-          <div class="col">
-            <div class="card shadow-sm">
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg"
-                role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <title>Placeholder</title>
-                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                  dy=".3em">Thumbnail</text>
-              </svg>
 
-              <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                  content. This content is a little bit longer.</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                  <small class="text-muted">9 mins</small>
-                </div>
-              </div>
+          <div class="col">
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
+              data-desc="This is a wider card with supporting text..." data-thumbnail="img_mountains.jpg" data-assets='[
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"image","src":"img_mountains.jpg"},
+                {"type":"video","src":"video/StartSRPD.mp4"}
+              ]' data-social='[
+                {"type":"youtube","url":"https://youtube.com/..."},
+                {"type":"instagram","url":"https://instagram.com/..."},
+                {"type":"website","url":"https://website.com/..."}
+              ]'>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
   </main>
 
@@ -496,6 +505,90 @@
     </div>
   </div>
 
+  <script>
+    const cards = document.querySelectorAll(".set-card");
+
+    cards.forEach(card => {
+      const title = card.dataset.title || "";
+      const desc = card.dataset.desc || "";
+      const thumbnail = card.dataset.thumbnail || "";
+      const assets = JSON.parse(card.dataset.assets || "[]");
+      const socials = JSON.parse(card.dataset.social || "[]");
+
+      // =====================
+      // ASSETS (IMAGE + VIDEO)
+      // =====================
+      let assetsHTML = "";
+
+      assets.forEach(asset => {
+        if (asset.type === "image") {
+          assetsHTML += `
+        <div class="responsive">
+          <div class="gallery">
+            <a href="${asset.src}" target="_blank">
+              <img src="${asset.src}" style="width:100%;height:100%;object-fit:cover;">
+            </a>
+          </div>
+        </div>
+      `;
+        }
+
+        if (asset.type === "video") {
+          assetsHTML += `
+        <div class="responsive">
+          <div class="gallery">
+            <a href="${asset.src}" target="_blank">
+              <video preload="metadata" muted style="width:100%;height:100%;object-fit:cover;">
+                <source src="${asset.src}" type="video/mp4">
+              </video>
+            </a>
+          </div>
+        </div>
+      `;
+        }
+      });
+
+      // =====================
+      // SOCIAL BUTTONS
+      // =====================
+      let socialHTML = "";
+
+      socials.forEach(social => {
+        let label = "";
+
+        if (social.type === "instagram") label = "Instagram";
+        if (social.type === "youtube") label = "YouTube";
+        if (social.type === "website") label = "Website";
+
+        socialHTML += `
+      <a href="${social.url}" target="_blank">
+        <button class="btn btn-sm btn-outline-secondary">${label}</button>
+      </a>
+    `;
+      });
+
+      // =====================
+      // RENDER CARD
+      // =====================
+      card.innerHTML = `
+    <img src="${thumbnail}" class="card-img-top">
+
+    <div class="card-body">
+      <p class="h6">${title}</p>
+      <p class="card-text">${desc}</p>
+      ${assetsHTML}
+    </div>
+
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group">
+          ${socialHTML}
+        </div>
+      </div>
+    </div>
+  `;
+    });
+  </script>
 
   <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
