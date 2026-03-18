@@ -1,4 +1,5 @@
 /* ================= ROOT (WAJIB ADA) ================= */
+
 :root {
   --result-test: calc(var(--pos_y_planet) - var(--scrollYport));
 }
@@ -28,6 +29,7 @@ html, body {
 /* ================= BODY ================= */
 body {
   background-color: rgb(6, 7, 12);
+  overscroll-behavior: none;
   color: white;
   position: relative;
   z-index: 0;
@@ -63,7 +65,7 @@ body {
   mix-blend-mode: screen;
 }
 
-#layer3 {
+/* #layer3 {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -71,14 +73,37 @@ body {
   background-color: black;
   filter: blur(120px) brightness(calc(2 + var(--rand)));
   mix-blend-mode: screen;
+} */
+
+
+:root {
+  --window-y: 0px;
 }
 
 #layer2 .orignial-image-scene{
   background-image:url("image/info/TestVFXGlow.png");
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  transform: translate3d(0, var(--window-y), 0);
+  will-change: transform;
+
+  backface-visibility: hidden; /* anti flicker */
+  contain: layout style paint; /* isolate rendering */
 }
 
 #layer3 .orignial-image-scene{
   background-image:url("image/info/TestVFXGlow.png");
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  transform: translate3d(0, var(--window-y), 0);
+  will-change: transform;
+
+  backface-visibility: hidden; /* anti flicker */
+  contain: layout style paint; /* isolate rendering */
 }
 
 #layer2 .inanimate-objects {
