@@ -8,7 +8,7 @@ article {
 }
 
 :root {
-  --color-theme: rgb(0, 132, 255);
+  --color-theme: rgb(7, 109, 241);
 }
 
 /* display: grid on html & body + min-height: 100% on html
