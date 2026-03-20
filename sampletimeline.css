@@ -109,12 +109,8 @@ html {
 }
 
 .timeline img {
-  box-sizing: border-box;
-  border: solid 2px;
   width: min(100%, 13em);
-  aspect-ratio: 1.3;
-  -o-object-fit: cover;
-  object-fit: cover;
+  padding: 15px;
 }
 
 /*# sourceMappingURL=sampletimeline.css.map */
