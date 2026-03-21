@@ -50,7 +50,7 @@ cards.forEach(card => {
 
   experiences.forEach(exp => {
     experienceHTML += `
-      <span class="badge rounded-pill bg-dark me-1 mb-1">${exp.name}</span>
+      <span class="badge rounded-pill me-1 mb-1 text-dark" style="border: 1px solid #9c9c9c; padding: 0.5rem;">${exp.name}</span>
     `;
   });
 
@@ -105,7 +105,7 @@ cards.forEach(card => {
 
     <!-- EXPERIENCE -->
     ${experienceHTML ? `
-    <div style="padding-left:15px; padding-right:15px;">
+    <div style="padding-left:15px; padding-right:15px; padding-bottom:15px;">
       <p style="top:10px; position:relative;">Experience</p>
       ${experienceHTML}
     </div>
@@ -113,7 +113,7 @@ cards.forEach(card => {
 
     <!-- SOCIAL -->
     ${socialHTML ? `
-    <div class="card-body">
+    <div style="padding-left:15px; padding-right:15px; padding-bottom:15px;">
       <div class="d-flex flex-wrap gap-2">
         ${socialHTML}
       </div>
