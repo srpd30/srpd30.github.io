@@ -1,18 +1,25 @@
 
 /* BUTTON */
 .social-btn {
-  transition: 0.3s;
-}
-
-.social-btn {
   background-color: transparent ;
   border: none !important;
+  width: 100%;
+  height: 100%;
+  padding: 10px 5px;
   box-shadow: none !important;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 6px;
+  text-align: center;
+  justify-content: center;
   transition: 0.3s;
+}
+
+.set-card a {
+  display: block;
+  width: 100%;
 }
 
 @media (max-width: 576px) {
