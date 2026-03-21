@@ -1,8 +1,76 @@
 
+/* BUTTON */
+.social-btn {
+  transition: 0.3s;
+}
+
+.social-btn {
+  background-color: transparent ;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s;
+}
+
+@media (max-width: 576px) {
+  .social-btn {
+    display: flex;
+    flex-direction: column;
+    
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    width: 100%;           /* 🔥 penting */
+  }
+
+  .social-btn span {
+    width: 100%;
+    text-align: center;    /* 🔥 biar teks ikut center */
+  }
+
+  .social-icon {
+    margin: 0 auto;        /* 🔥 paksa icon ke tengah */
+  }
+}
+
+/* HOVER BUTTON */
+.social-btn:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+}
+
+/* ICON */
+.social-icon {
+  transition: 0.3s;
+}
+
+.social-btn:hover .social-icon {
+  filter: brightness(0) invert(1);
+}
 .hr-line {
   overflow: hidden;
   text-align: center;
   margin-bottom: 25px;
+}
+
+.set-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.set-card a:hover {
+  text-decoration: none;
+}
+
+/* MOBILE: ICON ONLY */
+@media (max-width: 576px) {
+  .social-btn span {
+    display: none;
+  }
 }
 
 .hr-line::before,
