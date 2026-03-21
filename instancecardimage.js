@@ -122,3 +122,27 @@ cards.forEach(card => {
 
   `;
 });
+
+// =====================
+// TIMELINE SYSTEM
+// =====================
+const timelines = document.querySelectorAll(".set-timeline");
+
+timelines.forEach(item => {
+  const title = item.dataset.title || "";
+  const year = item.dataset.year || "";
+  const desc = item.dataset.desc || "";
+  const logo = item.dataset.logo || "";
+
+  item.outerHTML = `
+    <article style="padding-bottom: 70px;">
+      <div class='timeline__content'>
+        <h3>${title}</h3>
+        <h1><time class="font-concieliancondsemital">${year}</time></h1>
+        <hr />
+        <p>${desc}</p>
+      </div>
+      <img src="${logo}" />
+    </article>
+  `;
+});
