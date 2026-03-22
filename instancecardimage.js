@@ -1,13 +1,33 @@
 // =====================
+// HELPER
+// =====================
+function convertYouTube(url) {
+  const regExp = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
+  const match = url.match(regExp);
+  return match
+    ? `https://www.youtube.com/embed/${match[1]}?autoplay=1&mute=1`
+    : null;
+}
+
+// =====================
 // CARD SYSTEM
 // =====================
 const cards = document.querySelectorAll(".set-card");
 
 cards.forEach(card => {
   const title = card.dataset.title || "";
-  const assets = JSON.parse(card.dataset.assets || "[]");
-  const experiences = JSON.parse(card.dataset.experiences || "[]");
-  const socials = JSON.parse(card.dataset.social || "[]");
+
+  let assets = [];
+  let experiences = [];
+  let socials = [];
+
+  try {
+    assets = JSON.parse(card.dataset.assets || "[]");
+    experiences = JSON.parse(card.dataset.experiences || "[]");
+    socials = JSON.parse(card.dataset.social || "[]");
+  } catch (e) {
+    console.error("JSON error:", e);
+  }
 
   // =====================
   // ASSETS
@@ -17,7 +37,7 @@ cards.forEach(card => {
 
   assets.forEach(asset => {
 
-    // IMAGE (GRID)
+    // 🖼 IMAGE (GRID)
     if (asset.type === "image") {
       assetsHTML += `
         <div class="responsive">
@@ -30,13 +50,29 @@ cards.forEach(card => {
       `;
     }
 
-    // VIDEO (FULL WIDTH)
+    // 🎥 VIDEO LOCAL
     if (asset.type === "video") {
       videoHTML += `
-        <div style="margin-bottom:10px;">
-          <video controls style="width:100%;border-radius:10px;">
+        <div class="video-wrapper">
+          <video controls autoplay muted loop>
             <source src="${asset.src}" type="video/mp4">
           </video>
+        </div>
+      `;
+    }
+
+    // ▶️ YOUTUBE (NEW 🔥)
+    if (asset.type === "youtube") {
+      const embed = convertYouTube(asset.src);
+      if (!embed) return;
+
+      videoHTML += `
+        <div class="video-wrapper">
+          <iframe src="${embed}" 
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
         </div>
       `;
     }
@@ -50,7 +86,10 @@ cards.forEach(card => {
 
   experiences.forEach(exp => {
     experienceHTML += `
-      <span class="badge rounded-pill me-1 mb-1 text-dark" style="border: 1px solid #9c9c9c; padding: 0.5rem;">${exp.name}</span>
+      <span class="badge rounded-pill me-1 mb-1 text-dark" 
+        style="border: 1px solid #9c9c9c; padding: 0.5rem;">
+        ${exp.name}
+      </span>
     `;
   });
 
@@ -68,7 +107,7 @@ cards.forEach(card => {
             
             ${social.icon ? `
               <img src="${social.icon}" 
-                  style="width:20px;height:20px;object-fit:contain;">
+                style="width:20px;height:20px;object-fit:contain;">
             ` : ""}
 
             ${social.name ? `<span>${social.name}</span>` : ""}
