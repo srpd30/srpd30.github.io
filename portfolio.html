@@ -74,11 +74,20 @@
       </a>
       <form class="margin-fix-nav-right d-flex rounded-pill bg-dark">
         <a class="margin-fix-nav nav-link text-white active fs-5 text-center font-concieliancondsemital"
-          aria-current="page" href="index.html">Home</a>
-        <a class="nav-link text-center fs-5 disabled font-concieliancondsemital" href="*" tabindex="-1"
+          aria-current="page" href="#professional">Home</a>
+
+        <div class="dropdown">
+        <a class="nav-link text-center fs-5 text-white active font-concieliancondsemital dropdown-toggle" href="*" tabindex="-1" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
           aria-disabled="true">Showcase</a>
-        <a class="margin-fix-nav nav-link fs-5 text-center text-gray font-concieliancondsemital"
+          <ul class="dropdown-menu dropdown-menu-dark fs-5" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#professional">Professional Works</a></li>
+          <li><a class="dropdown-item" href="#personal">Personal Projects</a></li>
+        </ul>
+        </div>
+
+        <a class="margin-fix-nav nav-link fs-5 text-center font-concieliancondsemital text-white active "
           href="about.html">About</a>
+
       </form>
     </div>
   </nav>
@@ -89,13 +98,13 @@
   <section class="py-5 text-center container">
     <div class="row py-lg-5">
       <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Creative Archive</h1>
+        <h1 class="fw-light font-concieliancondsemital">Creative Archive</h1>
         <p class="lead fw-light">A collection of visual projects, experiments, and professional works. From company
           collaborations to independent creations, each project reflects my exploration in design, motion graphics, and
           digital creativity.</p>
         <p>
-          <a href="#" class="btn btn-primary my-2">Professional Works</a>
-          <a href="#" class="btn btn-secondary my-2">Personal Projects</a>
+          <a href="#professional" class="btn btn-primary my-2">Professional Works</a>
+          <a href="#personal" class="btn btn-secondary my-2">Personal Projects</a>
         </p>
       </div>
     </div>
@@ -179,7 +188,7 @@
     <div class="album py-5">
       <div style="padding: 97px;">
 
-        <h1 style="margin-bottom: 25px;">
+        <h1 style="margin-bottom: 25px;" id="professional">
           Professional Works
           <small class="text-muted">2018-2026</small>
         </h1>
@@ -441,7 +450,7 @@
 
       <div style="padding: 97px;">
 
-        <h1 style="margin-bottom: 25px;">
+        <h1 style="margin-bottom: 25px;" id="personal">
           Personal Projects
           <small class="text-muted">2014-2026</small>
         </h1>
@@ -545,6 +554,12 @@
       </div>
 
   </main>
+
+  <footer class="bd-footer bg-dark p-3 p-md-5 mt-5 text-center text-sm-start">
+      <div class="container">
+        <p class="lh-1 text-white"> &copy; 2026, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a class="text-start lh-1 fw-light fs-6"> <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap v5.0.0</a> Designed by SRPD</a></p>
+      </div>
+      </footer>
 
 
   <script src="instancecardimage.js"></script>
