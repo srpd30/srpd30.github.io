@@ -70,7 +70,7 @@ cards.forEach(card => {
         <div class="video-wrapper">
           <iframe src="${embed}" 
             frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; gyroscope; picture-in-picture"
+            allow="accelerometer; autoplay; picture-in-picture"
             allowfullscreen>
           </iframe>
         </div>
