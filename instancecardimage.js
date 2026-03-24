@@ -29,21 +29,35 @@ cards.forEach(card => {
     console.error("JSON error:", e);
   }
 
-  // =====================
-  // ASSETS
-  // =====================
   let assetsHTML = "";
   let videoHTML = "";
 
+  // =====================
+  // ASSETS LOOP
+  // =====================
   assets.forEach(asset => {
 
-    // 🖼 IMAGE (GRID)
-    if (asset.type === "image") {
+    // 🔥 IMAGE FULL (THUMBNAIL BESAR)
+    if (asset.type === "image-full") {
+    assetsHTML += `
+      <div class="full-image-wrapper" 
+        style="margin-bottom:15px; top:30px; aspect-ratio:16/9; overflow:hidden; border-radius:8px;">
+        
+        <img src="${asset.src}" 
+          style="width:100%; height:100%; object-fit:cover;">
+          
+      </div>
+    `;
+    }
+
+    // 🖼 IMAGE GRID
+    else if (asset.type === "image") {
       assetsHTML += `
         <div class="responsive">
           <div class="gallery">
             <a href="${asset.src}" target="_blank">
-              <img src="${asset.src}" style="width:100%;height:100%;object-fit:cover;">
+              <img src="${asset.src}" 
+                style="width:100%;height:100%;object-fit:cover;">
             </a>
           </div>
         </div>
@@ -51,7 +65,7 @@ cards.forEach(card => {
     }
 
     // 🎥 VIDEO LOCAL
-    if (asset.type === "video") {
+    else if (asset.type === "video") {
       videoHTML += `
         <div class="video-wrapper">
           <video controls autoplay muted loop>
@@ -61,8 +75,8 @@ cards.forEach(card => {
       `;
     }
 
-    // ▶️ YOUTUBE (NEW 🔥)
-    if (asset.type === "youtube") {
+    // ▶️ YOUTUBE
+    else if (asset.type === "youtube") {
       const embed = convertYouTube(asset.src);
       if (!embed) return;
 
@@ -135,7 +149,7 @@ cards.forEach(card => {
       ` : ""}
     </div>
 
-    <!-- VIDEO FULL -->
+    <!-- VIDEO -->
     ${videoHTML ? `
     <div class="card-body">
       ${videoHTML}
@@ -184,4 +198,4 @@ timelines.forEach(item => {
       <img src="${logo}" />
     </article>
   `;
-});
+});Z
