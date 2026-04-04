@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SRPD — Syis Rama Putra Dityo</title>
+<meta name="description" content="Visual designer, motion artist, UI/UX practitioner — Syis Rama Putra Dityo">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-void:    #020408;
+  --bg-deep:    #040810;
+  --bg-panel:   #060d1a;
+  --bg-card:    #07111f;
+  --bg-raised:  #0a1628;
+  --blue-dim:   #0d2444;
+  --blue-mid:   #1a3d6e;
+  --blue-core:  #1e5fa8;
+  --blue-glow:  #2e7fd4;
+  --blue-bright:#4a9eff;
+  --blue-ice:   #7ec4ff;
+  --blue-ghost: #b8deff;
+  --cyan-hot:   #00d4ff;
+  --cyan-dim:   #00a8cc;
+  --text-1:     #d4ecff;
+  --text-2:     #7aabda;
+  --text-3:     #3a6899;
+  --text-4:     #1e3d5c;
+  --border-1:   rgba(74,158,255,0.15);
+  --border-2:   rgba(74,158,255,0.28);
+  --border-hot: rgba(0,212,255,0.5);
+  --scan-line:  rgba(0,212,255,0.03);
+  --font-hud:   'Orbitron', monospace;
+  --font-mono:  'Share Tech Mono', monospace;
+  --font-body:  'Rajdhani', sans-serif;
+  --r-sm: 2px;
+  --r-md: 4px;
+  --r-lg: 6px;
+  --ease: cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body {
+  background: var(--bg-void);
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+::selection{background:var(--blue-glow);color:#fff}
+
+/* ─── Scanlines overlay ─── */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    var(--scan-line) 2px,
+    var(--scan-line) 4px
+  );
+  pointer-events:none;
+  z-index:9999;
+}
+
+/* ─── Grid bg ─── */
+body::after {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(var(--border-1) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-1) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events:none;
+  z-index:0;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
+}
+
+/* ─── Horizon glow ─── */
+.horizon {
+  position:fixed;
+  bottom:0; left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent 0%, var(--cyan-dim) 40%, var(--blue-bright) 50%, var(--cyan-dim) 60%, transparent 100%);
+  z-index:1;
+  opacity:0.4;
+}
+.horizon::before {
+  content:'';
+  position:absolute;
+  bottom:0; left:20%; right:20%;
+  height:80px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(46,127,212,0.12) 0%, transparent 70%);
+}
+
+/* ─── Navbar ─── */
+nav {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:500;
+  padding:0 40px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background: rgba(2,4,8,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-1);
+}
+nav::after {
+  content:'';
+  position:absolute;
+  bottom:0; left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent, var(--blue-glow), transparent);
+  opacity:0.4;
+}
+.nav-logo {
+  font-family: var(--font-hud);
+  font-size:14px;
+  font-weight:700;
+  color:var(--text-1);
+  text-decoration:none;
+  letter-spacing:0.15em;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.nav-logo-bracket {
+  color:var(--cyan-hot);
+  font-size:18px;
+  line-height:1;
+}
+.nav-links {
+  display:flex;
+  gap:36px;
+  list-style:none;
+}
+.nav-links a {
+  font-family: var(--font-hud);
+  font-size:10px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--text-3);
+  text-decoration:none;
+  transition: color 0.2s;
+  position:relative;
+}
+.nav-links a::after {
+  content:'';
+  position:absolute;
+  bottom:-4px; left:0; right:0;
+  height:1px;
+  background:var(--cyan-hot);
+  transform:scaleX(0);
+  transition:transform 0.2s;
+}
+.nav-links a:hover { color:var(--text-1); }
+.nav-links a:hover::after { transform:scaleX(1); }
+.nav-status {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--text-3);
+}
+.status-dot {
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--cyan-hot);
+  animation: pulse-dot 2s infinite;
+}
+@keyframes pulse-dot {
+  0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,212,255,0.4)}
+  50%{opacity:0.6;box-shadow:0 0 0 4px rgba(0,212,255,0)}
+}
+
+/* ─── HERO SLIDER ─── */
+#hero {
+  position:relative;
+  height:100vh;
+  min-height:600px;
+  overflow:hidden;
+  z-index:1;
+}
+.slides-track {
+  position:absolute;
+  inset:0;
+  display:flex;
+  transition:transform 0.9s cubic-bezier(0.77,0,0.175,1);
+  will-change:transform;
+}
+.slide {
+  min-width:100%;
+  height:100%;
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+/* each slide has unique bg accent */
+.slide-0 { --s-accent:#1e5fa8; --s-glow:#2e7fd4; }
+.slide-1 { --s-accent:#1a5c6e; --s-glow:#00a8cc; }
+.slide-2 { --s-accent:#2e1e6e; --s-glow:#7b4fff; }
+
+.slide-bg {
+  position:absolute;
+  inset:0;
+  background: radial-gradient(ellipse 60% 70% at 70% 50%, var(--s-glow,#2e7fd4) 0%, transparent 60%);
+  opacity:0.08;
+}
+.slide-grid-accent {
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(74,158,255,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,158,255,0.06) 1px, transparent 1px);
+  background-size:40px 40px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+.slide-corner {
+  position:absolute;
+  width:120px; height:120px;
+  border-color: var(--s-glow, var(--blue-glow));
+  border-style:solid;
+  opacity:0.35;
+}
+.slide-corner.tl { top:60px; left:60px; border-width:1px 0 0 1px; }
+.slide-corner.tr { top:60px; right:60px; border-width:1px 1px 0 0; }
+.slide-corner.bl { bottom:60px; left:60px; border-width:0 0 1px 1px; }
+.slide-corner.br { bottom:60px; right:60px; border-width:0 1px 1px 0; }
+
+/* vertical label */
+.slide-index {
+  position:absolute;
+  right:52px; top:50%;
+  transform:translateY(-50%) rotate(90deg);
+  font-family:var(--font-mono);
+  font-size:10px;
+  letter-spacing:0.2em;
+  color:var(--text-4);
+  white-space:nowrap;
+}
+
+.slide-content {
+  position:relative;
+  z-index:2;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 80px;
+  width:100%;
+}
+.slide-eyebrow {
+  font-family:var(--font-hud);
+  font-size:10px;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--cyan-hot);
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  opacity:0;
+  transform:translateY(16px);
+  transition: opacity 0.6s 0.2s, transform 0.6s 0.2s;
+}
+.slide-eyebrow::before {
+  content:'';
+  display:block;
+  width:32px; height:1px;
+  background:var(--cyan-hot);
+}
+.slide.active .slide-eyebrow { opacity:1; transform:translateY(0); }
+
+.slide-title {
+  font-family:var(--font-hud);
+  font-size:clamp(36px, 6.5vw, 88px);
+  font-weight:900;
+  line-height:0.95;
+  letter-spacing:-0.02em;
+  color:var(--text-1);
+  margin-bottom:20px;
+  opacity:0;
+  transform:translateY(24px);
+  transition: opacity 0.6s 0.35s, transform 0.6s 0.35s;
+}
+.slide.active .slide-title { opacity:1; transform:translateY(0); }
+.slide-title em {
+  font-style:normal;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(74,158,255,0.45);
+}
+
+.slide-sub {
+  font-family:var(--font-body);
+  font-size:18px;
+  font-weight:400;
+  color:var(--text-2);
+  max-width:560px;
+  margin-bottom:44px;
+  letter-spacing:0.03em;
+  opacity:0;
+  transform:translateY(16px);
+  transition: opacity 0.6s 0.5s, transform 0.6s 0.5s;
+}
+.slide.active .slide-sub { opacity:1; transform:translateY(0); }
+
+.slide-actions {
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  opacity:0;
+  transform:translateY(16px);
+  transition: opacity 0.6s 0.65s, transform 0.6s 0.65s;
+}
+.slide.active .slide-actions { opacity:1; transform:translateY(0); }
+
+/* bottom scan bar */
+.slide-scanbar {
+  position:absolute;
+  bottom:0; left:0; right:0;
+  height:2px;
+  background: linear-gradient(90deg, transparent, var(--s-glow,var(--blue-glow)), transparent);
+  opacity:0.4;
+}
+
+/* Slider controls */
+.slider-controls {
+  position:absolute;
+  bottom:40px; left:80px;
+  z-index:10;
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+.slider-dots {
+  display:flex;
+  gap:10px;
+}
+.slider-dot {
+  width:24px; height:2px;
+  background:var(--blue-dim);
+  border:none;
+  cursor:pointer;
+  transition: background 0.3s, width 0.3s;
+  padding:0;
+}
+.slider-dot.active {
+  width:48px;
+  background:var(--cyan-hot);
+  box-shadow:0 0 8px var(--cyan-hot);
+}
+.slider-arrows {
+  display:flex;
+  gap:8px;
+}
+.slider-arrow {
+  width:36px; height:36px;
+  border:1px solid var(--border-2);
+  background:rgba(6,13,26,0.7);
+  color:var(--text-2);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  transition: all 0.2s;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+.slider-arrow:hover { background:var(--blue-dim); color:var(--text-1); border-color:var(--border-hot); }
+
+/* progress bar */
+.slider-progress {
+  position:absolute;
+  bottom:0; left:0;
+  height:2px;
+  background:var(--blue-glow);
+  z-index:10;
+  transition:width 0.1s linear;
+  box-shadow:0 0 6px var(--blue-glow);
+}
+
+/* ─── Buttons ─── */
+.btn-prime {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:11px 28px;
+  background:var(--blue-glow);
+  color:#fff;
+  text-decoration:none;
+  font-family:var(--font-hud);
+  font-size:10px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  border:none;
+  cursor:pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-prime:hover { background:var(--blue-bright); transform:translateY(-2px); }
+
+.btn-outline {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 26px;
+  background:transparent;
+  color:var(--text-2);
+  text-decoration:none;
+  font-family:var(--font-hud);
+  font-size:10px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  border:1px solid var(--border-2);
+  cursor:pointer;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color:var(--cyan-hot); color:var(--cyan-hot); }
+
+/* ─── Layout ─── */
+.container { max-width:1200px; margin:0 auto; padding:0 40px; position:relative; z-index:1; }
+.section { padding:100px 0; position:relative; z-index:1; }
+
+.sec-header { margin-bottom:60px; }
+.sec-eyebrow {
+  font-family:var(--font-hud);
+  font-size:9px;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:var(--cyan-hot);
+  margin-bottom:14px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.sec-eyebrow::before { content:'//'; color:var(--blue-glow); }
+.sec-title {
+  font-family:var(--font-hud);
+  font-size:clamp(22px,3.5vw,38px);
+  font-weight:800;
+  letter-spacing:-0.01em;
+  color:var(--text-1);
+  line-height:1.1;
+}
+.sec-sub { font-size:15px; color:var(--text-3); margin-top:10px; font-weight:400; letter-spacing:0.03em; }
+
+/* ─── About card ─── */
+.about-grid {
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:40px;
+  align-items:start;
+}
+.about-bio { font-size:17px; color:var(--text-2); line-height:1.8; font-weight:400; margin-bottom:28px; letter-spacing:0.02em; }
+.about-stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  border:1px solid var(--border-1);
+  background:var(--border-1);
+  margin-bottom:32px;
+}
+.about-stat {
+  background:var(--bg-panel);
+  padding:20px 16px;
+  text-align:center;
+}
+.stat-n {
+  font-family:var(--font-hud);
+  font-size:28px;
+  font-weight:900;
+  color:var(--blue-bright);
+  display:block;
+  margin-bottom:4px;
+  text-shadow:0 0 20px rgba(74,158,255,0.4);
+}
+.stat-l { font-family:var(--font-mono); font-size:10px; color:var(--text-4); letter-spacing:0.12em; text-transform:uppercase; }
+
+.hud-card {
+  background:var(--bg-panel);
+  border:1px solid var(--border-1);
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+}
+.hud-card::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, transparent, var(--cyan-hot), transparent);
+}
+.hud-card-label {
+  font-family:var(--font-hud);
+  font-size:9px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--cyan-hot);
+  margin-bottom:20px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.hud-card-label::before { content:'['; color:var(--blue-glow); }
+.hud-card-label::after  { content:']'; color:var(--blue-glow); }
+
+.skill-grid {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.skill-row { display:flex; flex-direction:column; gap:4px; }
+.skill-name { font-family:var(--font-mono); font-size:12px; color:var(--text-2); display:flex; justify-content:space-between; }
+.skill-pct { color:var(--blue-bright); }
+.skill-bar-bg {
+  height:2px;
+  background:var(--blue-dim);
+  position:relative;
+  overflow:hidden;
+}
+.skill-bar-fill {
+  position:absolute;
+  top:0; left:0;
+  height:100%;
+  background: linear-gradient(90deg, var(--blue-glow), var(--cyan-hot));
+  box-shadow:0 0 6px var(--cyan-dim);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 1s var(--ease);
+}
+.skill-bar-fill.animated { transform:scaleX(1); }
+
+.skills-pill-row {
+  display:flex; flex-wrap:wrap; gap:6px; margin-top:20px;
+}
+.skill-tag {
+  padding:4px 12px;
+  border:1px solid var(--border-1);
+  background:var(--bg-raised);
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--text-3);
+  letter-spacing:0.04em;
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+}
+
+/* ─── Timeline ─── */
+.tl-wrap { position:relative; padding-left:44px; }
+.tl-wrap::before {
+  content:'';
+  position:absolute;
+  left:10px; top:0; bottom:0;
+  width:1px;
+  background: linear-gradient(180deg, var(--cyan-hot) 0%, var(--blue-glow) 50%, var(--blue-dim) 80%, transparent 100%);
+}
+.tl-item {
+  position:relative;
+  margin-bottom:36px;
+  opacity:0;
+  transform:translateX(-16px);
+  transition:opacity 0.5s, transform 0.5s;
+}
+.tl-item.visible { opacity:1; transform:translateX(0); }
+
+.tl-node {
+  position:absolute;
+  left:-38px; top:4px;
+  width:16px; height:16px;
+  border:1px solid var(--cyan-hot);
+  background:var(--bg-void);
+  transform:rotate(45deg);
+  transition:background 0.2s;
+}
+.tl-node::after {
+  content:'';
+  position:absolute;
+  inset:3px;
+  background:var(--blue-glow);
+  opacity:0;
+  transition:opacity 0.2s;
+}
+.tl-item:hover .tl-node { background:var(--blue-dim); }
+.tl-item:hover .tl-node::after { opacity:1; }
+
+.tl-year {
+  font-family:var(--font-hud);
+  font-size:9px;
+  letter-spacing:0.2em;
+  color:var(--cyan-hot);
+  margin-bottom:5px;
+}
+.tl-co {
+  font-family:var(--font-hud);
+  font-size:15px;
+  font-weight:700;
+  color:var(--text-1);
+  margin-bottom:6px;
+  letter-spacing:0.02em;
+}
+.tl-desc { font-size:14px; color:var(--text-3); line-height:1.7; max-width:580px; letter-spacing:0.02em; }
+.tl-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+.tl-tag {
+  padding:2px 10px;
+  border:1px solid var(--border-1);
+  background:var(--bg-panel);
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--blue-ice);
+  letter-spacing:0.06em;
+}
+
+/* ─── Filter ─── */
+.filter-row {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:52px;
+  align-items:center;
+}
+.filter-lbl { font-family:var(--font-hud); font-size:9px; letter-spacing:0.2em; color:var(--text-4); margin-right:4px; text-transform:uppercase; }
+.f-btn {
+  padding:6px 18px;
+  border:1px solid var(--border-1);
+  background:transparent;
+  color:var(--text-3);
+  font-family:var(--font-hud);
+  font-size:9px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.2s;
+  clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+}
+.f-btn:hover { border-color:var(--border-2); color:var(--text-2); }
+.f-btn.active { background:var(--blue-core); border-color:var(--blue-bright); color:var(--text-1); box-shadow:0 0 16px rgba(30,95,168,0.4); }
+
+/* ─── Featured Cards ─── */
+.featured-grid {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+.feat-row {
+  display:grid;
+  gap:20px;
+}
+/* alternating: row 1 = 2fr 1fr, row 2 = 1fr 2fr */
+.feat-row.alt-a { grid-template-columns:2fr 1fr; }
+.feat-row.alt-b { grid-template-columns:1fr 2fr; }
+.feat-row.single { grid-template-columns:1fr; }
+
+.feat-card {
+  background:var(--bg-card);
+  border:1px solid var(--border-1);
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:border-color 0.25s, transform 0.25s;
+  min-height:220px;
+  display:flex;
+  flex-direction:column;
+}
+.feat-card::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(46,127,212,0.07) 0%, transparent 70%);
+  pointer-events:none;
+}
+.feat-card:hover { border-color:var(--border-hot); transform:translateY(-3px); }
+.feat-card:hover .feat-overlay { opacity:1; }
+.feat-card:hover .feat-scan { transform:translateY(0); opacity:0.6; }
+
+/* top accent line */
+.feat-card::after {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:1px;
+  background: linear-gradient(90deg, var(--blue-glow), var(--cyan-hot), var(--blue-glow));
+  opacity:0;
+  transition:opacity 0.25s;
+}
+.feat-card:hover::after { opacity:0.8; }
+
+.feat-vis {
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--bg-deep);
+  min-height:140px;
+  position:relative;
+  overflow:hidden;
+  font-family:var(--font-hud);
+  font-size:clamp(18px, 3vw, 36px);
+  font-weight:900;
+  letter-spacing:0.04em;
+  color:var(--blue-mid);
+}
+.feat-vis-sub {
+  position:absolute;
+  bottom:10px; right:14px;
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--text-4);
+  letter-spacing:0.1em;
+}
+/* hex pattern in vis */
+.feat-vis::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image: repeating-linear-gradient(
+    60deg,
+    transparent,
+    transparent 14px,
+    rgba(74,158,255,0.025) 14px,
+    rgba(74,158,255,0.025) 15px
+  );
+}
+
+.feat-scan {
+  position:absolute;
+  top:0; left:0; right:0;
+  height:60px;
+  background: linear-gradient(180deg, rgba(0,212,255,0.08), transparent);
+  transform:translateY(-100%);
+  transition:transform 0.5s var(--ease), opacity 0.3s;
+  opacity:0;
+  pointer-events:none;
+}
+
+.feat-overlay {
+  position:absolute;
+  inset:0;
+  background:rgba(4,8,16,0.5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  transition:opacity 0.25s;
+}
+.feat-overlay-icon {
+  width:44px; height:44px;
+  border:1px solid var(--border-hot);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--cyan-hot);
+  font-size:18px;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  background:rgba(6,13,26,0.8);
+}
+
+.feat-body {
+  padding:16px 20px 18px;
+  border-top:1px solid var(--border-1);
+}
+.feat-meta {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:6px;
+}
+.feat-year { font-family:var(--font-mono); font-size:10px; color:var(--cyan-hot); letter-spacing:0.1em; }
+.feat-cat { font-family:var(--font-mono); font-size:10px; color:var(--text-4); letter-spacing:0.06em; }
+.feat-title {
+  font-family:var(--font-hud);
+  font-size:14px;
+  font-weight:700;
+  color:var(--text-1);
+  margin-bottom:6px;
+  line-height:1.3;
+  letter-spacing:0.02em;
+}
+.feat-desc { font-size:13px; color:var(--text-3); line-height:1.6; margin-bottom:10px; letter-spacing:0.02em; }
+.feat-skills { display:flex; flex-wrap:wrap; gap:5px; }
+.feat-skill {
+  padding:2px 8px;
+  border:1px solid var(--border-1);
+  background:var(--bg-raised);
+  font-family:var(--font-mono);
+  font-size:10px;
+  color:var(--blue-ice);
+  letter-spacing:0.04em;
+}
+
+/* hidden */
+.feat-card.hidden { display:none; }
+
+/* ─── Lightbox ─── */
+.lightbox {
+  position:fixed;
+  inset:0;
+  z-index:800;
+  background:rgba(2,4,8,0.92);
+  backdrop-filter:blur(12px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 0.2s;
+}
+.lightbox.open { opacity:1; pointer-events:all; }
+.lb-inner {
+  background:var(--bg-panel);
+  border:1px solid var(--border-2);
+  max-width:760px;
+  width:100%;
+  max-height:88vh;
+  overflow-y:auto;
+  position:relative;
+  transform:scale(0.95) translateY(10px);
+  transition:transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+.lb-inner::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--cyan-hot), transparent);
+}
+.lightbox.open .lb-inner { transform:scale(1) translateY(0); }
+.lb-close {
+  position:absolute;
+  top:14px; right:14px;
+  width:28px; height:28px;
+  border:1px solid var(--border-2);
+  background:var(--bg-raised);
+  color:var(--text-3);
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-family:var(--font-mono);
+  z-index:10;
+  transition:all 0.2s;
+}
+.lb-close:hover { background:var(--blue-core); color:var(--text-1); border-color:var(--cyan-hot); }
+.lb-head { padding:28px 28px 0; }
+.lb-year { font-family:var(--font-hud); font-size:9px; letter-spacing:0.22em; color:var(--cyan-hot); margin-bottom:8px; }
+.lb-title { font-family:var(--font-hud); font-size:22px; font-weight:800; color:var(--text-1); letter-spacing:0.01em; margin-bottom:14px; line-height:1.2; }
+.lb-desc { font-size:15px; color:var(--text-2); line-height:1.75; letter-spacing:0.02em; }
+.lb-skills { display:flex; flex-wrap:wrap; gap:7px; padding:18px 28px; }
+.lb-skill {
+  padding:4px 12px;
+  border:1px solid var(--border-1);
+  background:var(--bg-raised);
+  font-family:var(--font-mono);
+  font-size:11px;
+  color:var(--blue-ice);
+  letter-spacing:0.06em;
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+}
+.lb-links { display:flex; flex-wrap:wrap; gap:10px; padding:0 28px 28px; }
+.lb-link {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 18px;
+  border:1px solid var(--border-2);
+  background:var(--bg-raised);
+  color:var(--text-2);
+  text-decoration:none;
+  font-family:var(--font-hud);
+  font-size:9px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  transition:all 0.2s;
+  clip-path: polygon(5px 0%, 100% 0%, calc(100% - 5px) 100%, 0% 100%);
+}
+.lb-link:hover { border-color:var(--cyan-hot); color:var(--cyan-hot); }
+
+/* ─── Contact ─── */
+.contact-frame {
+  border:1px solid var(--border-1);
+  background:var(--bg-panel);
+  padding:72px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.contact-frame::before {
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--cyan-hot) 40%, var(--blue-bright), transparent);
+}
+.cf-corner {
+  position:absolute;
+  width:28px; height:28px;
+  border-color:var(--blue-glow);
+  border-style:solid;
+  opacity:0.5;
+}
+.cf-corner.tl { top:16px; left:16px; border-width:1px 0 0 1px; }
+.cf-corner.tr { top:16px; right:16px; border-width:1px 1px 0 0; }
+.cf-corner.bl { bottom:16px; left:16px; border-width:0 0 1px 1px; }
+.cf-corner.br { bottom:16px; right:16px; border-width:0 1px 1px 0; }
+.contact-title {
+  font-family:var(--font-hud);
+  font-size:clamp(24px,4vw,44px);
+  font-weight:900;
+  letter-spacing:-0.01em;
+  color:var(--text-1);
+  margin-bottom:14px;
+}
+.contact-sub { font-size:15px; color:var(--text-3); margin-bottom:40px; letter-spacing:0.04em; }
+.contact-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+.c-link {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:11px 24px;
+  border:1px solid var(--border-2);
+  background:var(--bg-raised);
+  color:var(--text-2);
+  text-decoration:none;
+  font-family:var(--font-hud);
+  font-size:9px;
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  transition:all 0.2s;
+}
+.c-link:hover { border-color:var(--cyan-hot); color:var(--cyan-hot); transform:translateY(-2px); }
+.c-link svg { width:14px; height:14px; fill:currentColor; flex-shrink:0; }
+
+/* ─── Footer ─── */
+footer {
+  border-top:1px solid var(--border-1);
+  padding:24px 40px;
+  position:relative; z-index:1;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.foot-copy { font-family:var(--font-mono); font-size:11px; color:var(--text-4); letter-spacing:0.06em; }
+.foot-logo { font-family:var(--font-hud); font-size:12px; font-weight:700; color:var(--text-4); text-decoration:none; letter-spacing:0.15em; }
+.foot-logo span { color:var(--cyan-hot); }
+
+/* ─── Reveal ─── */
+.reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s, transform 0.6s; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--bg-void); }
+::-webkit-scrollbar-thumb { background:var(--blue-mid); }
+::-webkit-scrollbar-thumb:hover { background:var(--blue-glow); }
+
+@media (max-width:900px) {
+  .feat-row.alt-a, .feat-row.alt-b { grid-template-columns:1fr; }
+  .about-grid { grid-template-columns:1fr; }
+  .contact-frame { padding:40px 24px; }
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .slide-content { padding:0 32px; }
+  .slider-controls { left:32px; }
+  .container { padding:0 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="horizon"></div>
+
+<!-- ─── NAVBAR ─── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-bracket">[</span>SRPD<span class="nav-logo-bracket">]</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Profile</a></li>
+    <li><a href="#timeline">Career</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status">
+    <div class="status-dot"></div>
+    <span>ONLINE // BEKASI-ID</span>
+  </div>
+</nav>
+
+<!-- ─── HERO SLIDER ─── -->
+<section id="hero">
+  <div class="slides-track" id="slidesTrack">
+
+    <!-- Slide 0 -->
+    <div class="slide slide-0" id="slide-0">
+      <div class="slide-bg"></div>
+      <div class="slide-grid-accent"></div>
+      <div class="slide-corner tl"></div>
+      <div class="slide-corner tr"></div>
+      <div class="slide-corner bl"></div>
+      <div class="slide-corner br"></div>
+      <div class="slide-index">SEGMENT // 01 / 03</div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Visual Engineer &amp; Motion Designer</div>
+        <h1 class="slide-title">Syis Rama<br><em>Putra Dityo</em></h1>
+        <p class="slide-sub">Crafting digital worlds through design, motion, and code — from broadcast television to the digital frontier.</p>
+        <div class="slide-actions">
+          <a href="#work" class="btn-prime">View Archive</a>
+          <a href="#about" class="btn-outline">Profile Data</a>
+        </div>
+      </div>
+      <div class="slide-scanbar"></div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="slide slide-1" id="slide-1">
+      <div class="slide-bg"></div>
+      <div class="slide-grid-accent"></div>
+      <div class="slide-corner tl"></div>
+      <div class="slide-corner tr"></div>
+      <div class="slide-corner bl"></div>
+      <div class="slide-corner br"></div>
+      <div class="slide-index">SEGMENT // 02 / 03</div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">UI/UX &amp; Interface Design</div>
+        <h1 class="slide-title">Building<br><em>Systems</em></h1>
+        <p class="slide-sub">Designing intuitive interfaces for MSMEs, government platforms, and digital products across the Indonesian ecosystem.</p>
+        <div class="slide-actions">
+          <a href="#work" class="btn-prime">Explore UI Work</a>
+          <a href="#timeline" class="btn-outline">Career Log</a>
+        </div>
+      </div>
+      <div class="slide-scanbar"></div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide slide-2" id="slide-2">
+      <div class="slide-bg"></div>
+      <div class="slide-grid-accent"></div>
+      <div class="slide-corner tl"></div>
+      <div class="slide-corner tr"></div>
+      <div class="slide-corner bl"></div>
+      <div class="slide-corner br"></div>
+      <div class="slide-index">SEGMENT // 03 / 03</div>
+      <div class="slide-content">
+        <div class="slide-eyebrow">Motion &amp; Animation</div>
+        <h1 class="slide-title">Motion<br><em>in Frame</em></h1>
+        <p class="slide-sub">From fan-made game development to broadcast promo graphics — storytelling through motion since 2014.</p>
+        <div class="slide-actions">
+          <a href="#work" class="btn-prime">Motion Work</a>
+          <a href="#contact" class="btn-outline">Open for Work</a>
+        </div>
+      </div>
+      <div class="slide-scanbar"></div>
+    </div>
+
+  </div>
+
+  <!-- progress bar -->
+  <div class="slider-progress" id="sliderProgress"></div>
+
+  <!-- controls -->
+  <div class="slider-controls">
+    <div class="slider-dots" id="sliderDots">
+      <button class="slider-dot active" data-idx="0"></button>
+      <button class="slider-dot" data-idx="1"></button>
+      <button class="slider-dot" data-idx="2"></button>
+    </div>
+    <div class="slider-arrows">
+      <button class="slider-arrow" id="slidePrev">&#8592;</button>
+      <button class="slider-arrow" id="slideNext">&#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">Profile Data</div>
+      <h2 class="sec-title">Syis Rama Putra Dityo</h2>
+      <p class="sec-sub">Creative technologist based in Bekasi, Indonesia</p>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p class="about-bio reveal">
+          Visual designer, motion graphic artist, and UI/UX practitioner with over 8 years of active field experience. From broadcast television internship at Trans 7 to building digital products for national government ministries — every project is a system to engineer and a story to tell.
+        </p>
+        <div class="about-stats reveal">
+          <div class="about-stat">
+            <span class="stat-n">8+</span>
+            <span class="stat-l">Years</span>
+          </div>
+          <div class="about-stat">
+            <span class="stat-n">13+</span>
+            <span class="stat-l">Clients</span>
+          </div>
+          <div class="about-stat">
+            <span class="stat-n">5</span>
+            <span class="stat-l">Disciplines</span>
+          </div>
+        </div>
+        <div class="skills-pill-row reveal">
+          <span class="skill-tag">Graphic Design</span>
+          <span class="skill-tag">Motion Graphics</span>
+          <span class="skill-tag">UI / UX</span>
+          <span class="skill-tag">3D Animation</span>
+          <span class="skill-tag">Web Design</span>
+          <span class="skill-tag">Video Editing</span>
+          <span class="skill-tag">Game Design</span>
+          <span class="skill-tag">Pixel Art</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="hud-card">
+          <div class="hud-card-label">Skill Matrix</div>
+          <div class="skill-grid" id="skillGrid">
+            <div class="skill-row">
+              <div class="skill-name"><span>Graphic Design</span><span class="skill-pct">95%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.95"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-name"><span>Motion Graphics</span><span class="skill-pct">88%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.88"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-name"><span>UI / UX Design</span><span class="skill-pct">82%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.82"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-name"><span>3D / Animation</span><span class="skill-pct">75%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.75"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-name"><span>Web Design</span><span class="skill-pct">70%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.70"></div></div>
+            </div>
+            <div class="skill-row">
+              <div class="skill-name"><span>Game Development</span><span class="skill-pct">65%</span></div>
+              <div class="skill-bar-bg"><div class="skill-bar-fill" style="--w:0.65"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TIMELINE ─── -->
+<section class="section" id="timeline">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">Career Log</div>
+      <h2 class="sec-title">Professional Trajectory</h2>
+      <p class="sec-sub">2018 — present</p>
+    </div>
+    <div class="tl-wrap">
+
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-year">2018</div>
+        <div class="tl-co">Trans 7</div>
+        <div class="tl-desc">Field Work Practice at PT Trans 7 Television Station in the field of Promo Design.</div>
+        <div class="tl-tags"><span class="tl-tag">Graphic Design</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-year">2020</div>
+        <div class="tl-co">Bamuda Group</div>
+        <div class="tl-desc">Started by creating company profiles, then expanded into UI/UX design and digital content across multiple projects including Sahabat Gemarikan, fishOn, Pejuang Devisa Negara, and ISSMEI (KemenkopUKM).</div>
+        <div class="tl-tags"><span class="tl-tag">Graphic Design</span><span class="tl-tag">UI/UX</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-year">2020</div>
+        <div class="tl-co">sahabatgemarikan.id</div>
+        <div class="tl-desc">Content Production, Photo Product, Creative Digital Marketing, and Graphic Design at PT Kedaulatan Pangan Nusantara, SahabatGemarikan.id brand.</div>
+        <div class="tl-tags"><span class="tl-tag">Graphic Design</span><span class="tl-tag">Motion Graphics</span><span class="tl-tag">Video Editor</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-year">2022</div>
+        <div class="tl-co">Emotes EightEight Design</div>
+        <div class="tl-desc">Developing illustrative style emotes and animations for digital content and online communities.</div>
+        <div class="tl-tags"><span class="tl-tag">Motion Graphics</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-year">2022</div>
+        <div class="tl-co">ISSMEI — KemenkopUKM</div>
+        <div class="tl-desc">UI/UX design for integrated MSME applications and marketing content production in collaboration with the Indonesian Ministry of Cooperatives and SMEs.</div>
+        <div class="tl-tags"><span class="tl-tag">UI/UX</span><span class="tl-tag">Motion Graphics</span><span class="tl-tag">Graphic Design</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-year">2023</div>
+        <div class="tl-co">rumahkarya.id &amp; greatdeal.id</div>
+        <div class="tl-desc">Created visual design materials for clients' branding and digital content needs. Developed digital design solutions for a promotional deals platform, focusing on user engagement and visual clarity.</div>
+        <div class="tl-tags"><span class="tl-tag">Graphic Design</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-year">2024</div>
+        <div class="tl-co">Warungku · Durian Nusantara Capital</div>
+        <div class="tl-desc">Designed an application prototype to support the digitalization of small shop MSMEs. Created motion graphic content to support branding and promotional communication through engaging visual storytelling.</div>
+        <div class="tl-tags"><span class="tl-tag">UI/UX</span><span class="tl-tag">Motion Graphics</span></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-node"></div>
+        <div class="tl-year">2025</div>
+        <div class="tl-co">SRPD: Webs</div>
+        <div class="tl-desc">Professional Website Creation Services — Company Profiles, MSMEs, Online Stores.</div>
+        <div class="tl-tags"><span class="tl-tag">Web Design</span><span class="tl-tag">3D Motion Graphics</span><span class="tl-tag">Graphic Design</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── WORK ─── -->
+<section class="section" id="work">
+  <div class="container">
+    <div class="sec-header reveal">
+      <div class="sec-eyebrow">Archive</div>
+      <h2 class="sec-title">Selected Work</h2>
+      <p class="sec-sub">Professional &amp; personal projects — 2014 through 2026</p>
+    </div>
+
+    <div class="filter-row reveal">
+      <span class="filter-lbl">Filter //</span>
+      <button class="f-btn active" data-filter="all">All</button>
+      <button class="f-btn" data-filter="Graphic Design">Graphic Design</button>
+      <button class="f-btn" data-filter="Motion Graphics">Motion</button>
+      <button class="f-btn" data-filter="UI UX">UI / UX</button>
+      <button class="f-btn" data-filter="Game Developer">Game Dev</button>
+      <button class="f-btn" data-filter="Web Design">Web</button>
+    </div>
+
+    <div class="featured-grid" id="featuredGrid">
+
+      <!-- Row 1: 2fr + 1fr -->
+      <div class="feat-row alt-a" id="row-0">
+        <div class="feat-card" data-project="sahabatgemarikan" data-skills="Graphic Design Motion Graphics">
+          <div class="feat-vis" style="--vc:#0d1a2a; min-height:180px;">
+            SAHABAT GEMARIKAN
+            <span class="feat-vis-sub">PT KPN // 2020</span>
+          </div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">2020</span><span class="feat-cat">BRAND &amp; CONTENT</span></div>
+            <div class="feat-title">sahabatgemarikan.id</div>
+            <div class="feat-desc">Content Production, Photo Product, Creative Digital Marketing, and Graphic Design at PT Kedaulatan Pangan Nusantara.</div>
+            <div class="feat-skills"><span class="feat-skill">Graphic Design</span><span class="feat-skill">Motion Graphics</span><span class="feat-skill">Video Editor</span></div>
+          </div>
+        </div>
+        <div class="feat-card" data-project="trans7" data-skills="Graphic Design">
+          <div class="feat-vis" style="--vc:#1a0d0d;">TRANS 7<span class="feat-vis-sub">BROADCAST // 2018</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">2018</span><span class="feat-cat">INTERNSHIP</span></div>
+            <div class="feat-title">Trans 7</div>
+            <div class="feat-desc">Field Work Practice at PT Trans 7 Television Station in the field of Promo Design.</div>
+            <div class="feat-skills"><span class="feat-skill">Graphic Design</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: 1fr + 2fr -->
+      <div class="feat-row alt-b" id="row-1">
+        <div class="feat-card" data-project="fishon" data-skills="Graphic Design">
+          <div class="feat-vis" style="--vc:#0d1a1a;">fishOn<span class="feat-vis-sub">TECH // 2020</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">2020</span><span class="feat-cat">APP DESIGN</span></div>
+            <div class="feat-title">fishOn</div>
+            <div class="feat-desc">Technology-based fishing application that helps fishermen find fish locations in the sea.</div>
+            <div class="feat-skills"><span class="feat-skill">Graphic Design</span></div>
+          </div>
+        </div>
+        <div class="feat-card" data-project="issmei" data-skills="UI UX Motion Graphics Graphic Design">
+          <div class="feat-vis" style="--vc:#0a1a0d; min-height:180px;">ISSMEI<span class="feat-vis-sub">KEMENKOPUKM // 2022</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">2022</span><span class="feat-cat">GOVERNMENT · UI/UX</span></div>
+            <div class="feat-title">ISSMEI — Integrated Services for SME Indonesia</div>
+            <div class="feat-desc">UI/UX design for integrated MSME applications in collaboration with the Indonesian Ministry of Cooperatives and SMEs.</div>
+            <div class="feat-skills"><span class="feat-skill">UI/UX</span><span class="feat-skill">Motion Graphics</span><span class="feat-skill">Graphic Design</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: 2fr + 1fr -->
+      <div class="feat-row alt-a" id="row-2">
+        <div class="feat-card" data-project="srpdwebs" data-skills="Graphic Design Web Design Motion Graphics">
+          <div class="feat-vis" style="--vc:#0d0f1a; min-height:180px;">SRPD: WEBS<span class="feat-vis-sub">WEB STUDIO // 2025</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">2025</span><span class="feat-cat">WEB STUDIO</span></div>
+            <div class="feat-title">SRPD: Webs</div>
+            <div class="feat-desc">Professional Website Creation Services — Company Profiles, MSMEs, Online Stores.</div>
+            <div class="feat-skills"><span class="feat-skill">Graphic Design</span><span class="feat-skill">3D Motion</span><span class="feat-skill">Web Design</span></div>
+          </div>
+        </div>
+        <div class="feat-card" data-project="warungku" data-skills="UI UX">
+          <div class="feat-vis" style="--vc:#0d1a0d;">WARUNGKU<span class="feat-vis-sub">MSME APP // 2024</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">2024</span><span class="feat-cat">UI/UX PROTOTYPE</span></div>
+            <div class="feat-title">Warungku</div>
+            <div class="feat-desc">Application prototype to support the digitalization of small shop MSMEs with a user-friendly interface.</div>
+            <div class="feat-skills"><span class="feat-skill">UI/UX</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 4: 1fr + 2fr -->
+      <div class="feat-row alt-b" id="row-3">
+        <div class="feat-card" data-project="eightyeight" data-skills="Motion Graphics">
+          <div class="feat-vis" style="--vc:#1a0d1a;">88 EMOTES<span class="feat-vis-sub">ANIMATION // 2022</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">2022</span><span class="feat-cat">MOTION</span></div>
+            <div class="feat-title">Emotes EightEight Design</div>
+            <div class="feat-desc">Illustrative style emotes and animations for digital content and online communities.</div>
+            <div class="feat-skills"><span class="feat-skill">Motion Graphics</span></div>
+          </div>
+        </div>
+        <div class="feat-card" data-project="sonicring" data-skills="Game Developer">
+          <div class="feat-vis" style="background:#040d04; min-height:180px; color:#1a4a1a; font-size:clamp(14px,2.5vw,28px);">SONIC OF THE RING<span class="feat-vis-sub">FAN GAME // PERSONAL</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">Personal</span><span class="feat-cat">GAME DEV</span></div>
+            <div class="feat-title">Sonic of the Ring Tutorials Room v0.6</div>
+            <div class="feat-desc">A fan-made Sonic game developed independently, featuring original music production, custom game design, and pixel art.</div>
+            <div class="feat-skills"><span class="feat-skill">Game Dev</span><span class="feat-skill">Music Producer</span><span class="feat-skill">Pixel Art</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 5: 2fr + 1fr -->
+      <div class="feat-row alt-a" id="row-4">
+        <div class="feat-card" data-project="thunder" data-skills="Motion Graphics">
+          <div class="feat-vis" style="background:#0d040d; min-height:160px; color:#3a1a3a;">THUNDER VS SUPERNOVA<span class="feat-vis-sub">COLLABORATION // PERSONAL</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">Personal</span><span class="feat-cat">ANIMATION</span></div>
+            <div class="feat-title">Thunder vs Supernova Collaboration</div>
+            <div class="feat-desc">Collaborative animation project featuring original music, video editing, and custom background artwork.</div>
+            <div class="feat-skills"><span class="feat-skill">Animator</span><span class="feat-skill">Music Producer</span><span class="feat-skill">Video Editor</span></div>
+          </div>
+        </div>
+        <div class="feat-card" data-project="durian" data-skills="Motion Graphics">
+          <div class="feat-vis" style="--vc:#1a1a0d;">DNC<span class="feat-vis-sub">MOTION // 2024</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">2024</span><span class="feat-cat">MOTION</span></div>
+            <div class="feat-title">Durian Nusantara Capital</div>
+            <div class="feat-desc">Motion graphic content to support branding and promotional communication through engaging visual storytelling.</div>
+            <div class="feat-skills"><span class="feat-skill">Motion Graphics</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 6: single -->
+      <div class="feat-row single" id="row-5">
+        <div class="feat-card" data-project="underground" data-skills="Motion Graphics">
+          <div class="feat-vis" style="background:#040a04; min-height:160px; color:#1a3a1a; font-size:clamp(14px,2.5vw,30px);">SECRET UNDERGROUND COLLABORATION<span class="feat-vis-sub">2D + 3D // PERSONAL</span></div>
+          <div class="feat-scan"></div>
+          <div class="feat-overlay"><div class="feat-overlay-icon">+</div></div>
+          <div class="feat-body">
+            <div class="feat-meta"><span class="feat-year">Personal</span><span class="feat-cat">ANIMATION · 3D</span></div>
+            <div class="feat-title">Secret Underground Collaboration</div>
+            <div class="feat-desc">Combining 2D and 3D techniques with original music, video editing, 3D environment design, and 2D concept art.</div>
+            <div class="feat-skills"><span class="feat-skill">Animator</span><span class="feat-skill">3D Environment</span><span class="feat-skill">2D Concept Art</span><span class="feat-skill">Music Producer</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-frame reveal">
+      <div class="cf-corner tl"></div><div class="cf-corner tr"></div>
+      <div class="cf-corner bl"></div><div class="cf-corner br"></div>
+      <div class="contact-title">OPEN FOR MISSION</div>
+      <p class="contact-sub">Available for freelance projects, collaborations, and full-time opportunities.</p>
+      <div class="contact-links">
+        <a href="https://www.instagram.com/srpdwebs/" target="_blank" class="c-link">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          Instagram
+        </a>
+        <a href="https://www.youtube.com/@SFGI30/" target="_blank" class="c-link">
+          <svg viewBox="0 0 24 24"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          YouTube
+        </a>
+        <a href="https://arc.srpdwebs.my.id/portfolio" target="_blank" class="c-link">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 6.628 5.374 12 12 12s12-5.372 12-12c0-6.627-5.374-12-12-12zm7.568 7H16.5a15.148 15.148 0 0 0-1.38-2.928A9.042 9.042 0 0 1 19.568 7zM12 2.08c.628.918 1.5 2.4 1.98 4.92h-3.96C10.5 4.48 11.372 3 12 2.08zM2.432 7a9.042 9.042 0 0 1 4.448-2.928A15.148 15.148 0 0 0 5.5 7H2.432zM2 12c0-.69.098-1.357.268-2H5.5c-.065.653-.1 1.322-.1 2s.035 1.347.1 2H2.268A9.04 9.04 0 0 1 2 12zm.432 5H5.5c.285 1.064.688 2.06 1.38 2.928A9.042 9.042 0 0 1 2.432 17zm9.548 4.92C11.372 21 10.5 19.52 10.02 17h3.96C13.5 19.52 12.628 21 12 21.92zM13.98 15h-3.96c-.073-.64-.12-1.31-.12-2s.047-1.36.12-2h3.96c.073.64.12 1.31.12 2s-.047 1.36-.12 2zm.4 4.928A15.148 15.148 0 0 0 15.76 17h3.068a9.042 9.042 0 0 1-4.448 2.928zM16.5 15c.065-.653.1-1.322.1-2s-.035-1.347-.1-2h3.232c.17.643.268 1.31.268 2s-.098 1.357-.268 2H16.5z"/></svg>
+          Portfolio Site
+        </a>
+        <a href="https://drive.google.com/file/d/1DY-AMyEqNsuElfb2wIPiyLJUxg9cd5jQ/view" target="_blank" class="c-link">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 15h8v2H8zm0-4h8v2H8zm0-4h5v2H8z"/></svg>
+          Resume
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="foot-copy">© 2026 SYIS RAMA PUTRA DITYO // SRPD ENTERTAINMENT // ALL RIGHTS RESERVED</span>
+  <a href="#" class="foot-logo">SRPD<span>.</span></a>
+</footer>
+
+<!-- ─── LIGHTBOX ─── -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner" id="lbInner">
+    <button class="lb-close" id="lbClose">✕</button>
+    <div id="lbContent"></div>
+  </div>
+</div>
+
+<script>
+// ── Project data ──
+const projects = {
+  trans7:          { year:'2018 · Internship', title:'Trans 7', desc:'Field Work Practice at PT Trans 7 Television Station in the field of Promo Design.', skills:['Graphic Design'], links:[] },
+  sahabatgemarikan:{ year:'2020 · PT Kedaulatan Pangan Nusantara', title:'sahabatgemarikan.id', desc:'Content Production, Photo Product, Creative Digital Marketing, and Graphic Design at PT Kedaulatan Pangan Nusantara, SahabatGemarikan.id brand.', skills:['Graphic Design','Motion Graphics','Video Editor'], links:[{l:'YouTube',u:'https://www.youtube.com/@sahabatgemarikanid1981'},{l:'Instagram',u:'https://www.instagram.com/sahabatgemarikan.id/'}] },
+  fishon:          { year:'2020', title:'fishOn', desc:'fishOn is a technology-based fishing application that helps fishermen find fish locations in the sea.', skills:['Graphic Design'], links:[{l:'YouTube',u:'https://www.youtube.com/@fishon4929'}] },
+  bamuda:          { year:'2020', title:'Bamuda Group', desc:'Started by creating company profiles, then expanded into UI/UX design and digital content across multiple projects including Sahabat Gemarikan, fishOn, Pejuang Devisa Negara, and ISSMEI (KemenkopUKM).', skills:['Graphic Design'], links:[{l:'Company Profile',u:'https://drive.google.com/file/d/1DY-AMyEqNsuElfb2wIPiyLJUxg9cd5jQ/view?usp=drive_link'}] },
+  eightyeight:     { year:'2022', title:'Emotes EightEight Design', desc:'Developing illustrative style emotes and animations for digital content and online communities.', skills:['Motion Graphics'], links:[{l:'88studio.id',u:'https://88studio.id/'}] },
+  issmei:          { year:'2022 · KemenkopUKM', title:'ISSMEI — Integrated Services for SME Indonesia', desc:'UI/UX design for integrated MSME applications and marketing content production in collaboration with the Indonesian Ministry of Cooperatives and SMEs.', skills:['Graphic Design','Motion Graphics','UI/UX'], links:[{l:'Service Prototype',u:'https://www.figma.com/proto/hLtXdrJ8X27c9hgPSqmloh/iSMES-CS?node-id=2-2&p=f&t=S8QaVGkr25mdlkBp-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=2%3A2'},{l:'Customer Prototype',u:'https://www.figma.com/proto/vlYrJDgBXBPZb0SiVM8e8P/iSMES-User?node-id=5-3&p=f&t=9syi5pZEwxLDhFrf-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=5%3A3'}] },
+  warungku:        { year:'2024', title:'Warungku', desc:'Designed an application prototype to support the digitalization of small shop MSMEs with a user-friendly interface.', skills:['UI/UX'], links:[{l:'Figma Prototype',u:'https://www.figma.com/proto/NNUylGLgFGkj0zA9NFTxdS/UI%2FUX---Warungku?node-id=2%3A14&scaling=scale-down&page-id=0%3A1&starting-point-node-id=9%3A9'}] },
+  rumahkarya:      { year:'2023', title:'rumahkarya.id', desc:"Create visual design materials for clients' branding and digital content needs.", skills:['Graphic Design'], links:[{l:'Instagram',u:'https://www.instagram.com/rumahkaryaid/'}] },
+  greatdeal:       { year:'2023', title:'greatdeal.id', desc:'Developed digital design solutions for a promotional deals platform, focusing on user engagement and visual clarity.', skills:['Graphic Design'], links:[{l:'Instagram',u:'https://www.instagram.com/greatdealidofficial/'}] },
+  durian:          { year:'2024', title:'Durian Nusantara Capital', desc:'Created motion graphic content to support branding and promotional communication through engaging visual storytelling.', skills:['Motion Graphics'], links:[] },
+  srpdwebs:        { year:'2025', title:'SRPD: Webs', desc:'Professional Website Creation Services — Company Profiles, MSMEs, Online Stores.', skills:['Graphic Design','3D Motion Graphics','Web Design'], links:[{l:'Instagram',u:'https://www.instagram.com/srpdwebs/'},{l:'Nirmala Fortuna Abadi',u:'https://nirmalafortunaabadi.com/'},{l:'Jual Beli Laptop',u:'https://jualbelilaptop.my.id/'},{l:'Konsultan Pajak Bali Seminyak',u:'https://konsultanpajakbaliseminyak.id/'},{l:'Konsultan Pajak Cikarang',u:'https://smrkonsultanpajakcikarang.com/'}] },
+  sonicring:       { year:'Personal Project', title:'Sonic of the Ring Tutorials Room v0.6', desc:'A fan-made Sonic game developed independently, featuring original music production, custom game design, and pixel art.', skills:['Game Developer','Music Producer','Game Design','Pixel Artist'], links:[{l:'YouTube',u:'https://www.youtube.com/@SFGI30/'},{l:'SonicFanGamesHQ',u:'https://www.sonicfangameshq.com/forums/showcase/sonic-of-the-ring-tutorials-room-v0-6-beta.2704/'}] },
+  thunder:         { year:'Personal Project', title:'Thunder vs Supernova Collaboration', desc:'A collaborative animation project featuring original music, video editing, and custom background artwork.', skills:['Animator','Music Producer','Video Editor','Background Artist'], links:[{l:'YouTube',u:'https://www.youtube.com/watch?v=rdzusQm4rog'}] },
+  underground:     { year:'Personal Project', title:'Secret Underground Collaboration', desc:'A collaborative animation project combining 2D and 3D techniques, featuring original music, video editing, 3D environment design, and 2D concept art.', skills:['Animator','Music Producer','Video Editor','3D Environment','2D Concept Art'], links:[{l:'YouTube',u:'https://www.youtube.com/watch?v=OFaow8BWHU4'}] }
+};
+
+// ── Slider ──
+let cur = 0, total = 3, timer, progTimer, progVal = 0;
+const track   = document.getElementById('slidesTrack');
+const dots    = document.querySelectorAll('.slider-dot');
+const prog    = document.getElementById('sliderProgress');
+const INTERVAL= 5500;
+
+function goTo(idx) {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  cur = (idx + total) % total;
+  track.style.transform = `translateX(-${cur * 100}%)`;
+  dots.forEach(d => d.classList.remove('active'));
+  dots[cur].classList.add('active');
+  document.getElementById('slide-' + cur).classList.add('active');
+  resetProgress();
+}
+
+function resetProgress() {
+  clearInterval(progTimer);
+  progVal = 0;
+  prog.style.width = '0%';
+  progTimer = setInterval(() => {
+    progVal += 100 / (INTERVAL / 100);
+    prog.style.width = Math.min(progVal, 100) + '%';
+  }, 100);
+}
+
+function startAuto() {
+  clearInterval(timer);
+  timer = setInterval(() => goTo(cur + 1), INTERVAL);
+}
+
+document.getElementById('slideNext').addEventListener('click', () => { goTo(cur + 1); startAuto(); });
+document.getElementById('slidePrev').addEventListener('click', () => { goTo(cur - 1); startAuto(); });
+dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.idx); startAuto(); }));
+
+goTo(0);
+startAuto();
+
+// ── Scroll reveal ──
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => {
+        e.target.classList.add('visible');
+        // animate skill bars
+        e.target.querySelectorAll('.skill-bar-fill').forEach(b => {
+          b.style.transform = `scaleX(${b.style.getPropertyValue('--w') || 1})`;
+          b.classList.add('animated');
+        });
+      }, i * 70);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal, .tl-item, .feat-card').forEach(el => obs.observe(el));
+
+// animate skill bars when hud-card visible
+const skillObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.skill-bar-fill').forEach(b => {
+        b.style.transform = `scaleX(${parseFloat(b.style.getPropertyValue('--w')) || 1})`;
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.hud-card').forEach(c => skillObs.observe(c));
+
+// ── Filter ──
+document.querySelectorAll('.f-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.feat-card').forEach(card => {
+      const skills = card.dataset.skills || '';
+      if (filter === 'all' || skills.includes(filter)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+    // hide/show empty rows
+    document.querySelectorAll('.feat-row').forEach(row => {
+      const visible = [...row.querySelectorAll('.feat-card')].some(c => !c.classList.contains('hidden'));
+      row.style.display = visible ? '' : 'none';
+    });
+  });
+});
+
+// ── Lightbox ──
+const lightbox = document.getElementById('lightbox');
+const lbContent = document.getElementById('lbContent');
+document.getElementById('lbClose').addEventListener('click', closeLb);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLb(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+
+document.querySelectorAll('.feat-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const p = projects[card.dataset.project];
+    if (!p) return;
+    lbContent.innerHTML = `
+      <div class="lb-head">
+        <div class="lb-year">${p.year}</div>
+        <div class="lb-title">${p.title}</div>
+        <div class="lb-desc">${p.desc}</div>
+      </div>
+      <div class="lb-skills">${p.skills.map(s=>`<span class="lb-skill">${s}</span>`).join('')}</div>
+      ${p.links.length ? `<div class="lb-links">${p.links.map(lk=>`<a href="${lk.u}" target="_blank" class="lb-link">&#8599; ${lk.l}</a>`).join('')}</div>` : ''}
+    `;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeLb() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>
