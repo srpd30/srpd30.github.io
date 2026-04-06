@@ -55,6 +55,49 @@
         font-size: 3.5rem;
       }
     }
+
+    .hero-section {
+  padding-top: 80px;
+}
+.hero-img-placeholder {
+  background-color: #e9ecef;
+  border: 1px dashed #adb5bd;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.carousel-inner, .carousel-item {
+  height: 320px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.carousel-item img {
+  width: 100%; height: 320px; object-fit: cover;
+}
+.carousel-item video {
+  width: 100%; height: 320px; object-fit: cover; background: #000;
+}
+.carousel-item iframe {
+  width: 100%; height: 320px; border: none;
+}
+.carousel-caption {
+  background: rgba(0,0,0,0.35);
+  border-radius: 6px;
+  padding: 6px 14px;
+  bottom: 39px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  width: auto;
+  right: auto;
+}
+.carousel-caption p { margin: 0; font-size: 13px; }
   </style>
 
 
@@ -73,71 +116,77 @@
     </div>
   </header> -->
 
-  <nav class="navbar bg-dark py-3 mb-4 inanimate-objects"></nav>
-  <nav class="line-bottom d-flex justify-content-center py-3 mb-4 navbar fixed-top blur-box inanimate-objects">
-    <style media="screen">
-      .margin-fix-nav {
-        margin-left: 1cm;
-        margin-right: 1cm;
-      }
+<!-- Spacer navbar dummy (dark) -->
+<nav class="navbar bg-dark py-3"></nav>
 
-      .margin-fix-nav-left {
-        margin-left: 1cm;
-      }
+<!-- Navbar utama -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top blur-box py-3">
+  <div class="container-fluid px-4">
 
-      .margin-fix-nav-right {
-        margin-right: 1cm;
-      }
-    </style>
-    <div class="container-fluid">
-      <a href="index.html" class="navbar-brand margin-fix-nav-left">
-        <h1 class="d-flex align-items-center fs-4 text-white mb-0 font-concieliancondsemital">
-          SRPD PORTFOLIO
-        </h1>
-      </a>
-      <form class="margin-fix-nav-right d-flex rounded-pill bg-dark">
-        <a class="margin-fix-nav nav-link text-white active fs-5 text-center font-concieliancondsemital"
-          aria-current="page" href="index.html">Home</a>
+    <a href="index.html" class="navbar-brand fw-semibold fs-5 text-white font-concieliancondsemital">
+      SRPD PORTFOLIO
+    </a>
 
-        <div class="dropdown">
-          <a class="nav-link text-center fs-5 text-white active font-concieliancondsemital dropdown-toggle" href="*"
-            tabindex="-1" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
-            aria-disabled="true">Showcase</a>
-          <ul class="dropdown-menu dropdown-menu-dark fs-5" aria-labelledby="dropdownMenuButton1">
+    <button class="navbar-toggler border-0" type="button"
+      data-bs-toggle="collapse" data-bs-target="#mainNav"
+      aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
+      <ul class="navbar-nav gap-1 align-items-md-center">
+
+        <li class="nav-item">
+          <a class="nav-link text-white active fs-5" href="index.html">Home</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white active fs-5" href="#"
+            id="showcaseDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Showcase
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-md-end" aria-labelledby="showcaseDropdown">
             <li><a class="dropdown-item" href="#professional">Professional Works</a></li>
             <li><a class="dropdown-item" href="#personal">Personal Projects</a></li>
           </ul>
-        </div>
+        </li>
 
-        <a class="margin-fix-nav nav-link fs-5 text-center font-concieliancondsemital text-white active "
-          href="about.html">About</a>
+        <li class="nav-item">
+          <a class="nav-link text-white active fs-5" href="about.html">About</a>
+        </li>
 
-      </form>
+      </ul>
     </div>
-  </nav>
 
+  </div>
+</nav>
 
-  <!-- ================================================ mark here ============================================ -->
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light font-concieliancondsemital">Creative Archive</h1>
-        <p class="lead fw-light">A collection of visual projects, experiments, and professional works. From company
-          collaborations to independent creations, each project reflects my exploration in design, motion graphics, and
-          digital creativity.</p>
-        <p>
-          <a href="#professional" class="btn btn-primary my-2">Professional Works</a>
-          <a href="#personal" class="btn btn-secondary my-2">Personal Projects</a>
+<!-- Hero -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8 text-center">
+        <p class="text-uppercase text-muted small mb-2">Portfolio</p>
+        <h1 class="display-5 fw-semibold mb-3">Creative Archive</h1>
+        <p class="text-secondary mb-4" style="line-height: 1.7;">
+          A collection of visual projects, experiments, and professional works. From company
+          collaborations to independent creations, each project reflects my exploration in design,
+          motion graphics, and digital creativity.
         </p>
+        <div class="d-flex gap-2 justify-content-center flex-wrap">
+          <a href="#professional" class="btn btn-dark px-4">Professional Works</a>
+          <a href="#personal" class="btn btn-outline-secondary px-4">Personal Projects</a>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class='timeline'>
+  <!-- ================================================= timeline =================================================== -->
 
-    <!-- ================================================= timeline =================================================== -->
-
+  <!-- <section class='timeline'>
+    
     <div class="set-timeline" data-title="Trans 7" data-year="2O18"
       data-desc="Field Work Practice at PT Trans 7 Television Station in the field of Promo Design."
       data-logo="https://upload.wikimedia.org/wikipedia/id/7/79/Trans_7_2013.svg">
@@ -206,12 +255,12 @@
     </div>
 
 
-  </section>
+  </section> -->
 
   <main class="inanimate-objects">
 
     <div class="album py-5">
-      <div style="padding: 97px;">
+      <div class="container">
 
         <h1 style="margin-bottom: 25px;" id="professional">
           Professional Works
