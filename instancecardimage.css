@@ -1,11 +1,9 @@
 div.gallery {
-  border: 1px solid #ccc;
   overflow: hidden;            /* penting biar crop rapi */
-  aspect-ratio: 16 / 9;        /* 🔥 kunci semua jadi 16:9 */
+  aspect-ratio: 1 / 1;        /* 🔥 kunci semua jadi 16:9 */
 }
 
 div.gallery:hover {
-  border: 1px solid #777;
 }
 
 div.gallery img {
