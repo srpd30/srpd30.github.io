@@ -32,29 +32,23 @@
     }
 
     html {
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: 'Rajdhani', sans-serif;
-      overflow: hidden;
-      height: 100vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      min-height: 100vh;
     }
 
     /* SCROLLBAR */
     #scrollbar-track {
-      position: fixed;
-      right: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 60vh;
-      background: rgba(0, 245, 255, .06);
-      border-radius: 2px;
-      z-index: 9100;
-      cursor: pointer;
+      display: none;
     }
 
     #scrollbar-thumb {
@@ -72,14 +66,7 @@
     }
 
     #scroll-indicator {
-      position: fixed;
-      right: 14px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      z-index: 9100;
+      display: none;
     }
 
     .scroll-dot {
@@ -101,15 +88,10 @@
 
     /* PARALLAX container sits between canvas and viewport */
     #parallax-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-      pointer-events: none;
-      overflow: hidden;
+      display: none;
     }
+
+    /* parallax system preserved, hidden for now */
 
     /* BG */
     #bg-canvas {
@@ -131,21 +113,13 @@
     }
 
     #viewport {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: relative;
       z-index: 10;
-      overflow: hidden;
     }
 
     #scroll-container {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;
       width: 100%;
-      will-change: transform;
     }
 
     /* SECTIONS */
@@ -568,16 +542,10 @@
 
     /* ── PARALLAX LAYERS ── */
     #parallax-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-      pointer-events: none;
-      overflow: hidden;
+      display: none;
     }
 
+    /* parallax system preserved, hidden for now */
     .px-layer {
       position: absolute;
       top: -20%;
@@ -976,69 +944,57 @@
     }
 
     /* card media areas stay fully opaque */
-    .card-video,
-    .card-img,
-    .card-thumb {
+    .card-media {
       width: 100%;
-      height: 155px;
+      height: 180px;
       position: relative;
       overflow: hidden;
       background: var(--bg3);
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      opacity: 1 !important;
     }
 
-    .card-video iframe {
+    .card-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
+
+    .card-media iframe {
       width: 100%;
       height: 100%;
       border: none;
       display: block;
-      position: absolute;
-      inset: 0;
     }
 
-    .card-video-cover {
+    .card-media .card-thumb-label {
       position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: opacity .3s;
-    }
-
-    .card-video-cover.hidden {
-      opacity: 0;
+      bottom: 8px;
+      left: 10px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 8px;
+      color: var(--cyan);
+      letter-spacing: 2px;
+      padding: 2px 7px;
+      border: 1px solid var(--border);
+      background: rgba(2, 11, 14, .85);
+      z-index: 1;
       pointer-events: none;
     }
 
-    .play-btn {
-      width: 48px;
-      height: 48px;
-      border: 2px solid var(--cyan);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 245, 255, .1);
-      box-shadow: 0 0 20px var(--cyan-glow);
-      transition: all .3s;
-      z-index: 1;
-    }
-
-    .card-video-cover:hover .play-btn {
-      background: rgba(0, 245, 255, .2);
-      transform: scale(1.1);
-    }
-
-    .play-btn svg {
-      width: 17px;
-      height: 17px;
-      fill: var(--cyan);
-      margin-left: 3px;
+    /* custom video controls removed — using browser native controls */
+    .card-img {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg3);
+      cursor: zoom-in;
+      flex-shrink: 0;
     }
 
     .card-img img {
@@ -1089,6 +1045,18 @@
       stroke: var(--cyan);
       fill: none;
       stroke-width: 2;
+    }
+
+    .card-thumb {
+      width: 100%;
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     .card-thumb-glow {
@@ -1711,6 +1679,306 @@
      Vibes 2 (y≥VIBE_SWITCH): Autumn Shrine / Cherry Blossom Night
      Layers start from y=60% so hero section doesn't cover them
      ══════════════════════════════════ -->
+  <div id="parallax-bg">
+
+    <!-- ══ LAYER 5: Sky (depth=5, slowest, far back) ══ -->
+    <div class="px-layer" id="px-sky" data-depth="5">
+      <!-- VIBES 1: Misty twilight sky with aurora hints -->
+      <svg id="pxsvg-sky-v1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1400"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="skyG1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#0d1f35" />
+            <stop offset="40%" stop-color="#1a2e4a" />
+            <stop offset="75%" stop-color="#2a4060" />
+            <stop offset="100%" stop-color="#1e3550" />
+          </linearGradient>
+          <radialGradient id="moonG" cx="75%" cy="25%" r="12%">
+            <stop offset="0%" stop-color="#e8f4ff" stop-opacity=".9" />
+            <stop offset="60%" stop-color="#c8e0ff" stop-opacity=".3" />
+            <stop offset="100%" stop-color="#c8e0ff" stop-opacity="0" />
+          </radialGradient>
+          <filter id="starGlow">
+            <feGaussianBlur stdDeviation="1.5" />
+          </filter>
+        </defs>
+        <rect width="1920" height="1400" fill="url(#skyG1)" />
+        <!-- Moon -->
+        <circle cx="1440" cy="220" r="55" fill="#e8f4ff" opacity=".85" />
+        <circle cx="1440" cy="220" r="80" fill="url(#moonG)" />
+        <!-- Aurora streaks -->
+        <path d="M0,400 Q480,320 960,380 Q1440,440 1920,360" fill="none" stroke="#00c896" stroke-width="60"
+          opacity=".06" />
+        <path d="M0,450 Q600,370 1100,430 Q1500,480 1920,410" fill="none" stroke="#0080ff" stroke-width="40"
+          opacity=".05" />
+        <!-- Stars -->
+        <g filter="url(#starGlow)">
+          <circle cx="100" cy="80" r="1.4" fill="#fff" opacity=".8" />
+          <circle cx="220" cy="140" r="1" fill="#cef" opacity=".7" />
+          <circle cx="380" cy="60" r="1.2" fill="#fff" opacity=".9" />
+          <circle cx="520" cy="180" r=".8" fill="#adf" opacity=".7" />
+          <circle cx="680" cy="90" r="1.3" fill="#fff" opacity=".8" />
+          <circle cx="820" cy="160" r=".9" fill="#cef" opacity=".6" />
+          <circle cx="1000" cy="70" r="1.1" fill="#fff" opacity=".85" />
+          <circle cx="1160" cy="130" r=".8" fill="#adf" opacity=".7" />
+          <circle cx="1300" cy="50" r="1.4" fill="#fff" opacity=".9" />
+          <circle cx="1600" cy="110" r="1" fill="#cef" opacity=".7" />
+          <circle cx="1800" cy="80" r="1.2" fill="#fff" opacity=".8" />
+          <circle cx="150" cy="300" r=".9" fill="#fff" opacity=".6" />
+          <circle cx="460" cy="260" r="1.1" fill="#dff" opacity=".7" />
+          <circle cx="730" cy="280" r=".8" fill="#fff" opacity=".65" />
+          <circle cx="1050" cy="250" r="1" fill="#cef" opacity=".6" />
+          <circle cx="1380" cy="290" r=".9" fill="#fff" opacity=".7" />
+          <circle cx="1700" cy="270" r="1.1" fill="#dff" opacity=".65" />
+        </g>
+        <!-- Distant misty mountains far horizon -->
+        <path d="M0,900 Q240,760 480,820 Q720,880 960,780 Q1200,680 1440,760 Q1680,840 1920,780 L1920,1400 L0,1400Z"
+          fill="#1a2e40" opacity=".7" />
+      </svg>
+    </div>
+
+    <!-- ══ LAYER 4: Floating elements (depth=4) ══ -->
+    <div class="px-layer" id="px-birds" data-depth="4">
+      <!-- VIBES 1: Fireflies and distant lanterns -->
+      <svg id="pxsvg-birds-v1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1400"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <radialGradient id="ffG1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#aaff88" stop-opacity=".9" />
+            <stop offset="100%" stop-color="#aaff88" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="ffG2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#88ffcc" stop-opacity=".85" />
+            <stop offset="100%" stop-color="#88ffcc" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <!-- Fireflies -->
+        <g>
+          <circle cx="320" cy="720" r="3" fill="url(#ffG1)">
+            <animate attributeName="opacity" values="0;.9;0" dur="2.8s" repeatCount="indefinite" begin="0s" />
+            <animate attributeName="cy" values="720;710;720" dur="3s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="640" cy="780" r="2.5" fill="url(#ffG2)">
+            <animate attributeName="opacity" values="0;.7;0" dur="3.5s" repeatCount="indefinite" begin=".8s" />
+            <animate attributeName="cy" values="780;768;780" dur="4s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="900" cy="740" r="3.2" fill="url(#ffG1)">
+            <animate attributeName="opacity" values="0;.85;0" dur="2.4s" repeatCount="indefinite" begin="1.5s" />
+          </circle>
+          <circle cx="1200" cy="760" r="2.8" fill="url(#ffG2)">
+            <animate attributeName="opacity" values="0;.75;0" dur="3.2s" repeatCount="indefinite" begin=".4s" />
+            <animate attributeName="cy" values="760;748;760" dur="3.8s" repeatCount="indefinite" />
+          </circle>
+          <circle cx="1500" cy="720" r="3" fill="url(#ffG1)">
+            <animate attributeName="opacity" values="0;.9;0" dur="2.6s" repeatCount="indefinite" begin="2s" />
+          </circle>
+          <circle cx="1750" cy="800" r="2.5" fill="url(#ffG2)">
+            <animate attributeName="opacity" values="0;.7;0" dur="3.8s" repeatCount="indefinite" begin=".6s" />
+          </circle>
+          <circle cx="480" cy="850" r="2.2" fill="url(#ffG1)">
+            <animate attributeName="opacity" values="0;.8;0" dur="3s" repeatCount="indefinite" begin="1.2s" />
+          </circle>
+          <circle cx="1050" cy="890" r="2.6" fill="url(#ffG2)">
+            <animate attributeName="opacity" values="0;.75;0" dur="2.9s" repeatCount="indefinite" begin=".3s" />
+          </circle>
+          <circle cx="1350" cy="840" r="2.4" fill="url(#ffG1)">
+            <animate attributeName="opacity" values="0;.85;0" dur="3.6s" repeatCount="indefinite" begin="1.8s" />
+          </circle>
+        </g>
+        <!-- Distant sky lanterns -->
+        <g style="animation:lanternFloat 6s ease-in-out infinite;">
+          <ellipse cx="1300" cy="580" rx="14" ry="9" fill="#ff9944" opacity=".55" />
+          <line x1="1300" y1="589" x2="1300" y2="610" stroke="#ff8833" stroke-width="1.5" opacity=".4" />
+          <ellipse cx="1300" cy="580" rx="20" ry="14" fill="#ff8833" opacity=".2" />
+        </g>
+        <g style="animation:lanternFloat 8s ease-in-out infinite;animation-delay:2s;">
+          <ellipse cx="1550" cy="520" rx="12" ry="8" fill="#ffbb44" opacity=".45" />
+          <line x1="1550" y1="528" x2="1550" y2="548" stroke="#ffaa33" stroke-width="1.2" opacity=".35" />
+          <ellipse cx="1550" cy="520" rx="18" ry="12" fill="#ffaa33" opacity=".18" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- ══ LAYER 3: Mist / Fog (depth=3, auto-drift) ══ -->
+    <div class="px-layer" id="px-fog" data-depth="3">
+      <!-- VIBES 1: Forest valley mist, cool blue-green -->
+      <svg id="pxsvg-fog-v1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1400"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <filter id="fogF1">
+            <feGaussianBlur stdDeviation="22" />
+          </filter>
+          <radialGradient id="fogRG1" cx="25%" cy="68%" r="55%">
+            <stop offset="0%" stop-color="#1a4a5e" stop-opacity=".5" />
+            <stop offset="100%" stop-color="#1a4a5e" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="fogRG2" cx="65%" cy="72%" r="50%">
+            <stop offset="0%" stop-color="#0e3844" stop-opacity=".45" />
+            <stop offset="100%" stop-color="#0e3844" stop-opacity="0" />
+          </radialGradient>
+          <radialGradient id="fogRG3" cx="90%" cy="65%" r="45%">
+            <stop offset="0%" stop-color="#152f3c" stop-opacity=".4" />
+            <stop offset="100%" stop-color="#152f3c" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+        <ellipse cx="480" cy="950" rx="600" ry="130" fill="url(#fogRG1)" filter="url(#fogF1)" opacity=".85" />
+        <ellipse cx="1250" cy="920" rx="700" ry="110" fill="url(#fogRG2)" filter="url(#fogF1)" opacity=".75" />
+        <ellipse cx="1800" cy="960" rx="500" ry="100" fill="url(#fogRG3)" filter="url(#fogF1)" opacity=".65" />
+        <ellipse cx="960" cy="1050" rx="900" ry="80" fill="#0f2832" filter="url(#fogF1)" opacity=".4" />
+      </svg>
+    </div>
+
+    <!-- ══ LAYER 2: Mid Trees / Architecture (depth=2) ══ -->
+    <div class="px-layer" id="px-mid" data-depth="2">
+      <!-- VIBES 1: Forest mid-ground, dark pines with moonlit tips -->
+      <svg id="pxsvg-mid-v1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1400"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="midTreeG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1e3a4a" />
+            <stop offset="100%" stop-color="#0d1e28" />
+          </linearGradient>
+          <!-- Light rays from moon -->
+          <filter id="rayF">
+            <feGaussianBlur stdDeviation="12" />
+          </filter>
+        </defs>
+        <!-- Moonlight ray -->
+        <polygon points="1440,0 1360,1400 1520,1400" fill="#b8d8ff" opacity=".04" filter="url(#rayF)"
+          style="animation:rayPulse 4s ease-in-out infinite;" />
+        <polygon points="1440,0 1400,1400 1480,1400" fill="#b8d8ff" opacity=".06" filter="url(#rayF)"
+          style="animation:rayPulse 4s ease-in-out infinite;animation-delay:.8s;" />
+        <!-- Pine trees silhouettes -->
+        <!-- Row of pines -->
+        <g fill="url(#midTreeG)">
+          <polygon points="80,1400 80,820 40,950 120,950 80,820" />
+          <rect x="72" y="1100" width="16" height="300" fill="#0d1e28" />
+          <polygon points="0,1400 0,800 -40,940 40,940 0,800" />
+          <polygon points="200,1400 200,780 155,930 245,930 200,780" />
+          <rect x="192" y="1080" width="16" height="320" fill="#0d1e28" />
+          <polygon points="360,1400 360,740 310,900 410,900 360,740" />
+          <rect x="352" y="1000" width="16" height="400" fill="#0d1e28" />
+          <polygon points="500,1400 500,800 455,940 545,940 500,800" />
+          <polygon points="650,1400 650,760 600,910 700,910 650,760" />
+          <rect x="642" y="1020" width="16" height="380" fill="#0d1e28" />
+          <polygon points="820,1400 820,800 775,940 865,940 820,800" />
+          <polygon points="1050,1400 1050,770 1000,920 1100,920 1050,770" />
+          <rect x="1042" y="1030" width="16" height="370" fill="#0d1e28" />
+          <polygon points="1250,1400 1250,800 1205,940 1295,940 1250,800" />
+          <polygon points="1450,1400 1450,760 1400,910 1500,910 1450,760" />
+          <rect x="1442" y="1020" width="16" height="380" fill="#0d1e28" />
+          <polygon points="1650,1400 1650,790 1600,940 1700,940 1650,790" />
+          <polygon points="1820,1400 1820,810 1775,955 1865,955 1820,810" />
+          <rect x="1812" y="1060" width="16" height="340" fill="#0d1e28" />
+          <polygon points="1920,1400 1920,840 1880,970 1960,970 1920,840" />
+        </g>
+        <!-- Rim light on treetops -->
+        <g fill="none" stroke="#b8d8ff" stroke-width=".8" opacity=".18">
+          <polyline
+            points="80,820 0,800 200,780 360,740 500,800 650,760 820,800 1050,770 1250,800 1450,760 1650,790 1820,810 1920,840" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- ══ LAYER 1: Foreground Trees / Near Elements (depth=1) ══ -->
+    <div class="px-layer" id="px-near" data-depth="1">
+      <!-- VIBES 1: Dark near forest with cyan dew glow -->
+      <svg id="pxsvg-near-v1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1400"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="nearTreeG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#112030" />
+            <stop offset="100%" stop-color="#060e14" />
+          </linearGradient>
+          <filter id="dewGlow">
+            <feGaussianBlur stdDeviation="5" />
+          </filter>
+        </defs>
+        <!-- large near pine trees -->
+        <g fill="url(#nearTreeG)">
+          <polygon points="-30,1400 -30,700 -90,900 30,900 -30,700" />
+          <rect x="-38" y="1050" width="18" height="350" fill="#060e14" />
+          <polygon points="150,1400 150,660 85,880 215,880 150,660" />
+          <rect x="142" y="1010" width="18" height="390" fill="#060e14" />
+          <polygon points="380,1400 380,620 305,860 455,860 380,620" />
+          <rect x="372" y="980" width="18" height="420" fill="#060e14" />
+          <polygon points="1540,1400 1540,640 1465,870 1615,870 1540,640" />
+          <rect x="1532" y="990" width="18" height="410" fill="#060e14" />
+          <polygon points="1760,1400 1760,670 1690,895 1830,895 1760,670" />
+          <rect x="1752" y="1030" width="18" height="370" fill="#060e14" />
+          <polygon points="1950,1400 1950,700 1885,915 2015,915 1950,700" />
+        </g>
+        <!-- Rim light cyan dewdrops on lower branches -->
+        <g filter="url(#dewGlow)" opacity=".22">
+          <polyline points="85,880 150,660 215,880" fill="none" stroke="#00f5ff" stroke-width="1" />
+          <polyline points="305,860 380,620 455,860" fill="none" stroke="#00e8ff" stroke-width="1.2" />
+          <polyline points="1465,870 1540,640 1615,870" fill="none" stroke="#00f5ff" stroke-width="1" />
+          <polyline points="1690,895 1760,670 1830,895" fill="none" stroke="#00e8ff" stroke-width="1.1" />
+        </g>
+        <!-- Ground -->
+        <rect x="0" y="1300" width="1920" height="100" fill="#060e14" opacity=".9" />
+      </svg>
+    </div>
+
+    <!-- ══ LAYER 0: Ground / Immediate (depth=0) ══ -->
+    <div class="px-layer" id="px-ground" data-depth="0">
+      <!-- VIBES 1: Mossy dark ground, glowing mushrooms -->
+      <svg id="pxsvg-ground-v1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1400"
+        preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="groundG1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#081420" stop-opacity=".0" />
+            <stop offset="50%" stop-color="#060f18" />
+            <stop offset="100%" stop-color="#030a10" />
+          </linearGradient>
+          <filter id="mushroomGlow">
+            <feGaussianBlur stdDeviation="4" />
+          </filter>
+        </defs>
+        <rect x="0" y="1180" width="1920" height="220" fill="url(#groundG1)" />
+        <!-- Ground rocks and moss bumps -->
+        <ellipse cx="300" cy="1350" rx="220" ry="38" fill="#060f18" />
+        <ellipse cx="700" cy="1370" rx="180" ry="32" fill="#071218" />
+        <ellipse cx="1100" cy="1355" rx="200" ry="36" fill="#060f18" />
+        <ellipse cx="1500" cy="1365" rx="190" ry="34" fill="#071218" />
+        <ellipse cx="1850" cy="1345" rx="150" ry="30" fill="#060f18" />
+        <!-- Glowing mushrooms -->
+        <g filter="url(#mushroomGlow)">
+          <ellipse cx="450" cy="1340" rx="12" ry="5" fill="#00ffcc" opacity=".18" />
+          <line x1="450" y1="1340" x2="450" y2="1360" stroke="#00ddaa" stroke-width="3" opacity=".22" />
+          <ellipse cx="950" cy="1350" rx="10" ry="4" fill="#00ffcc" opacity=".15" />
+          <line x1="950" y1="1350" x2="950" y2="1370" stroke="#00ddaa" stroke-width="2.5" opacity=".18" />
+          <ellipse cx="1380" cy="1345" rx="13" ry="5" fill="#00ffcc" opacity=".20" />
+          <line x1="1380" y1="1345" x2="1380" y2="1365" stroke="#00ddaa" stroke-width="3" opacity=".24" />
+        </g>
+      </svg>
+    </div>
+
+    <!-- ══ LAYER -1: Foreground Blur / Lens (depth=-1, closest) ══ -->
+    <div class="px-layer" id="px-front" data-depth="-1">
+      <!-- VIBES 1: Blurred dark tree trunks extreme foreground -->
+      <svg id="pxsvg-front-v1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1400"
+        preserveAspectRatio="xMidYMid slice">
+        <!-- Far left trunk -->
+        <rect x="-20" y="800" width="70" height="600" fill="#030c14" opacity=".95" rx="8" />
+        <path d="M50,1000 Q90,940 130,960" fill="none" stroke="#030c14" stroke-width="28" opacity=".9" />
+        <!-- Near left trunk -->
+        <rect x="40" y="1050" width="50" height="350" fill="#020a10" opacity=".98" rx="6" />
+        <!-- Far right trunk -->
+        <rect x="1850" y="820" width="70" height="580" fill="#030c14" opacity=".95" rx="8" />
+        <!-- Near right trunk -->
+        <rect x="1830" y="1080" width="50" height="320" fill="#020a10" opacity=".98" rx="6" />
+        <!-- Bottom vignette -->
+        <rect x="0" y="1280" width="1920" height="120" fill="#020b0e" opacity=".8" />
+        <!-- Bokeh circles (lens effect) -->
+        <circle cx="180" cy="900" r="45" fill="#00aacc" opacity=".05" />
+        <circle cx="380" cy="1100" r="35" fill="#00ccaa" opacity=".04" />
+        <circle cx="1600" cy="950" r="50" fill="#00aacc" opacity=".05" />
+        <circle cx="1750" cy="1150" r="30" fill="#0088bb" opacity=".04" />
+      </svg>
+    </div>
+
+  </div><!-- end parallax-bg -->
 
   <!-- LIGHTBOX -->
   <div id="lightbox" onclick="closeLightbox()">
@@ -1719,6 +1987,7 @@
     <div class="lb-caption" id="lightbox-caption"></div>
   </div>
 
+  <!-- NAV -->
   <!-- NAV -->
   <nav>
     <div class="nav-logo">SRPD PORTFOLIO</div>
@@ -1993,11 +2262,15 @@
         </div>
         <div class="portfolio-grid">
           <div class="portfolio-card">
-            <video controls>
-              <source src="mediaportfolio/asset/GameDeveloper/bandicam_2025-02-18_06-15-01-030.mp4" type="video/mp4">
-            </video>
+            <div class="card-media">
+              <video controls loop playsinline
+                style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
+                <source src="mediaportfolio/asset/GameDeveloper/bandicam_2025-02-18_06-15-01-030.mp4" type="video/mp4">
+              </video>
+              <div class="card-thumb-label">MP4 // UNITY 3D</div>
+            </div>
             <div class="card-body">
-              <div class="card-title">Boost VFX Test</div>
+              <div class="card-title">PROJECT NEXUS</div>
               <div class="card-desc">Action RPG dengan sistem combat real-time, open world, dan narasi branching yang
                 mendalam.</div>
               <div class="card-tags"><span class="tag cyan">UNITY</span><span class="tag">C#</span><span
@@ -2014,11 +2287,15 @@
             </div>
           </div>
           <div class="portfolio-card">
-            <video controls>
-              <source src="mediaportfolio/asset/GameDeveloper/bandicam_2025-01-03_11-04-01-781.mp4" type="video/mp4">
-            </video>
+            <div class="card-media">
+              <video controls loop playsinline
+                style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
+                <source src="mediaportfolio/asset/GameDeveloper/bandicam_2025-01-03_11-04-01-781.mp4" type="video/mp4">
+              </video>
+              <div class="card-thumb-label">MP4 // GODOT 2D</div>
+            </div>
             <div class="card-body">
-              <div class="card-title">Test Engine Combat system</div>
+              <div class="card-title">STELLAR DRIFT</div>
               <div class="card-desc">Side-scrolling space shooter dengan roguelite progression dan procedural level
                 generation.</div>
               <div class="card-tags"><span class="tag cyan">GODOT</span><span class="tag">GDScript</span><span
@@ -2036,30 +2313,11 @@
             </div>
           </div>
           <div class="portfolio-card">
-            <video controls>
-              <source src="mediaportfolio/asset/GameDeveloper/bandicam_2025-01-03_11-04-01-781.mp4" type="video/mp4">
-            </video>
-            <div class="card-body">
-              <div class="card-title">CIPHER MAZE</div>
-              <div class="card-desc">Puzzle game mobile dengan 80+ level, cerita misteri, dan mekanik enkripsi unik
-                sebagai gameplay core.</div>
-              <div class="card-tags"><span class="tag cyan">UNITY</span><span class="tag">MOBILE</span><span
-                  class="tag">PUZZLE</span><span class="tag">ANDROID</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://play.google.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>PLAY STORE</a><a class="card-btn" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>TRAILER</a></div>
+            <div class="card-media">
+              <iframe src="https://www.youtube.com/embed/3xDgbBfSwd8" frameborder="0" allowfullscreen
+                allow="autoplay; encrypted-media" style="width:100%;height:100%;display:block;border:none;"></iframe>
+              <div class="card-thumb-label">YOUTUBE // MOBILE</div>
             </div>
-          </div>
-          <div class="portfolio-card">
-            <video controls>
-              <source src="mediaportfolio/asset/GameDeveloper/bandicam_2025-01-03_11-04-01-781.mp4" type="video/mp4">
-            </video>
             <div class="card-body">
               <div class="card-title">CIPHER MAZE</div>
               <div class="card-desc">Puzzle game mobile dengan 80+ level, cerita misteri, dan mekanik enkripsi unik
@@ -2095,17 +2353,12 @@
         </div>
         <div class="portfolio-grid">
           <div class="portfolio-card">
-            <div class="card-video"><iframe id="yt-void" src=""
-                data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0" allowfullscreen
-                allow="autoplay"></iframe>
-              <div class="card-video-cover" onclick="playVideo(this,'yt-void')">
-                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#050810,#080d18)"></div>
-                <div style="position:absolute;font-size:44px;opacity:.12">🎧</div>
-                <div class="play-btn"><svg viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg></div>
-                <div class="card-thumb-label">OST // AMBIENT</div>
-              </div>
+            <div class="card-media">
+              <video controls loop playsinline
+                style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
+                <source src="mediaportfolio/asset/MusicProduction/7db9072e-e5c1-44d4-bb31-a50dd9eeb801.mp4" type="video/mp4">
+              </video>
+              <div class="card-thumb-label">MP4 // OST AMBIENT</div>
             </div>
             <div class="card-body">
               <div class="card-title">VOID SIGNALS — OST</div>
@@ -2126,17 +2379,12 @@
             </div>
           </div>
           <div class="portfolio-card">
-            <div class="card-video"><iframe id="yt-chron" src=""
-                data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0" allowfullscreen
-                allow="autoplay"></iframe>
-              <div class="card-video-cover" onclick="playVideo(this,'yt-chron')">
-                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#080510,#0d0a18)"></div>
-                <div style="position:absolute;font-size:44px;opacity:.12">🎼</div>
-                <div class="play-btn"><svg viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg></div>
-                <div class="card-thumb-label">ORCHESTRAL // EPIC</div>
-              </div>
+            <div class="card-media">
+              <video controls loop playsinline
+                style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
+                <source src="mediaportfolio/asset/MusicProduction/37918.mp4" type="video/mp4">
+              </video>
+              <div class="card-thumb-label">MP4 // ORCHESTRAL</div>
             </div>
             <div class="card-body">
               <div class="card-title">CHRONICLES EP</div>
@@ -2156,10 +2404,10 @@
             </div>
           </div>
           <div class="portfolio-card">
-            <div class="card-thumb" style="background:linear-gradient(135deg,#050a08,#081410)">
-              <div style="font-size:44px;opacity:.2">🔊</div>
-              <div class="card-thumb-glow"></div>
-              <div class="card-thumb-label">SFX // DESIGN</div>
+            <div class="card-media">
+              <iframe src="https://www.youtube.com/embed/aSf4F2FRmEY" frameborder="0" allowfullscreen
+                allow="autoplay; encrypted-media" style="width:100%;height:100%;display:block;border:none;"></iframe>
+              <div class="card-thumb-label">YOUTUBE // SFX</div>
             </div>
             <div class="card-body">
               <div class="card-title">NEON SFX PACK</div>
@@ -2193,17 +2441,12 @@
         </div>
         <div class="portfolio-grid">
           <div class="portfolio-card">
-            <div class="card-video"><iframe id="yt-mech" src=""
-                data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" allowfullscreen
-                allow="autoplay"></iframe>
-              <div class="card-video-cover" onclick="playVideo(this,'yt-mech')">
-                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0a0512,#140a1c)"></div>
-                <div style="position:absolute;font-size:44px;opacity:.12">🦾</div>
-                <div class="play-btn"><svg viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg></div>
-                <div class="card-thumb-label">3D // CHARACTER</div>
-              </div>
+            <div class="card-media">
+              <video preload="none" controls loop playsinline
+                style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
+                <source src="videos/mech_rig.mp4" type="video/mp4">
+              </video>
+              <div class="card-thumb-label">MP4 // 3D CHARACTER</div>
             </div>
             <div class="card-body">
               <div class="card-title">MECH WARRIOR RIG</div>
@@ -2223,17 +2466,12 @@
             </div>
           </div>
           <div class="portfolio-card">
-            <div class="card-video"><iframe id="yt-spirit" src=""
-                data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" allowfullscreen
-                allow="autoplay"></iframe>
-              <div class="card-video-cover" onclick="playVideo(this,'yt-spirit')">
-                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0a0805,#141205)"></div>
-                <div style="position:absolute;font-size:44px;opacity:.12">✨</div>
-                <div class="play-btn"><svg viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg></div>
-                <div class="card-thumb-label">2D // FRAME-BY-FRAME</div>
-              </div>
+            <div class="card-media">
+              <video preload="none" controls loop playsinline
+                style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
+                <source src="videos/spirit_walker.mp4" type="video/mp4">
+              </video>
+              <div class="card-thumb-label">MP4 // 2D FRAME</div>
             </div>
             <div class="card-body">
               <div class="card-title">SPIRIT WALKER</div>
@@ -2248,17 +2486,10 @@
             </div>
           </div>
           <div class="portfolio-card">
-            <div class="card-video"><iframe id="yt-cinematic" src=""
-                data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1" allowfullscreen
-                allow="autoplay"></iframe>
-              <div class="card-video-cover" onclick="playVideo(this,'yt-cinematic')">
-                <div style="position:absolute;inset:0;background:linear-gradient(135deg,#080a05,#101405)"></div>
-                <div style="position:absolute;font-size:44px;opacity:.12">🎬</div>
-                <div class="play-btn"><svg viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg></div>
-                <div class="card-thumb-label">3D // CUTSCENE</div>
-              </div>
+            <div class="card-media">
+              <iframe src="https://www.youtube.com/embed/YOUTUBE_VIDEO_ID" frameborder="0" allowfullscreen
+                allow="autoplay; encrypted-media" style="width:100%;height:100%;display:block;border:none;"></iframe>
+              <div class="card-thumb-label">YOUTUBE // CINEMATIC</div>
             </div>
             <div class="card-body">
               <div class="card-title">NEXUS INTRO CINEMATIC</div>
@@ -2539,58 +2770,20 @@
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
   <script>
-    // ══ SCROLL ENGINE ══
-    const TOTAL = 8;
-    const sbTr = document.getElementById('scrollbar-track');
-    const sbTh = document.getElementById('scrollbar-thumb');
-    const scr = document.getElementById('scroll-container');
-    let yPos = 0, tgtY = 0, maxY = 0, curSec = 0;
+    // ══ SCROLL — native browser scroll ══
+    // yPos kept in sync with window.scrollY for parallax system
+    let yPos = 0;
 
-    function calcMax() { let t = 0; document.querySelectorAll('.section').forEach(s => t += s.offsetHeight); maxY = Math.max(0, t - window.innerHeight); }
-    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
-
-    function apply() {
-      yPos = clamp(yPos, 0, maxY); tgtY = clamp(tgtY, 0, maxY);
-      scr.style.transform = 'translateY(' + (-yPos) + 'px)';
-      if (maxY > 0) { const th = sbTr.offsetHeight, tot = maxY + window.innerHeight, ht = Math.max(28, (window.innerHeight / tot) * th), tp = (yPos / maxY) * (th - ht); sbTh.style.height = ht + 'px'; sbTh.style.top = clamp(tp, 0, th - ht) + 'px'; }
-      let s = 0; document.querySelectorAll('.section').forEach((el, i) => { if (yPos >= el.offsetTop - window.innerHeight * .4) s = i; });
-      if (s !== curSec) { curSec = s; document.querySelectorAll('.scroll-dot').forEach((d, i) => d.classList.toggle('active', i === s)); }
+    function syncScroll() {
+      yPos = window.scrollY;
     }
+    window.addEventListener('scroll', syncScroll, { passive: true });
 
-    function initDots() { const ind = document.getElementById('scroll-indicator'); ind.innerHTML = ''; for (let i = 0; i < TOTAL; i++) { const d = document.createElement('div'); d.className = 'scroll-dot' + (i === 0 ? ' active' : ''); d.addEventListener('click', () => { const s = document.querySelectorAll('.section')[i]; if (s) { tgtY = clamp(s.offsetTop, 0, maxY); smooth(); } }); ind.appendChild(d); } }
-    window.scrollToSection = function (i) { const s = document.querySelectorAll('.section')[i]; if (s) { tgtY = clamp(s.offsetTop, 0, maxY); smooth(); } };
-
-    let rafId = null;
-    function smooth() { if (rafId) return; function step() { const d = tgtY - yPos; if (Math.abs(d) < .5) { yPos = tgtY; apply(); rafId = null; return; } yPos += d * .12; apply(); rafId = requestAnimationFrame(step); } rafId = requestAnimationFrame(step); }
-
-    window.addEventListener('wheel', e => { e.preventDefault(); if (rafId) { cancelAnimationFrame(rafId); rafId = null; tgtY = yPos; } tgtY = clamp(tgtY + e.deltaY * 1.2, 0, maxY); smooth(); }, { passive: false });
-    window.addEventListener('keydown', e => { const st = window.innerHeight * .85; if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); tgtY = clamp(tgtY + st, 0, maxY); smooth(); } if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); tgtY = clamp(tgtY - st, 0, maxY); smooth(); } if (e.key === 'Home') { e.preventDefault(); tgtY = 0; smooth(); } if (e.key === 'End') { e.preventDefault(); tgtY = maxY; smooth(); } });
-
-    // ── DRAG ──
-    let dm = null, dsY = 0, dsP = 0, ldY = 0, ldT = 0, vel = 0;
-    function pY(e) { return e.touches ? e.touches[0].clientY : e.clientY; }
-    function stopSmooth() { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
-
-    sbTh.addEventListener('mousedown', e => { e.preventDefault(); e.stopPropagation(); stopSmooth(); dm = 'th'; dsY = pY(e); dsP = yPos; });
-    sbTh.addEventListener('touchstart', e => { e.preventDefault(); e.stopPropagation(); stopSmooth(); dm = 'th'; dsY = pY(e); dsP = yPos; }, { passive: false });
-    sbTr.addEventListener('click', e => { if (e.target === sbTh) return; const r = sbTr.getBoundingClientRect(), rat = (e.clientY - r.top) / r.height; yPos = clamp(rat * maxY, 0, maxY); tgtY = yPos; apply(); });
-
-    const vp = document.getElementById('viewport');
-    function pgStart(e) { if (e.target === sbTh || e.target === sbTr) return; stopSmooth(); dm = 'pg'; dsY = pY(e); dsP = yPos; ldY = dsY; ldT = Date.now(); vel = 0; document.body.style.userSelect = 'none'; }
-    vp.addEventListener('mousedown', pgStart);
-    vp.addEventListener('touchstart', pgStart, { passive: false });
-
-    function onMove(e) {
-      if (!dm) return; if (e.cancelable) e.preventDefault();
-      const cy = e.touches ? e.touches[0].clientY : e.clientY, now = Date.now();
-      if (dm === 'pg') { vel = (ldY - cy) / Math.max(1, now - ldT) * 16; ldY = cy; ldT = now; yPos = clamp(dsP - (cy - dsY), 0, maxY); tgtY = yPos; apply(); }
-      else if (dm === 'th') { const th = sbTr.offsetHeight, ht = Math.max(28, (window.innerHeight / (maxY + window.innerHeight)) * th), rat = (cy - dsY) / (th - ht); yPos = clamp(dsP + rat * maxY, 0, maxY); tgtY = yPos; apply(); }
-    }
-    function onEnd() { if (!dm) return; document.body.style.userSelect = ''; if (dm === 'pg' && Math.abs(vel) > .5) { tgtY = clamp(yPos + vel * 80, 0, maxY); smooth(); } dm = null; }
-    document.addEventListener('mousemove', onMove);
-    document.addEventListener('touchmove', onMove, { passive: false });
-    document.addEventListener('mouseup', onEnd);
-    document.addEventListener('touchend', onEnd);
+    // nav scrollToSection — smooth native scroll
+    window.scrollToSection = function (i) {
+      const s = document.querySelectorAll('.section')[i];
+      if (s) s.scrollIntoView({ behavior: 'smooth' });
+    };
 
     // ── NAV ──
     function toggleNav() { document.getElementById('hamburger').classList.toggle('open'); document.getElementById('mobile-nav').classList.toggle('open'); }
@@ -2631,8 +2824,10 @@
       setTimeout(() => { status.textContent = ''; }, 5000);
     }
 
-    // ── VIDEO ──
-    function playVideo(cov, id) { const f = document.getElementById(id); if (!f) return; f.src = f.getAttribute('data-src'); cov.classList.add('hidden'); }
+    // ── VIDEO: native HTML5 video + YouTube iframe — no JS needed ──
+    // MP4 cards use <video controls> — browser handles everything natively
+    // YouTube cards use <iframe> — loaded directly on page
+
 
     // ── LIGHTBOX ──
     function openLightbox(src, cap) { document.getElementById('lightbox-img').src = src; document.getElementById('lightbox-caption').textContent = cap || ''; document.getElementById('lightbox').classList.add('open'); }
@@ -2664,7 +2859,7 @@
 
       const DISPLAY_MS = 5500;   // total time per slide including fade-out
       const FADE_MS = 1500;   // CSS opacity transition duration
-      const PAN_PX = 50;     // px to travel rightward during full display+fade
+      const PAN_PX = 80;     // px to travel rightward during full display+fade
 
       // Each slide has its own RAF so pan is independent
       const panStates = slides.map(() => ({ raf: null, startTs: null, startX: 0 }));
@@ -2757,12 +2952,9 @@
       requestAnimationFrame(updateParallax);
     }
     requestAnimationFrame(updateParallax);
-    requestAnimationFrame(updateParallax);
 
-    window.addEventListener('resize', () => { resizeCv(); initPts(); calcMax(); apply(); });
+    window.addEventListener('resize', () => { resizeCv(); initPts(); });
     resizeCv(); initPts(); drawBg();
-    initDots();
-    setTimeout(() => { calcMax(); apply(); }, 150);
   </script>
 </body>
 
