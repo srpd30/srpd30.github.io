@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -985,6 +985,14 @@
       z-index: 1;
       pointer-events: none;
     }
+
+
+    /* Animation section: video-only cards — taller media, no body padding */
+    #animation .portfolio-card { overflow: hidden; }
+    #animation .card-media { height: 220px; }
+
+    /* Releases section: inherit standard card-media height */
+    #releases .card-media { height: 180px; }
 
     /* custom video controls removed — using browser native controls */
     .card-img {
@@ -2045,6 +2053,13 @@
           <div class="hero-cta">
             <a class="btn-primary" href="#" onclick="scrollToSection(6);return false;">VIEW RELEASES</a>
             <a class="btn-outline" href="#" onclick="scrollToSection(7);return false;">CONTACT</a>
+            <button class="btn-outline" id="fs-btn" onclick="toggleFullscreen()" style="display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer;">
+              <svg id="fs-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/>
+                <polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>
+              </svg>
+              <span id="fs-label">Fullscreen</span>
+            </button>
           </div>
         </div>
         <div class="hero-decor">
@@ -2075,8 +2090,8 @@
               <div class="skill-top">
                 <div class="skill-icon-w">🎮</div>
                 <div class="skill-meta">
-                  <div class="skill-badge">PRIMARY</div>
-                  <div class="skill-name">GAME DEVELOPMENT (READY)</div>
+                  <div class="skill-badge">NEEDS TO BE DISCUSSED</div>
+                  <div class="skill-name">GAME DEVELOPMENT</div>
                 </div>
               </div>
               <div class="skill-desc">Building games from concept to release. Gameplay programming, mechanics, and immersive interactive systems.</div>
@@ -2148,11 +2163,11 @@
               <div class="skill-top">
                 <div class="skill-icon-w">🖼️</div>
                 <div class="skill-meta">
-                  <div class="skill-name">3D ANIMATOR (READY)</div>
+                  <div class="skill-badge">READY TO WORK</div>
+                  <div class="skill-name">3D ANIMATOR</div>
                 </div>
               </div>
-              <div class="skill-desc">Animasi karakter dan environment 3D dengan rigging, skinning, dan motion yang
-                fluid untuk game dan film.</div>
+              <div class="skill-desc">3D character and environment animation with rigging, skinning, and fluid motion for games and film.</div>
               <div class="skill-bar-main">
                 <div class="skill-bar-label"><span>PROFICIENCY</span><span>70%</span></div>
                 <div class="skill-bar">
@@ -2178,8 +2193,7 @@
                   <div class="skill-name">2D ANIMATOR</div>
                 </div>
               </div>
-              <div class="skill-desc">Frame-by-frame dan tweening animation untuk karakter 2D, cutscene, dan visual
-                storytelling ekspresif.</div>
+              <div class="skill-desc">Frame-by-frame and tweening animation for 2D characters, cutscenes, and expressive visual storytelling.</div>
               <div class="skill-bar-main">
                 <div class="skill-bar-label"><span>PROFICIENCY</span><span>89%</span></div>
                 <div class="skill-bar">
@@ -2207,11 +2221,11 @@
               <div class="skill-top">
                 <div class="skill-icon-w">🖌️</div>
                 <div class="skill-meta">
-                  <div class="skill-name">2D ARTIST (READY)</div>
+                  <div class="skill-badge">READY TO WORK</div>
+                  <div class="skill-name">2D ARTIST</div>
                 </div>
               </div>
-              <div class="skill-desc">Digital illustration, concept art, character design, UI/UX art, dan aset visual
-                untuk game dan multimedia.</div>
+              <div class="skill-desc">Digital illustration, concept art, character design, UI/UX art, and visual assets for games and multimedia.</div>
               <div class="skill-bar-main">
                 <div class="skill-bar-label"><span>PROFICIENCY</span><span>88%</span></div>
                 <div class="skill-bar">
@@ -2437,24 +2451,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/i1.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 3D CHARACTER</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">MECH WARRIOR RIG</div>
-              <div class="card-desc">Full character rig dan animasi mech warrior 3D — idle, walk, combat, dan death
-                animations.</div>
-              <div class="card-tags"><span class="tag cyan">BLENDER</span><span class="tag">RIGGING</span><span
-                  class="tag">3D</span><span class="tag">GAME-READY</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>SHOWREEL</a><a class="card-btn" href="https://sketchfab.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>SKETCHFAB</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2462,24 +2461,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/rian_sprite_animated.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 3D CHARACTER</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">MECH WARRIOR RIG</div>
-              <div class="card-desc">Full character rig dan animasi mech warrior 3D — idle, walk, combat, dan death
-                animations.</div>
-              <div class="card-tags"><span class="tag cyan">BLENDER</span><span class="tag">RIGGING</span><span
-                  class="tag">3D</span><span class="tag">GAME-READY</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>SHOWREEL</a><a class="card-btn" href="https://sketchfab.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>SKETCHFAB</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2487,19 +2471,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/3128.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2507,19 +2481,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/2D UP Center Headquarter LoopDown_5.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2527,19 +2491,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/Bot Damage Wall.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2547,19 +2501,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/In Center Headquarter Final_4.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2567,19 +2511,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/FootageSoldier.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2587,19 +2521,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/Run0001-0075.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2607,19 +2531,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/Stickfigure test.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2627,19 +2541,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/Abu get help.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2647,19 +2551,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/_ Test Praktek [D__SRPD Project_Test Praktek.blend] - Blender 4.2 2026-01-04 11-35-53.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2667,19 +2561,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/_ Test Praktek [D__SRPD Project_Test Praktek.blend] - Blender 4.2 2026-01-04 23-10-03.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2687,19 +2571,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/test gravity stone.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2707,19 +2581,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/Electricity.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2727,19 +2591,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/Spark.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2747,19 +2601,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/AbuAbuEscape.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2767,19 +2611,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/stick3dwalk02.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
           <div class="portfolio-card">
             <div class="card-media">
@@ -2787,19 +2621,9 @@
                 style="width:100%;height:100%;object-fit:cover;display:block;background:#000;">
                 <source src="mediaportfolio/asset/Animator2D3D/Cyan Particle-1.mp4" type="video/mp4">
               </video>
-              <div class="card-thumb-label">MP4 // 2D FRAME</div>
+              
             </div>
-            <div class="card-body">
-              <div class="card-title">SPIRIT WALKER</div>
-              <div class="card-desc">Animasi 2D frame-by-frame untuk karakter hero dengan style fluid dan ekspresif.
-                Total 12 action set.</div>
-              <div class="card-tags"><span class="tag cyan">FRAME-BY-FRAME</span><span class="tag">2D</span><span
-                  class="tag">CHARACTER</span></div>
-              <div class="card-actions"><a class="card-btn primary" href="https://youtube.com" target="_blank"><svg
-                    viewBox="0 0 24 24">
-                    <polygon points="5,3 19,12 5,21" />
-                  </svg>ANIMASI</a></div>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -2876,7 +2700,6 @@
                     <line x1="8" y1="11" x2="14" y2="11" />
                   </svg></div>
               </div>
-              <div class="card-thumb-label">3D // ENVIRONMENT</div>
             </div>
             <div class="card-body">
               <div class="card-title">Aery the Hedgehog</div>
@@ -2946,7 +2769,6 @@
                     <line x1="8" y1="11" x2="14" y2="11" />
                   </svg></div>
               </div>
-              <div class="card-thumb-label">3D // ENVIRONMENT</div>
             </div>
             <div class="card-body">
               <div class="card-title">Alexia the hedgehog</div>
@@ -2974,43 +2796,62 @@
           <div class="section-title">PROJECT <span>RELEASES</span></div>
           <div class="section-line"></div>
         </div>
-        <div class="release-list">
+        <div class="portfolio-grid">
 
-          <div class="release-item">
-            <div class="corner-tl"></div>
-            <div class="corner-br"></div>
-            <div class="release-num">01</div>
-            <div class="release-info">
-              <div class="release-title">Sonic of the Ring Tutorials Room v0.6</div>
-              <div class="release-meta">PC &nbsp;|&nbsp; 2017-2026 &nbsp;|&nbsp; Platformer</div>
+          <div class="portfolio-card">
+            <div class="card-media">
+              <iframe src="https://www.youtube.com/embed/YOUTUBE_ID_1" frameborder="0"
+                allowfullscreen allow="autoplay; encrypted-media"
+                style="width:100%;height:100%;display:block;border:none;"></iframe>
+              <div class="card-thumb-label">GAME // PC</div>
             </div>
-            <div class="release-type">GAME</div>
-            <div class="release-status status-released">RELEASED</div>
+            <div class="card-body">
+              <div class="card-title">SONIC OF THE RING TUTORIALS ROOM</div>
+              <div class="card-desc">Tutorials Room v0.6 — Platformer game developed across 2017–2026.</div>
+              <div class="card-tags"><span class="tag cyan">GAME</span><span class="tag">PLATFORMER</span><span class="tag">PC</span></div>
+              <div class="card-actions">
+                <a class="card-btn primary" href="https://www.youtube.com/watch?v=YOUTUBE_ID_1" target="_blank"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>WATCH</a>
+                <span class="release-status status-released" style="font-size:8px;padding:3px 8px;border:1px solid rgba(0,255,136,.3);background:rgba(0,255,136,.04);color:#00ff88;letter-spacing:2px;">RELEASED</span>
+              </div>
+            </div>
           </div>
 
-          <div class="release-item">
-            <div class="corner-tl"></div>
-            <div class="corner-br"></div>
-            <div class="release-num">02</div>
-            <div class="release-info">
-              <div class="release-title">Thunder vs Supernova Collaboration</div>
-              <div class="release-meta">YouTube &nbsp;|&nbsp; 2022 &nbsp;|&nbsp; Action</div>
+          <div class="portfolio-card">
+            <div class="card-media">
+              <iframe src="https://www.youtube.com/embed/vU7repoT11c&t" frameborder="0"
+                allowfullscreen allow="autoplay; encrypted-media"
+                style="width:100%;height:100%;display:block;border:none;"></iframe>
+              <div class="card-thumb-label">ANIMATION // COLLAB</div>
             </div>
-            <div class="release-type">ANIMATION</div>
-            <div class="release-status status-released">RELEASED</div>
-          </div>
-          
-          <div class="release-item">
-            <div class="corner-tl"></div>
-            <div class="corner-br"></div>
-            <div class="release-num">03</div>
-            <div class="release-info">
-              <div class="release-title">Secret Underground Collaboration</div>
-              <div class="release-meta">YouTube &nbsp;|&nbsp; 2023 &nbsp;|&nbsp; Action</div>
+            <div class="card-body">
+              <div class="card-title">THUNDER VS SUPERNOVA COLLABORATION</div>
+              <div class="card-desc">Collaboration animation project featuring high-intensity action sequences. (2022)</div>
+              <div class="card-tags"><span class="tag cyan">ANIMATION</span><span class="tag">COLLAB</span><span class="tag">ACTION</span></div>
+              <div class="card-actions">
+                <a class="card-btn primary" href="https://www.youtube.com/watch?v=rdzusQm4rog&t" target="_blank"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>WATCH</a>
+                <span class="release-status status-released" style="font-size:8px;padding:3px 8px;border:1px solid rgba(0,255,136,.3);background:rgba(0,255,136,.04);color:#00ff88;letter-spacing:2px;">RELEASED</span>
+              </div>
             </div>
-            <div class="release-type">ANIMATION</div>
-            <div class="release-status status-dev">IN DEV</div>
           </div>
+
+          <div class="portfolio-card">
+            <div class="card-media">
+              <iframe src="https://www.youtube.com/embed/OFaow8BWHU4" frameborder="0"
+                allowfullscreen allow="autoplay; encrypted-media"
+                style="width:100%;height:100%;display:block;border:none;"></iframe>
+              <div class="card-thumb-label">ANIMATION // COLLAB</div>
+            </div>
+            <div class="card-body">
+              <div class="card-title">SECRET UNDERGROUND COLLABORATION</div>
+              <div class="card-desc">Collaboration animation project — underground action story in development. (2023)</div>
+              <div class="card-tags"><span class="tag cyan">ANIMATION</span><span class="tag">COLLAB</span><span class="tag">ACTION</span></div>
+              <div class="card-actions">
+                <a class="card-btn primary" href="https://www.youtube.com/watch?v=YOUTUBE_ID_3" target="_blank"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>WATCH</a>
+                <span class="release-status status-dev" style="font-size:8px;padding:3px 8px;border:1px solid rgba(255,165,0,.3);background:rgba(255,165,0,.04);color:#ffa500;letter-spacing:2px;">IN DEV</span>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -3025,7 +2866,7 @@
         <div class="contact-wrap">
           <div class="contact-left">
             <div class="big-text">LET'S BUILD<br><span>SOMETHING</span><br>GREAT</div>
-            <p>Terbuka untuk kolaborasi game development, music production, animasi, dan proyek kreatif lainnya.</p>
+            <p>Open to collaboration on game development, music production, animation, and other creative projects.</p>
             <div class="contact-links">
               <a class="contact-link" href="#"><span class="contact-link-icon">⬡</span><span
                   class="contact-link-label">GITHUB.COM/SYISRAMA</span></a>
@@ -3044,7 +2885,7 @@
             <!-- First submission: FormSubmit will send a confirmation email to activate -->
             <div class="form-field">
               <div class="form-label">// YOUR NAME</div><input id="cf-name" class="form-input" type="text"
-                placeholder="Nama kamu..." autocomplete="name">
+                placeholder="Your name..." autocomplete="name">
             </div>
             <div class="form-field">
               <div class="form-label">// EMAIL ADDRESS</div><input id="cf-email" class="form-input" type="email"
@@ -3052,7 +2893,7 @@
             </div>
             <div class="form-field">
               <div class="form-label">// MESSAGE</div><textarea id="cf-msg" class="form-textarea"
-                placeholder="Ceritakan project kamu..."></textarea>
+                placeholder="Tell me about your project..."></textarea>
             </div>
             <button class="btn-primary" onclick="sendContactForm(event)"
               style="border:none;font-family:'Orbitron',monospace;font-size:10px;font-weight:700;letter-spacing:3px;padding:12px 26px;cursor:pointer;align-self:flex-start;">SEND
@@ -3113,13 +2954,13 @@
 
       if (!name || !email || !msg) {
         status.style.color = '#ff6666';
-        status.textContent = '// SEMUA FIELD WAJIB DIISI';
+        status.textContent = '// ALL FIELDS ARE REQUIRED';
         return;
       }
       const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRe.test(email)) {
         status.style.color = '#ff6666';
-        status.textContent = '// FORMAT EMAIL TIDAK VALID';
+        status.textContent = '// INVALID EMAIL FORMAT';
         return;
       }
 
@@ -3131,7 +2972,7 @@
 
       // Show success feedback
       status.style.color = 'var(--cyan)';
-      status.textContent = '// PESAN TERKIRIM — CEK EMAIL KAMU';
+      status.textContent = '// MESSAGE SENT — CHECK YOUR EMAIL';
       document.getElementById('cf-name').value = '';
       document.getElementById('cf-email').value = '';
       document.getElementById('cf-msg').value = '';
@@ -3269,7 +3110,46 @@
 
     window.addEventListener('resize', () => { resizeCv(); initPts(); });
     resizeCv(); initPts(); drawBg();
-  </script>
+  
+// ── FULLSCREEN TOGGLE ──
+function toggleFullscreen() {
+  const btn   = document.getElementById('fs-btn');
+  const label = document.getElementById('fs-label');
+  const icon  = document.getElementById('fs-icon');
+
+  const exitIcon = '<polyline points="3 8 3 3 8 3"/><polyline points="16 3 21 3 21 8"/><polyline points="21 16 21 21 16 21"/><polyline points="8 21 3 21 3 16"/>';
+  const enterIcon = '<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
+
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().then(() => {
+      label.textContent = 'Window';
+      icon.innerHTML = exitIcon;
+    }).catch(() => {});
+  } else {
+    document.exitFullscreen().then(() => {
+      label.textContent = 'Fullscreen';
+      icon.innerHTML = enterIcon;
+    }).catch(() => {});
+  }
+}
+
+// Sync label when user exits fullscreen via Escape/F11
+document.addEventListener('fullscreenchange', () => {
+  const label = document.getElementById('fs-label');
+  const icon  = document.getElementById('fs-icon');
+  if (!label || !icon) return;
+  const exitIcon = '<polyline points="3 8 3 3 8 3"/><polyline points="16 3 21 3 21 8"/><polyline points="21 16 21 21 16 21"/><polyline points="8 21 3 21 3 16"/>';
+  const enterIcon = '<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
+  if (document.fullscreenElement) {
+    label.textContent = 'Window';
+    icon.innerHTML = exitIcon;
+  } else {
+    label.textContent = 'Fullscreen';
+    icon.innerHTML = enterIcon;
+  }
+});
+
+</script>
 </body>
 
 </html>
