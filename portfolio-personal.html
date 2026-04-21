@@ -1990,7 +1990,7 @@
 
   <!-- LIGHTBOX -->
   <div id="lightbox" onclick="closeLightbox()">
-    <div class="lb-close" onclick="closeLightbox()">✕ TUTUP</div>
+    <div class="lb-close" onclick="closeLightbox()">✕ CLOSE</div>
     <img id="lightbox-img" src="" alt="">
     <div class="lb-caption" id="lightbox-caption"></div>
   </div>
@@ -2053,13 +2053,13 @@
           <div class="hero-cta">
             <a class="btn-primary" href="#" onclick="scrollToSection(6);return false;">VIEW RELEASES</a>
             <a class="btn-outline" href="#" onclick="scrollToSection(7);return false;">CONTACT</a>
-            <button class="btn-outline" id="fs-btn" onclick="toggleFullscreen()" style="display:inline-flex;align-items:center;gap:7px;border:none;cursor:pointer;">
+            <a class="btn-outline" id="fs-btn" onclick="toggleFullscreen()" style="display:inline-flex;align-items:center;gap:7px;">
               <svg id="fs-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/>
                 <polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>
               </svg>
               <span id="fs-label">Fullscreen</span>
-            </button>
+            </a>
           </div>
         </div>
         <div class="hero-decor">
@@ -3013,7 +3013,7 @@
 
       const DISPLAY_MS = 5500;   // total time per slide including fade-out
       const FADE_MS = 1500;   // CSS opacity transition duration
-      const PAN_PX = 80;     // px to travel rightward during full display+fade
+      const PAN_PX = 50;     // px to travel rightward during full display+fade
 
       // Each slide has its own RAF so pan is independent
       const panStates = slides.map(() => ({ raf: null, startTs: null, startX: 0 }));
