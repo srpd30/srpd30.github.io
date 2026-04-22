@@ -1597,23 +1597,21 @@
             .hero-cta {
                 justify-content: center;
             }
-            /* HERO SLIDESHOW — mobile: smaller, top-aligned, heavier vignette */
+            /* HERO SLIDESHOW — mobile: full height, no cropping */
             .hero-slideshow {
-                height: 55%;
-                /* only top portion of hero on mobile */
+                height: 100%;
                 top: 0;
             }
             .hero-slideshow::after {
-                background: /* full bottom fade so text area is dark */
-                linear-gradient(to bottom, rgba(2, 11, 14, .3) 0%, rgba(2, 11, 14, .6) 35%, rgba(2, 11, 14, .95) 65%, rgba(2, 11, 14, 1) 100%), /* left-right vignette stays mild on mobile */
-                linear-gradient(to right, rgba(2, 11, 14, .85) 0%, rgba(2, 11, 14, .3) 40%, rgba(2, 11, 14, .3) 60%, rgba(2, 11, 14, .85) 100%);
+                /* Heavy vignette so text stays readable over the image */
+                background: linear-gradient(to bottom, rgba(2, 11, 14, .55) 0%, rgba(2, 11, 14, .3) 25%, rgba(2, 11, 14, .3) 55%, rgba(2, 11, 14, .92) 80%, rgba(2, 11, 14, 1) 100%), linear-gradient(to right, rgba(2, 11, 14, .7) 0%, rgba(2, 11, 14, .15) 40%, rgba(2, 11, 14, .15) 60%, rgba(2, 11, 14, .7) 100%);
             }
             .hero-slide {
                 width: 100%;
-                /* no horizontal pan overflow on narrow screens */
-                background-position: center top;
-                /* show the top/subject of the image */
-                background-size: cover;
+                /* contain = whole image visible, never cropped */
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center center;
             }
             .hero-decor {
                 width: 160px;
