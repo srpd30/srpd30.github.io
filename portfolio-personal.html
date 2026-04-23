@@ -1597,21 +1597,26 @@
             .hero-cta {
                 justify-content: center;
             }
-            /* HERO SLIDESHOW — mobile: full height, no cropping */
+            /* HERO SLIDESHOW — mobile: centered, no crop, animation preserved */
             .hero-slideshow {
                 height: 100%;
                 top: 0;
             }
-            .hero-slideshow::after {
-                /* Heavy vignette so text stays readable over the image */
-                background: linear-gradient(to bottom, rgba(2, 11, 14, .55) 0%, rgba(2, 11, 14, .3) 25%, rgba(2, 11, 14, .3) 55%, rgba(2, 11, 14, .92) 80%, rgba(2, 11, 14, 1) 100%), linear-gradient(to right, rgba(2, 11, 14, .7) 0%, rgba(2, 11, 14, .15) 40%, rgba(2, 11, 14, .15) 60%, rgba(2, 11, 14, .7) 100%);
-            }
+            /* Override any inline width/left on slides — must use !important */
             .hero-slide {
-                width: 100%;
-                /* contain = whole image visible, never cropped */
-                background-size: contain;
-                background-repeat: no-repeat;
-                background-position: center center;
+                width: 200% !important;
+                left: -50% !important;
+                top: -50% !important;
+                height: 200% !important;
+                /* contain = whole image fully visible, never cropped */
+                background-size: contain !important;
+                background-repeat: no-repeat !important;
+                /* centered both axes */
+                background-position: center center !important;
+            }
+            /* Vignette: gentle top/bottom, heavier sides to frame the centered image */
+            .hero-slideshow::after {
+                background: linear-gradient(to bottom, rgba(2, 11, 14, .65) 0%, rgba(2, 11, 14, .2) 20%, rgba(2, 11, 14, .2) 60%, rgba(2, 11, 14, .85) 85%, rgba(2, 11, 14, 1) 100%), linear-gradient(to right, rgba(2, 11, 14, .75) 0%, rgba(2, 11, 14, .1) 30%, rgba(2, 11, 14, .1) 70%, rgba(2, 11, 14, .75) 100%);
             }
             .hero-decor {
                 width: 160px;
@@ -2079,12 +2084,12 @@
                         </a>
                     </div>
                 </div>
-                <div class="hero-decor">
+                <!-- <div class="hero-decor">
                     <div class="hex-ring"></div>
                     <div class="hex-ring"></div>
                     <div class="hex-ring"></div>
                     <div class="hex-center">SRPD<br><span style="font-size:8px;opacity:.5;">PORTFOLIO</span></div>
-                </div>
+                </div> -->
             </section>
 
             <!-- ══ S1: SKILLS + SOFTWARE ══ -->
@@ -2107,7 +2112,7 @@
                             <div class="skill-top">
                                 <div class="skill-icon-w">🎮</div>
                                 <div class="skill-meta">
-                                    <div class="skill-badge">NEEDS TO BE DISCUSSED</div>
+                                    <div class="skill-badge">READY TO WORK</div>
                                     <div class="skill-name">GAME DEVELOPMENT</div>
                                 </div>
                             </div>
@@ -3054,7 +3059,12 @@
 
             const DISPLAY_MS = 5500; // total time per slide including fade-out
             const FADE_MS = 1500; // CSS opacity transition duration
-            const PAN_PX = 50; // px to travel rightward during full display+fade
+
+            // On mobile (≤768px): pan is tiny so centered image stays centered.
+            // On desktop: full pan amount for parallax feel.
+            function getPanPx() {
+                return window.innerWidth <= 768 ? 10 : 50;
+            }
 
             // Each slide has its own RAF so pan is independent
             const panStates = slides.map(() => ({
@@ -3071,12 +3081,14 @@
                 state.startX = 0;
                 slide.style.transform = 'translateX(0px)';
 
+                const panPx = getPanPx();
+
                 function tick(ts) {
                     if (!state.startTs) state.startTs = ts;
                     const elapsed = ts - state.startTs;
                     // pan continues as long as slide exists — no stop on fade
                     const progress = elapsed / (DISPLAY_MS + FADE_MS); // normalize over full life
-                    const x = progress * PAN_PX;
+                    const x = progress * panPx;
                     slide.style.transform = 'translateX(' + x + 'px)';
                     state.raf = requestAnimationFrame(tick);
                 }
