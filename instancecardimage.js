@@ -2,11 +2,11 @@
 // HELPER
 // =====================
 function convertYouTube(url) {
-  const regExp = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
-  const match = url.match(regExp);
-  return match
-    ? `https://www.youtube.com/embed/${match[1]}?autoplay=1&mute=1`
-    : null;
+    const regExp = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&]+)/;
+    const match = url.match(regExp);
+    return match ?
+        `https://www.youtube.com/embed/${match[1]}?autoplay=1&mute=1` :
+        null;
 }
 
 // =====================
@@ -15,31 +15,31 @@ function convertYouTube(url) {
 const cards = document.querySelectorAll(".set-card");
 
 cards.forEach(card => {
-  const title = card.dataset.title || "";
+            const title = card.dataset.title || "";
 
-  let assets = [];
-  let experiences = [];
-  let socials = [];
+            let assets = [];
+            let experiences = [];
+            let socials = [];
 
-  try {
-    assets = JSON.parse(card.dataset.assets || "[]");
-    experiences = JSON.parse(card.dataset.experiences || "[]");
-    socials = JSON.parse(card.dataset.social || "[]");
-  } catch (e) {
-    console.error("JSON error:", e);
-  }
+            try {
+                assets = JSON.parse(card.dataset.assets || "[]");
+                experiences = JSON.parse(card.dataset.experiences || "[]");
+                socials = JSON.parse(card.dataset.social || "[]");
+            } catch (e) {
+                console.error("JSON error:", e);
+            }
 
-  let assetsHTML = "";
-  let videoHTML = "";
+            let assetsHTML = "";
+            let videoHTML = "";
 
-  // =====================
-  // ASSETS LOOP
-  // =====================
-  assets.forEach(asset => {
+            // =====================
+            // ASSETS LOOP
+            // =====================
+            assets.forEach(asset => {
 
-    // 🔥 IMAGE FULL (THUMBNAIL BESAR)
-    if (asset.type === "image-full") {
-    assetsHTML += `
+                // 🔥 IMAGE FULL (THUMBNAIL BESAR)
+                if (asset.type === "image-full") {
+                    assetsHTML += `
       <div class="full-image-wrapper" 
         style="margin-bottom:15px; top:30px; aspect-ratio:16/9; overflow:hidden; border-radius:8px;">
         
@@ -48,11 +48,11 @@ cards.forEach(card => {
           
       </div>
     `;
-    }
+                }
 
-    // 🖼 IMAGE GRID
-    else if (asset.type === "image") {
-      assetsHTML += `
+                // 🖼 IMAGE GRID
+                else if (asset.type === "image") {
+                    assetsHTML += `
         <div class="responsive">
           <div class="gallery">
             <a href="${asset.src}" target="_blank">
@@ -62,25 +62,25 @@ cards.forEach(card => {
           </div>
         </div>
       `;
-    }
+                }
 
-    // 🎥 VIDEO LOCAL
-    else if (asset.type === "video") {
-      videoHTML += `
+                // 🎥 VIDEO LOCAL
+                else if (asset.type === "video") {
+                    videoHTML += `
         <div class="video-wrapper">
-          <video controls autoplay muted loop>
+          <video controls autoplay muted loop loading="lazy">
             <source src="${asset.src}" type="video/mp4">
           </video>
         </div>
       `;
-    }
+                }
 
-    // ▶️ YOUTUBE
-    else if (asset.type === "youtube") {
-      const embed = convertYouTube(asset.src);
-      if (!embed) return;
+                // ▶️ YOUTUBE
+                else if (asset.type === "youtube") {
+                    const embed = convertYouTube(asset.src);
+                    if (!embed) return;
 
-      videoHTML += `
+                    videoHTML += `
         <div class="video-wrapper">
           <iframe src="${embed}" 
             frameborder="0"
@@ -89,31 +89,31 @@ cards.forEach(card => {
           </iframe>
         </div>
       `;
-    }
+                }
 
-  });
+            });
 
-  // =====================
-  // EXPERIENCES
-  // =====================
-  let experienceHTML = "";
+            // =====================
+            // EXPERIENCES
+            // =====================
+            let experienceHTML = "";
 
-  experiences.forEach(exp => {
-    experienceHTML += `
+            experiences.forEach(exp => {
+                experienceHTML += `
       <span class="badge rounded-pill me-1 mb-1 text-dark" 
         style="border: 1px solid #9c9c9c; padding: 0.5rem;">
         ${exp.name}
       </span>
     `;
-  });
+            });
 
-  // =====================
-  // SOCIAL
-  // =====================
-  let socialHTML = "";
+            // =====================
+            // SOCIAL
+            // =====================
+            let socialHTML = "";
 
-  socials.forEach(social => {
-    socialHTML += `
+            socials.forEach(social => {
+                        socialHTML += `
       <div class="social-item">
         <a href="${social.url}" target="_blank" class="d-block text-decoration-none">
           
