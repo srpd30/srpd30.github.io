@@ -3229,12 +3229,12 @@
 
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen().then(() => {
-                    label.textContent = 'Window';
+                    label.textContent = 'WINDOW';
                     icon.innerHTML = exitIcon;
                 }).catch(() => {});
             } else {
                 document.exitFullscreen().then(() => {
-                    label.textContent = 'Fullscreen';
+                    label.textContent = 'FULLSCREEN';
                     icon.innerHTML = enterIcon;
                 }).catch(() => {});
             }
@@ -3248,10 +3248,10 @@
             const exitIcon = '<polyline points="3 8 3 3 8 3"/><polyline points="16 3 21 3 21 8"/><polyline points="21 16 21 21 16 21"/><polyline points="8 21 3 21 3 16"/>';
             const enterIcon = '<polyline points="8 3 3 3 3 8"/><polyline points="21 8 21 3 16 3"/><polyline points="3 16 3 21 8 21"/><polyline points="16 21 21 21 21 16"/>';
             if (document.fullscreenElement) {
-                label.textContent = 'Window';
+                label.textContent = 'WINDOW';
                 icon.innerHTML = exitIcon;
             } else {
-                label.textContent = 'Fullscreen';
+                label.textContent = 'FULLSCREEN';
                 icon.innerHTML = enterIcon;
             }
         });
