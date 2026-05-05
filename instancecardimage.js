@@ -10,38 +10,14 @@ function convertYouTube(url) {
 }
 
 // =====================
-// IMAGE QUEUE LOADER
-// Max 3 bersamaan, sisanya antri
+// IMAGE LOADER — semua gambar load sekaligus + skeleton reveal
 // =====================
-const imageQueue = [];
-let activeLoads = 0;
-const MAX_CONCURRENT = 3;
-
-function enqueueImage(img) {
-    imageQueue.push(img);
-    processQueue();
-}
-
-function processQueue() {
-    while (activeLoads < MAX_CONCURRENT && imageQueue.length > 0) {
-        const img = imageQueue.shift();
-        loadImage(img);
-    }
-}
-
 function loadImage(img) {
     const wrapper = img.closest('.skeleton-wrap');
-    activeLoads++;
-
     const realSrc = img.dataset.lazySrc;
-    if (!realSrc) {
-        activeLoads--;
-        processQueue();
-        return;
-    }
+    if (!realSrc) return;
     img.removeAttribute('data-lazy-src');
 
-    // Tampilkan gambar hasil compress ke <img>
     const revealImg = (src) => {
         img.src = src;
         img.addEventListener('load', () => {
@@ -54,48 +30,29 @@ function loadImage(img) {
                     img.style.opacity  = '1';
                 }, 650);
             }
-            activeLoads--;
-            processQueue();
         }, { once: true });
         img.addEventListener('error', () => {
             if (wrapper) wrapper.classList.remove('is-loading');
-            activeLoads--;
-            processQueue();
         }, { once: true });
     };
 
-    // ── Compress via Canvas sebelum ditampilkan ──
-    // Max 800px lebar, quality 0.65 — tajam di layar tapi jauh lebih ringan
+    // Compress via Canvas — max 800px, quality 0.65
     const tempImg = new Image();
     tempImg.crossOrigin = 'anonymous';
-
     tempImg.onload = () => {
         try {
-            const MAX_W   = 800;
-            const MAX_H   = 600;
-            const QUALITY = 0.65;
-
-            let w = tempImg.naturalWidth;
-            let h = tempImg.naturalHeight;
-
-            // Scale down proporsional
+            const MAX_W = 800, MAX_H = 600, QUALITY = 0.65;
+            let w = tempImg.naturalWidth, h = tempImg.naturalHeight;
             if (w > MAX_W) { h = Math.round(h * MAX_W / w); w = MAX_W; }
             if (h > MAX_H) { w = Math.round(w * MAX_H / h); h = MAX_H; }
-
             const canvas = document.createElement('canvas');
-            canvas.width  = w;
-            canvas.height = h;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(tempImg, 0, 0, w, h);
-
-            const compressed = canvas.toDataURL('image/jpeg', QUALITY);
-            revealImg(compressed);
+            canvas.width = w; canvas.height = h;
+            canvas.getContext('2d').drawImage(tempImg, 0, 0, w, h);
+            revealImg(canvas.toDataURL('image/jpeg', QUALITY));
         } catch (e) {
-            // CORS blocked atau canvas tainted — fallback ke src asli
             revealImg(realSrc);
         }
     };
-
     tempImg.onerror = () => revealImg(realSrc);
     tempImg.src = realSrc;
 }
@@ -230,13 +187,13 @@ cards.forEach(card => {
 });
 
 // =====================
-// MULAI QUEUE — hanya gambar dekat viewport yang masuk antrian
+// MULAI LOAD — semua sekaligus, tapi hanya saat dekat viewport
 // =====================
 if ('IntersectionObserver' in window) {
     const viewObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                enqueueImage(entry.target);
+                loadImage(entry.target);
                 viewObserver.unobserve(entry.target);
             }
         });
@@ -246,7 +203,7 @@ if ('IntersectionObserver' in window) {
         viewObserver.observe(img);
     });
 } else {
-    document.querySelectorAll('img[data-lazy-src]').forEach(img => enqueueImage(img));
+    document.querySelectorAll('img[data-lazy-src]').forEach(img => loadImage(img));
 }
 
 // =====================
