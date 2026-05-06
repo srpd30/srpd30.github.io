@@ -1,254 +1,48 @@
-/* =====================
-   IMAGE GRID
-   ===================== */
 div.gallery {
-  overflow: hidden;
-  aspect-ratio: 16 / 9;
-  border-radius: 6px;
+  overflow: hidden;            /* penting biar crop rapi */
+  aspect-ratio: 1 / 1;        /* 🔥 kunci semua jadi 16:9 */
+}
+
+div.gallery:hover {
 }
 
 div.gallery img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 100%;                /* ikut container */
+  object-fit: cover;           /* 🔥 biar nggak gepeng, tapi di-crop */
   display: block;
-  transition: transform 0.2s ease;
-}
-
-div.gallery:hover img {
-  transform: scale(1.04);
 }
 
 div.desc {
-  padding: 15px;
-  text-align: center;
+    padding: 15px;
+    text-align: center;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-/* =====================
-   RESPONSIVE GRID 3 KOLOM
-   ===================== */
 .responsive {
-  padding: 4px 4px;
-  float: left;
-  width: 33.33%;
+    padding: 6px 6px;
+    float: left;
+    width: 33%;
 }
 
 @media only screen and (max-width: 700px) {
-  .responsive { width: 50%; margin: 0; padding: 3px 3px; }
+    .responsive {
+        width: 50%;
+        margin: 6px 0;
+    }
 }
-@media only screen and (max-width: 400px) {
-  .responsive { width: 50%; padding: 2px 2px; }
+
+@media only screen and (max-width: 500px) {
+    .responsive {
+        width: 100%;
+    }
 }
 
 .clearfix:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* =====================
-   SOCIAL BUTTON — FIX MOBILE
-   ===================== */
-.social-btn {
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-width: 60px;
-  padding: 8px 10px;
-  font-size: 11px;
-  line-height: 1.3;
-  word-break: break-word;
-  white-space: normal !important;
-}
-
-.social-btn span {
-  display: block !important;
-  font-size: 11px;
-  text-align: center;
-  line-height: 1.2;
-  max-width: 80px;
-  overflow-wrap: break-word;
-}
-
-.social-btn img {
-  flex-shrink: 0;
-}
-
-/* =====================
-   PERSONAL PROJECTS BUTTON
-   ===================== */
-.btn-glitch-personal {
-  position: relative;
-  overflow: visible;
-  transition: color 0.2s, background 0.2s, border-color 0.2s,
-              letter-spacing 0.2s, border-radius 0.2s;
-}
-
-.btn-glitch-personal .skew-bg {
-  position: absolute; inset: 0;
-  background: #0ff;
-  border: 2px solid #000;
-  transform: skewX(-10deg);
-  border-radius: 2px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  z-index: 0;
-}
-
-.btn-glitch-personal .btn-text {
-  position: relative;
-  z-index: 1;
-  display: block;
-  transition: color 0.2s, letter-spacing 0.2s;
-}
-
-.btn-glitch-personal::before,
-.btn-glitch-personal::after {
-  content: attr(data-text);
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%; padding: inherit;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 13px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  display: flex; align-items: center; justify-content: center;
-  box-sizing: border-box; pointer-events: none;
-  opacity: 0; z-index: 2;
-  transition: opacity 0.15s ease;
-}
-
-.btn-glitch-personal::before {
-  color: rgba(0,0,0,0.5);
-  clip-path: polygon(0 12%,100% 12%,100% 36%,0 36%);
-}
-.btn-glitch-personal::after {
-  color: rgba(0,0,0,0.35);
-  clip-path: polygon(0 62%,100% 62%,100% 82%,0 82%);
-}
-
-.glitch-scanline {
-  position: absolute; inset: 0;
-  background: repeating-linear-gradient(
-    to bottom, transparent 0px, transparent 2px,
-    rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px
-  );
-  border-radius: 2px; pointer-events: none;
-  opacity: 0; z-index: 3;
-  transition: opacity 0.2s ease;
-}
-
-.btn-glitch-personal.is-clicked {
-  background: transparent !important;
-  border-color: transparent !important;
-  border-radius: 2px;
-  color: #000;
-}
-.btn-glitch-personal.is-clicked .skew-bg         { opacity: 1; }
-.btn-glitch-personal.is-clicked .glitch-scanline { opacity: 1; }
-.btn-glitch-personal.is-clicked .btn-text {
-  color: #000;
-  font-family: 'Share Tech Mono', monospace;
-  font-weight: 700; font-size: 13px;
-  letter-spacing: 3px; text-transform: uppercase;
-}
-.btn-glitch-personal.is-clicked::before { opacity: 1; animation: gp-before 0.5s infinite; }
-.btn-glitch-personal.is-clicked::after  { opacity: 1; animation: gp-after  0.5s infinite; }
-
-@keyframes gp-before {
-  0%  { clip-path: polygon(0 12%,100% 12%,100% 36%,0 36%); }
-  20% { clip-path: polygon(0 5%, 100% 5%, 100% 25%,0 25%); }
-  40% { clip-path: polygon(0 45%,100% 45%,100% 62%,0 62%); }
-  60% { clip-path: polygon(0 20%,100% 20%,100% 40%,0 40%); }
-  80% { clip-path: polygon(0 65%,100% 65%,100% 80%,0 80%); }
-  100%{ clip-path: polygon(0 12%,100% 12%,100% 36%,0 36%); }
-}
-@keyframes gp-after {
-  0%  { clip-path: polygon(0 62%,100% 62%,100% 82%,0 82%); }
-  25% { clip-path: polygon(0 40%,100% 40%,100% 58%,0 58%); }
-  45% { clip-path: polygon(0 70%,100% 70%,100% 88%,0 88%); }
-  65% { clip-path: polygon(0 50%,100% 50%,100% 68%,0 68%); }
-  85% { clip-path: polygon(0 15%,100% 15%,100% 35%,0 35%); }
-  100%{ clip-path: polygon(0 62%,100% 62%,100% 82%,0 82%); }
-}
-
-/* =====================
-   SKELETON LOADING
-   ===================== */
-.skeleton-wrap {
-  position: relative;
-}
-
-/* Shimmer background saat loading */
-.skeleton-wrap.is-loading {
-  background: #e0e0e0;
-  overflow: hidden;
-}
-
-.skeleton-wrap.is-loading::after {
-  content: "";
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent    0%,
-    rgba(255,255,255,0.6) 50%,
-    transparent  100%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-shimmer 1.4s infinite;
-  z-index: 10;
-  pointer-events: none;
-}
-
-/* Gambar ter-clip penuh saat belum di-load */
-.skeleton-wrap.is-loading img {
-  clip-path: inset(0 0 100% 0);
-}
-
-/* Fase reveal: shimmer masih jalan, gambar wipe dari atas ke bawah */
-.skeleton-wrap.img-loaded img {
-  animation: img-reveal 0.65s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-/* Setelah selesai: hapus clip-path sepenuhnya */
-.skeleton-wrap:not(.is-loading) img {
-  clip-path: none !important;
-  opacity: 1 !important;
-}
-
-@keyframes skeleton-shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position:  200% 0; }
-}
-
-@keyframes img-reveal {
-  0%   { clip-path: inset(0 0 100% 0); }
-  100% { clip-path: inset(0 0 0%   0); }
-}
-
-/* Hapus border & outline bawaan Bootstrap pada tombol personal */
-.btn-glitch-personal {
-  border-color: transparent !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-.btn-glitch-personal:focus,
-.btn-glitch-personal:focus-visible,
-.btn-glitch-personal:active {
-  border-color: transparent !important;
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-/* Hapus focus ring saat diklik */
-.btn-glitch-personal:focus,
-.btn-glitch-personal:focus-visible,
-.btn-glitch-personal:focus-within,
-.btn-glitch-personal:active,
-.btn-glitch-personal.is-clicked {
-  border-color: transparent !important;
-  box-shadow: none !important;
-  outline: none !important;
+    content: "";
+    display: table;
+    clear: both;
 }
