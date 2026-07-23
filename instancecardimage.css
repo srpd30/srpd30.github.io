@@ -1,48 +1,125 @@
+/* =====================
+   IMAGE GRID — 16:9
+   ===================== */
 div.gallery {
-  overflow: hidden;            /* penting biar crop rapi */
-  aspect-ratio: 1 / 1;        /* 🔥 kunci semua jadi 16:9 */
-}
-
-div.gallery:hover {
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 6px;
+  background: #f0f0f0;
 }
 
 div.gallery img {
   width: 100%;
-  height: 100%;                /* ikut container */
-  object-fit: cover;           /* 🔥 biar nggak gepeng, tapi di-crop */
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+div.gallery:hover img {
+  transform: scale(1.04);
+}
+
+/* =====================
+   IMAGE FULL — banner di atas, clear dari float
+   ===================== */
+.full-image-wrapper {
+  clear: both;              /* pastikan di bawah grid float */
+  margin-top: 10px;
+  margin-bottom: 8px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f0f0f0;
+}
+
+.full-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
-div.desc {
-    padding: 15px;
-    text-align: center;
+/* =====================
+   VIDEO WRAPPER — 16:9
+   ===================== */
+.video-wrapper {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0;
+  background: #000;
 }
 
-* {
-    box-sizing: border-box;
+.video-wrapper video,
+.video-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
 }
 
+/* =====================
+   GRID KOLOM 3
+   ===================== */
 .responsive {
-    padding: 6px 6px;
-    float: left;
-    width: 33%;
+  padding: 3px;
+  float: left;
+  width: 33.33%;
 }
 
 @media only screen and (max-width: 700px) {
-    .responsive {
-        width: 50%;
-        margin: 6px 0;
-    }
+  .responsive {
+    width: 50%;
+    padding: 2px;
+  }
 }
 
-@media only screen and (max-width: 500px) {
-    .responsive {
-        width: 100%;
-    }
+@media only screen and (max-width: 400px) {
+  .responsive {
+    width: 50%;
+    padding: 2px;
+  }
 }
 
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
+/* WAJIB: clear float setelah grid */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* =====================
+   SOCIAL BUTTON — nama selalu tampil
+   ===================== */
+.social-btn {
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 56px;
+  padding: 8px 10px;
+  font-size: 11px;
+  white-space: normal !important;
+  word-break: break-word;
+}
+
+.social-btn span {
+  display: block !important;
+  font-size: 10px;
+  text-align: center;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.social-btn img {
+  flex-shrink: 0;
 }
