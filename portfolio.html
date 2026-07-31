@@ -253,11 +253,12 @@
             /* gambar utuh, tidak dipotong */
             background-repeat: no-repeat;
             background-position: center;
-            border-radius: 6px;
+            border-radius: 22px;
+            /* border tumpul */
             /* drop-shadow mengikuti bentuk asli gambar (bukan kotak wrapper) */
             filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.55));
             opacity: 0;
-            transform: translateX(0px);
+            /* Transform & opacity 100% dikontrol JS via requestAnimationFrame — TIDAK pakai CSS animation/keyframe */
         }
         /* Slide yang sedang tampil (baik diam, masuk, atau keluar) harus display:block */
         
@@ -265,56 +266,6 @@
         .hero-preview-slide.entering,
         .hero-preview-slide.leaving {
             display: block;
-        }
-        /* State awal sebelum enter dimulai — masuk dari kiri, ease-out jelas */
-        
-        .hero-preview-slide.entering {
-            animation: preview-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        /* State: diam saat aktif — idle pan sangat pelan ke kanan (senada bg blur) */
-        
-        .hero-preview-slide.active {
-            opacity: 1;
-            animation: preview-idle-pan linear forwards;
-        }
-        /* State: slide keluar ke kanan — ease-in jelas */
-        
-        .hero-preview-slide.leaving {
-            animation: preview-leave 0.6s cubic-bezier(0.7, 0, 0.84, 0) forwards;
-        }
-        /* Enter: dari -60px (agak jauh, jelas kelihatan geraknya) → 0, fade in bareng */
-        
-        @keyframes preview-enter {
-            0% {
-                transform: translateX(-60px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateX(0px);
-                opacity: 1;
-            }
-        }
-        /* Idle: pan pelan ke kanan selama slide diam, mulai dari 0 (posisi akhir enter) */
-        
-        @keyframes preview-idle-pan {
-            0% {
-                transform: translateX(0px);
-            }
-            100% {
-                transform: translateX(16px);
-            }
-        }
-        /* Leave: lanjut dari posisi --pan-x (posisi idle terakhir) → geser jauh ke kanan + fade out */
-        
-        @keyframes preview-leave {
-            0% {
-                transform: translateX(var(--pan-x, 0px));
-                opacity: 1;
-            }
-            100% {
-                transform: translateX(calc(var(--pan-x, 0px) + 60px));
-                opacity: 0;
-            }
         }
         /* ══════════════════════════════
      RESPONSIF MOBILE / TABLET
@@ -531,15 +482,15 @@
 
         <!-- TEKS KIRI -->
         <div class="hero-content-wrap">
-            <p class="hero-eyebrow">2014 — 2026</p>
+            <p class="hero-eyebrow">2017 — 2026</p>
             <h1 class="hero-name font-concieliancondsemital">Syis Rama<br>Putra Dityo</h1>
             <p class="hero-portfolio-label">Portfolio</p>
             <p class="hero-tagline">Creative Archive</p>
             <p class="hero-desc">
-                A collection of visual projects, experiments, and Company works. From company collaborations to independent creations, each project reflects my exploration in design, motion graphics, and digital creativity.
+                A collection of visual projects, experiments, and professional works. From company collaborations to independent creations, each project reflects my exploration in design, motion graphics, and digital creativity.
             </p>
             <div class="d-flex gap-2 flex-wrap">
-                <a href="#professional" class="btn btn-dark px-4">Company Works</a>
+                <a href="#professional" class="btn btn-dark px-4">Professional Works</a>
                 <a href="portfolio-personal.html" class="btn btn-outline-secondary px-4" style="color: #fdfeff;">Personal Projects</a>
             </div>
         </div>
@@ -607,8 +558,8 @@
 
             const DISPLAY_MS = 5500;
             const FADE_MS = 1500;
-            const LEAVE_MS = 550;
-            const ENTER_MS = 650;
+            const LEAVE_MS = 620; // HARUS >= durasi animasi CSS preview-leave (0.6s) + buffer
+            const ENTER_MS = 720; // HARUS >= durasi animasi CSS preview-enter (0.7s) + buffer
 
             // ── Pan untuk bg blur ──
             const panStates = bgSlides.map(() => ({
@@ -649,15 +600,124 @@
             }
 
             let cur = 0;
-            let isAnimating = false; // ── guard: cegah race condition kalau goTo() dipanggil sebelum transisi selesai
+            let isAnimating = false; // guard: cegah goTo() dobel saat masih transisi
             bgSlides.forEach(s => s.style.transform = 'scale(1.08) translateX(0px)');
             startPan(0);
 
-            // Set durasi idle-pan slide pertama supaya sinkron
-            prevSlides[0].style.animationDuration = (DISPLAY_MS + 400) + 'ms';
+            // ── PREVIEW CARD ANIMATION — 100% JS via requestAnimationFrame ──
+            // Tidak pakai CSS @keyframes sama sekali, supaya tidak ada race condition antara
+            // CSS animation state dengan inline style. Semua posisi dihitung manual per-frame.
+
+            const ENTER_DUR = 700; // ms — durasi slide masuk dari kiri (ease-out)
+            const LEAVE_DUR = 600; // ms — durasi slide keluar ke kanan (ease-in)
+            const IDLE_PAN_PX = 16; // jarak geser pelan saat diam
+
+            // Easing functions
+            function easeOutCubic(t) {
+                return 1 - Math.pow(1 - t, 3);
+            }
+
+            function easeInCubic(t) {
+                return t * t * t;
+            }
+
+            // State RAF per-card supaya bisa di-cancel kapan saja
+            const cardAnim = prevSlides.map(() => ({
+                raf: null
+            }));
+
+            function cancelCardAnim(idx) {
+                if (cardAnim[idx].raf) {
+                    cancelAnimationFrame(cardAnim[idx].raf);
+                    cardAnim[idx].raf = null;
+                }
+            }
+
+            // Fase 1: ENTER — dari -60px ke 0px, opacity 0 ke 1, ease-out
+            function runEnter(idx, onDone) {
+                cancelCardAnim(idx);
+                const card = prevSlides[idx];
+                card.classList.add('entering');
+                card.classList.remove('leaving');
+                const start = performance.now();
+
+                function tick(ts) {
+                    const t = Math.min((ts - start) / ENTER_DUR, 1);
+                    const eased = easeOutCubic(t);
+                    const x = -60 + eased * 60; // -60 → 0
+                    card.style.transform = 'translateX(' + x + 'px)';
+                    card.style.opacity = String(eased);
+                    if (t < 1) {
+                        cardAnim[idx].raf = requestAnimationFrame(tick);
+                    } else {
+                        card.classList.remove('entering');
+                        card.classList.add('active');
+                        runIdle(idx); // lanjut ke idle pan setelah enter selesai
+                        if (onDone) onDone();
+                    }
+                }
+                cardAnim[idx].raf = requestAnimationFrame(tick);
+            }
+
+            // Fase 2: IDLE — geser pelan linear 0 → 16px selama slide "diam" ditampilkan
+            function runIdle(idx) {
+                cancelCardAnim(idx);
+                const card = prevSlides[idx];
+                const start = performance.now();
+                const dur = DISPLAY_MS; // selama durasi tampil slide
+                function tick(ts) {
+                    const t = Math.min((ts - start) / dur, 1);
+                    const x = t * IDLE_PAN_PX; // 0 → 16px, linear
+                    card.style.transform = 'translateX(' + x + 'px)';
+                    card.style.opacity = '1';
+                    if (t < 1) {
+                        cardAnim[idx].raf = requestAnimationFrame(tick);
+                    }
+                    // Kalau t>=1, biarkan diam di posisi terakhir (16px) sampai goTo() panggil runLeave
+                }
+                cardAnim[idx].raf = requestAnimationFrame(tick);
+            }
+
+            // Fase 3: LEAVE — dari posisi SAAT INI (bisa berapa saja hasil idle) → +60px lagi, ease-in, fade out
+            function runLeave(idx, onDone) {
+                cancelCardAnim(idx);
+                const card = prevSlides[idx];
+
+                // Baca posisi X saat ini secara akurat dari inline style yang sudah displaywrite oleh idle/enter
+                const currentTransform = card.style.transform || 'translateX(0px)';
+                const match = currentTransform.match(/translateX\(([-\d.]+)px\)/);
+                const startX = match ? parseFloat(match[1]) : 0;
+
+                card.classList.remove('active');
+                card.classList.add('leaving');
+
+                const start = performance.now();
+
+                function tick(ts) {
+                    const t = Math.min((ts - start) / LEAVE_DUR, 1);
+                    const eased = easeInCubic(t);
+                    const x = startX + eased * 60; // bergerak terus ke kanan sampai akhir — TIDAK PERNAH DIAM
+                    const op = 1 - eased; // fade out bertahap sampai 0 tepat saat animasi selesai
+                    card.style.transform = 'translateX(' + x + 'px)';
+                    card.style.opacity = String(op);
+                    if (t < 1) {
+                        cardAnim[idx].raf = requestAnimationFrame(tick);
+                    } else {
+                        // Selesai — sembunyikan total
+                        card.classList.remove('leaving');
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateX(0px)';
+                        if (onDone) onDone();
+                    }
+                }
+                cardAnim[idx].raf = requestAnimationFrame(tick);
+            }
+
+            // Mulai slide pertama: langsung enter
+            runEnter(0);
 
             function goTo(next) {
-                if (isAnimating) return; // abaikan kalau masih ada animasi berjalan
+                if (isAnimating) return;
                 isAnimating = true;
 
                 const prev = cur;
@@ -673,49 +733,12 @@
                     resetPan(prev);
                 }, FADE_MS + 50);
 
-                // ── PREVIEW CARD: leave lama → enter baru ──
-                const prevCard = prevSlides[prev];
-                const nextCard = prevSlides[cur];
-
-                // Ambil posisi X saat ini dari idle-pan supaya leave mulai dari situ, bukan loncat ke 0
-                const computedStyle = window.getComputedStyle(prevCard);
-                const matrix = new DOMMatrixReadOnly(computedStyle.transform);
-                const currentX = matrix.m41 || 0;
-                prevCard.style.setProperty('--pan-x', currentX + 'px');
-
-                // Bersihkan semua state class dulu supaya tidak tumpang tindih
-                prevCard.classList.remove('entering');
-                prevCard.classList.remove('active');
-                prevCard.classList.add('leaving');
-
-                setTimeout(() => {
-                    // Selesai leave — sembunyikan total via class removal (display:none otomatis dari CSS)
-                    prevCard.classList.remove('leaving');
-                    prevCard.style.removeProperty('--pan-x');
-                    prevCard.style.removeProperty('animation-duration');
-                    // Reset transform inline supaya slide berikutnya mulai bersih dari -60px, bukan posisi leave terakhir
-                    prevCard.style.transform = 'translateX(0px)';
-
-                    // Mulai enter yang baru — set transform awal eksplisit sebelum animasi jalan
-                    nextCard.classList.remove('active');
-                    nextCard.style.removeProperty('animation-duration');
-                    nextCard.style.transform = 'translateX(-60px)';
-                    nextCard.style.opacity = '0';
-                    // Force reflow supaya animasi 'entering' pasti restart dari awal & baca state di atas
-                    void nextCard.offsetWidth;
-                    nextCard.classList.add('entering');
-
-                    setTimeout(() => {
-                        // Set durasi idle-pan SEBELUM ganti class, supaya tidak ada frame tanpa animasi
-                        nextCard.style.animationDuration = (DISPLAY_MS + 400) + 'ms';
-                        nextCard.classList.remove('entering');
-                        nextCard.classList.add('active');
-                        // Bersihkan inline transform/opacity supaya animasi 'active' yang kontrol penuh
-                        nextCard.style.removeProperty('transform');
-                        nextCard.style.removeProperty('opacity');
-                        isAnimating = false; // selesai semua — boleh lanjut slide berikutnya
-                    }, ENTER_MS);
-                }, LEAVE_MS);
+                // ── PREVIEW CARD: leave slide lama (ease-in, bergerak sampai akhir), lalu enter slide baru ──
+                runLeave(prev, () => {
+                    runEnter(cur, () => {
+                        isAnimating = false;
+                    });
+                });
 
                 // ── DOTS + COUNTER ──
                 dots[prev].classList.remove('active');
@@ -838,7 +861,7 @@
             <div class="container">
 
                 <h1 style="margin-bottom: 25px;" id="professional">
-                    Company Works
+                    Professional Works
                     <small class="text-muted">2018-2026</small>
                 </h1>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

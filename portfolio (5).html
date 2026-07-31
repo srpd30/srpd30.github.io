@@ -38,6 +38,7 @@
   <link href="css/effect/drop_shadow.css" rel="stylesheet">
   <link href="css/overlay-backgorund.css" rel="stylesheet">
   <link href="font/Concielian Semi/concieliancondsemital/concieliancondsemital.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
   <link href="css/root.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="sampletimeline.css">
 
@@ -235,10 +236,11 @@
     background-size: contain;   /* gambar utuh, tidak dipotong */
     background-repeat: no-repeat;
     background-position: center;
-    border-radius: 6px;
-    /* Shadow menempel langsung di gambar, ikut bergerak saat transform */
-    box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
-    will-change: transform, opacity;
+    border-radius: 22px;        /* border tumpul */
+    /* drop-shadow mengikuti bentuk asli gambar (bukan kotak wrapper) */
+    filter: drop-shadow(0 24px 60px rgba(0,0,0,0.55));
+    opacity: 0;
+    transform: translateX(0px);
   }
 
   /* Slide yang sedang tampil (baik diam, masuk, atau keluar) harus display:block */
@@ -248,35 +250,87 @@
     display: block;
   }
 
-  /* State awal sebelum enter dimulai */
+  /* State awal sebelum enter dimulai — masuk dari kiri, ease-out jelas */
   .hero-preview-slide.entering {
-    animation: preview-enter 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: preview-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
-  /* State: diam saat aktif */
+  /* State: diam saat aktif — idle pan sangat pelan ke kanan (senada bg blur) */
   .hero-preview-slide.active {
-    transform: translateX(0);
     opacity: 1;
+    animation: preview-idle-pan linear forwards;
   }
 
-  /* State: slide keluar ke kanan */
+  /* State: slide keluar ke kanan — ease-in jelas */
   .hero-preview-slide.leaving {
-    animation: preview-leave 0.55s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+    animation: preview-leave 0.6s cubic-bezier(0.7, 0, 0.84, 0) forwards;
   }
 
+  /* Enter: dari -60px (agak jauh, jelas kelihatan geraknya) → 0, fade in bareng */
   @keyframes preview-enter {
-    from { transform: translateX(-48px); opacity: 0; }
-    to   { transform: translateX(0);     opacity: 1; }
+    0%   { transform: translateX(-60px); opacity: 0; }
+    100% { transform: translateX(0px);   opacity: 1; }
   }
 
+  /* Idle: pan pelan ke kanan selama slide diam, mulai dari 0 (posisi akhir enter) */
+  @keyframes preview-idle-pan {
+    0%   { transform: translateX(0px); }
+    100% { transform: translateX(16px); }
+  }
+
+  /* Leave: lanjut dari posisi --pan-x (posisi idle terakhir) → geser jauh ke kanan + fade out */
   @keyframes preview-leave {
-    from { transform: translateX(0);    opacity: 1; }
-    to   { transform: translateX(48px); opacity: 0; }
+    0%   { transform: translateX(var(--pan-x, 0px));        opacity: 1; }
+    100% { transform: translateX(calc(var(--pan-x, 0px) + 60px)); opacity: 0; }
   }
 
-  /* Mobile: sembunyikan preview card */
+  /* ══════════════════════════════
+     RESPONSIF MOBILE / TABLET
+  ══════════════════════════════ */
+
+  /* Tablet: preview diperkecil, tetap terlihat */
+  @media (max-width: 1024px) and (min-width: 861px) {
+    .hero-preview-wrap {
+      width: 34%;
+      right: 5%;
+    }
+  }
+
+  /* Mobile & tablet kecil: preview dipindah ke ATAS teks, ukuran mengecil, posisi center */
   @media (max-width: 860px) {
-    .hero-preview-wrap { display: none; }
+    #hero-banner {
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 96px;
+      height: auto;
+      min-height: 100vh;
+    }
+
+    .hero-preview-wrap {
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      width: 84%;
+      max-width: 360px;
+      margin: 0 auto 32px;
+      aspect-ratio: 4/3;
+    }
+
+    .hero-content-wrap {
+      padding: 0 24px;
+      max-width: 100%;
+      text-align: left;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hero-preview-wrap {
+      width: 92%;
+      max-width: 300px;
+      margin-bottom: 24px;
+    }
+    #hero-banner { padding-top: 88px; padding-bottom: 64px; }
   }
 
   /* ══════════════════════════════
@@ -320,11 +374,11 @@
   }
 
   .hero-portfolio-label {
-    font-family: 'font-concieliancondsemital', 'Courier New', monospace;
+    font-family: 'Orbitron', 'Courier New', monospace;
     font-size: clamp(14px, 2.2vw, 28px);
-    font-weight: 400;
-    color: rgba(255,255,255,0.4);
-    letter-spacing: 0.18em;
+    font-weight: 700;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     margin-bottom: 28px;
   }
@@ -374,11 +428,28 @@
   }
   .hero-counter b { color: rgba(255,255,255,0.55); font-weight: 400; }
 
-  @media (max-width: 768px) {
+  @media (max-width: 860px) {
+    .hero-dots { left: 24px; bottom: 20px; }
+    .hero-counter { right: 24px; bottom: 20px; }
+
     .hero-content-wrap { padding: 0 24px; max-width: 100%; }
-    .hero-dots { left: 24px; }
-    .hero-counter { right: 24px; }
-    #hero-banner { align-items: flex-end; padding-bottom: 80px; }
+    .hero-eyebrow { margin-bottom: 16px; font-size: 10px; }
+    .hero-name { margin-bottom: 4px; }
+    .hero-portfolio-label { margin-bottom: 18px; letter-spacing: 0.24em; }
+    .hero-tagline { margin-bottom: 8px; }
+    .hero-desc { margin-bottom: 24px; font-size: 13px; max-width: 100%; }
+
+    /* Tombol full-width stack di layar sempit */
+    .hero-content-wrap .d-flex.gap-2 {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .hero-content-wrap .btn { text-align: center; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-eyebrow::before { width: 18px; }
+    .hero-name { letter-spacing: 0.03em; }
   }
 </style>
 
@@ -470,8 +541,8 @@
 
   const DISPLAY_MS = 5500;
   const FADE_MS    = 1500;
-  const LEAVE_MS   = 550;
-  const ENTER_MS   = 650;
+  const LEAVE_MS   = 620;  // HARUS >= durasi animasi CSS preview-leave (0.6s) + buffer
+  const ENTER_MS   = 720;  // HARUS >= durasi animasi CSS preview-enter (0.7s) + buffer
 
   // ── Pan untuk bg blur ──
   const panStates = bgSlides.map(() => ({ raf: null, startTs: null }));
@@ -507,6 +578,9 @@
   bgSlides.forEach(s => s.style.transform = 'scale(1.08) translateX(0px)');
   startPan(0);
 
+  // Set durasi idle-pan slide pertama supaya sinkron
+  prevSlides[0].style.animationDuration = (DISPLAY_MS + 400) + 'ms';
+
   function goTo(next) {
     if (isAnimating) return; // abaikan kalau masih ada animasi berjalan
     isAnimating = true;
@@ -525,24 +599,51 @@
     const prevCard = prevSlides[prev];
     const nextCard = prevSlides[cur];
 
-    // Bersihkan semua state class dulu supaya tidak tumpang tindih
+    // Ambil posisi X saat ini dari idle-pan (baca transform SEBELUM class diubah)
+    const computedStyle = window.getComputedStyle(prevCard);
+    const matrix = new DOMMatrixReadOnly(computedStyle.transform);
+    const currentX = matrix.m41 || 0;
+
+    // Freeze posisi saat ini dulu via inline transform, supaya tidak ada gap antara
+    // 'idle-pan berhenti' dan 'leave animation mulai' (mencegah snap balik ke 0)
+    prevCard.style.transform = 'translateX(' + currentX + 'px)';
+    prevCard.style.setProperty('--pan-x', currentX + 'px');
+
+    // Bersihkan class active/entering dulu
     prevCard.classList.remove('entering');
     prevCard.classList.remove('active');
+
+    // Force reflow supaya browser 'melihat' inline transform di atas sebagai starting point
+    void prevCard.offsetWidth;
+
+    // Baru tambahkan class leaving — animasi akan mulai dari --pan-x menuju --pan-x+60px
     prevCard.classList.add('leaving');
 
     setTimeout(() => {
       // Selesai leave — sembunyikan total via class removal (display:none otomatis dari CSS)
       prevCard.classList.remove('leaving');
+      prevCard.style.removeProperty('--pan-x');
+      prevCard.style.removeProperty('animation-duration');
+      // Reset transform inline supaya slide berikutnya mulai bersih dari -60px, bukan posisi leave terakhir
+      prevCard.style.transform = 'translateX(0px)';
 
-      // Mulai enter yang baru
+      // Mulai enter yang baru — set transform awal eksplisit sebelum animasi jalan
       nextCard.classList.remove('active');
-      // Force reflow supaya animasi 'entering' pasti restart dari awal
+      nextCard.style.removeProperty('animation-duration');
+      nextCard.style.transform = 'translateX(-60px)';
+      nextCard.style.opacity = '0';
+      // Force reflow supaya animasi 'entering' pasti restart dari awal & baca state di atas
       void nextCard.offsetWidth;
       nextCard.classList.add('entering');
 
       setTimeout(() => {
+        // Set durasi idle-pan SEBELUM ganti class, supaya tidak ada frame tanpa animasi
+        nextCard.style.animationDuration = (DISPLAY_MS + 400) + 'ms';
         nextCard.classList.remove('entering');
         nextCard.classList.add('active');
+        // Bersihkan inline transform/opacity supaya animasi 'active' yang kontrol penuh
+        nextCard.style.removeProperty('transform');
+        nextCard.style.removeProperty('opacity');
         isAnimating = false; // selesai semua — boleh lanjut slide berikutnya
       }, ENTER_MS);
     }, LEAVE_MS);
