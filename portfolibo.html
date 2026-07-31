@@ -38,7 +38,6 @@
   <link href="css/effect/drop_shadow.css" rel="stylesheet">
   <link href="css/overlay-backgorund.css" rel="stylesheet">
   <link href="font/Concielian Semi/concieliancondsemital/concieliancondsemital.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
   <link href="css/root.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="sampletimeline.css">
 
@@ -237,8 +236,8 @@
     background-repeat: no-repeat;
     background-position: center;
     border-radius: 6px;
-    /* drop-shadow mengikuti bentuk asli gambar (bukan kotak wrapper) */
-    filter: drop-shadow(0 24px 60px rgba(0,0,0,0.55));
+    /* Shadow menempel langsung di gambar, ikut bergerak saat transform */
+    box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
     will-change: transform, opacity;
   }
 
@@ -254,9 +253,10 @@
     animation: preview-enter 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
-  /* State: diam saat aktif — idle pan sangat pelan ke kanan (senada bg blur) */
+  /* State: diam saat aktif */
   .hero-preview-slide.active {
-    animation: preview-idle-pan linear forwards;
+    transform: translateX(0);
+    opacity: 1;
   }
 
   /* State: slide keluar ke kanan */
@@ -269,14 +269,9 @@
     to   { transform: translateX(0);     opacity: 1; }
   }
 
-  @keyframes preview-idle-pan {
-    from { transform: translateX(0px); }
-    to   { transform: translateX(14px); }
-  }
-
   @keyframes preview-leave {
-    from { transform: translateX(var(--pan-x, 0px)); opacity: 1; }
-    to   { transform: translateX(calc(var(--pan-x, 0px) + 48px)); opacity: 0; }
+    from { transform: translateX(0);    opacity: 1; }
+    to   { transform: translateX(48px); opacity: 0; }
   }
 
   /* Mobile: sembunyikan preview card */
@@ -325,11 +320,11 @@
   }
 
   .hero-portfolio-label {
-    font-family: 'Orbitron', 'Courier New', monospace;
+    font-family: 'font-concieliancondsemital', 'Courier New', monospace;
     font-size: clamp(14px, 2.2vw, 28px);
-    font-weight: 700;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: 0.3em;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     margin-bottom: 28px;
   }
@@ -512,9 +507,6 @@
   bgSlides.forEach(s => s.style.transform = 'scale(1.08) translateX(0px)');
   startPan(0);
 
-  // Set durasi idle-pan slide pertama supaya sinkron
-  prevSlides[0].style.animationDuration = (DISPLAY_MS + 400) + 'ms';
-
   function goTo(next) {
     if (isAnimating) return; // abaikan kalau masih ada animasi berjalan
     isAnimating = true;
@@ -533,12 +525,6 @@
     const prevCard = prevSlides[prev];
     const nextCard = prevSlides[cur];
 
-    // Ambil posisi X saat ini dari idle-pan supaya leave mulai dari situ, bukan loncat ke 0
-    const computedStyle = window.getComputedStyle(prevCard);
-    const matrix = new DOMMatrixReadOnly(computedStyle.transform);
-    const currentX = matrix.m41 || 0;
-    prevCard.style.setProperty('--pan-x', currentX + 'px');
-
     // Bersihkan semua state class dulu supaya tidak tumpang tindih
     prevCard.classList.remove('entering');
     prevCard.classList.remove('active');
@@ -547,7 +533,6 @@
     setTimeout(() => {
       // Selesai leave — sembunyikan total via class removal (display:none otomatis dari CSS)
       prevCard.classList.remove('leaving');
-      prevCard.style.removeProperty('--pan-x');
 
       // Mulai enter yang baru
       nextCard.classList.remove('active');
@@ -557,8 +542,6 @@
 
       setTimeout(() => {
         nextCard.classList.remove('entering');
-        // Set durasi idle-pan supaya pas sinkron sampai slide ini leave lagi
-        nextCard.style.animationDuration = (DISPLAY_MS + 400) + 'ms';
         nextCard.classList.add('active');
         isAnimating = false; // selesai semua — boleh lanjut slide berikutnya
       }, ENTER_MS);
