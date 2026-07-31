@@ -2,113 +2,128 @@
 <html lang="en">
 
 <head>
-  <!-- Primary Meta -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Primary Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://arc.srpdwebs.my.id/portfolio">
-  <meta property="og:title" content="Portfolio: Syis Rama Putra Dityo">
-  <meta property="og:description" content="A collection of visual projects, experiments, and professional works.">
-  <meta property="og:site_name" content="SRPD Portfolio">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://arc.srpdwebs.my.id/portfolio">
+    <meta property="og:title" content="Portfolio: Syis Rama Putra Dityo">
+    <meta property="og:description" content="A collection of visual projects, experiments, and professional works.">
+    <meta property="og:site_name" content="SRPD Portfolio">
 
-  <!-- Image Preview -->
-  <meta property="og:image" content="https://arc.srpdwebs.my.id/image/icon/Thumbnail-portfolio.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1280">
-  <meta property="og:image:height" content="720">
+    <!-- Image Preview -->
+    <meta property="og:image" content="https://arc.srpdwebs.my.id/image/icon/Thumbnail-portfolio.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
 
-  <!-- Twitter (dipakai juga oleh Threads & platform lain) -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Portfolio: Syis Rama Putra Dityo">
-  <meta name="twitter:description" content="A collection of visual projects, experiments, and professional works.">
-  <meta name="twitter:image" content="https://arc.srpdwebs.my.id/image/icon/Thumbnail-portfolio.png">
+    <!-- Twitter (dipakai juga oleh Threads & platform lain) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Portfolio: Syis Rama Putra Dityo">
+    <meta name="twitter:description" content="A collection of visual projects, experiments, and professional works.">
+    <meta name="twitter:image" content="https://arc.srpdwebs.my.id/image/icon/Thumbnail-portfolio.png">
 
-  <title> Syis Rama Putra Dityo - Portfolio | SRPD Entertainment </title>
-  <link rel="icon"
-    href="https://yt3.ggpht.com/ytc/AAUvwngI2pcD-MFDYy5PynjNVgQhXXZjRMuuORl4rBisGQ=s176-c-k-c0x00ffffff-no-rj"
-    type="image/x-icon">
+    <title> Syis Rama Putra Dityo - Portfolio | SRPD Entertainment </title>
+    <link rel="icon" href="https://yt3.ggpht.com/ytc/AAUvwngI2pcD-MFDYy5PynjNVgQhXXZjRMuuORl4rBisGQ=s176-c-k-c0x00ffffff-no-rj" type="image/x-icon">
 
-  <!-- Bootstrap core CSS -->
-  <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cheatsheet/">
-  <link href="css/effect/blur_box.css" rel="stylesheet">
-  <link href="css/effect/drop_shadow.css" rel="stylesheet">
-  <link href="css/overlay-backgorund.css" rel="stylesheet">
-  <link href="font/Concielian Semi/concieliancondsemital/concieliancondsemital.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
-  <link href="css/root.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="sampletimeline.css">
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cheatsheet/">
+    <link href="css/effect/blur_box.css" rel="stylesheet">
+    <link href="css/effect/drop_shadow.css" rel="stylesheet">
+    <link href="css/overlay-backgorund.css" rel="stylesheet">
+    <link href="font/Concielian Semi/concieliancondsemital/concieliancondsemital.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="css/root.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="sampletimeline.css">
 
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .hero-section {
+            padding-top: 80px;
+        }
+        
+        .hero-img-placeholder {
+            background-color: #e9ecef;
+            border: 1px dashed #adb5bd;
+            height: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+        
+        .carousel-inner,
+        .carousel-item {
+            height: 320px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+        
+        .carousel-item video {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            background: #000;
+        }
+        
+        .carousel-item iframe {
+            width: 100%;
+            height: 320px;
+            border: none;
+        }
+        
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.35);
+            border-radius: 6px;
+            padding: 6px 14px;
+            bottom: 39px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            width: auto;
+            right: auto;
+        }
+        
+        .carousel-caption p {
+            margin: 0;
+            font-size: 13px;
+        }
+    </style>
 
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
 
-    .hero-section {
-  padding-top: 80px;
-}
-.hero-img-placeholder {
-  background-color: #e9ecef;
-  border: 1px dashed #adb5bd;
-  height: 320px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #6c757d;
-  font-size: 14px;
-  border-radius: 8px;
-}
-
-.carousel-inner, .carousel-item {
-  height: 320px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-.carousel-item img {
-  width: 100%; height: 320px; object-fit: cover;
-}
-.carousel-item video {
-  width: 100%; height: 320px; object-fit: cover; background: #000;
-}
-.carousel-item iframe {
-  width: 100%; height: 320px; border: none;
-}
-.carousel-caption {
-  background: rgba(0,0,0,0.35);
-  border-radius: 6px;
-  padding: 6px 14px;
-  bottom: 39px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  width: auto;
-  right: auto;
-}
-.carousel-caption p { margin: 0; font-size: 13px; }
-  </style>
-
-
-  <!-- Custom styles for this template -->
-  <link href="instancecardimage.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="instancecardimage.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
 
-  <!-- <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
+    <!-- <header class="bd-header bg-dark py-3 d-flex align-items-stretch border-bottom border-dark">
     <div class="container-fluid d-flex align-items-center">
       <h1 class="d-flex align-items-center fs-4 text-white mb-0 font-concieliancondsemital">
         SRPD PORTFOLIO
@@ -117,566 +132,644 @@
     </div>
   </header> -->
 
-<!-- Spacer navbar dummy (dark) -->
-<nav class="navbar bg-dark py-3"></nav>
+    <!-- Spacer navbar dummy (dark) -->
+    <nav class="navbar bg-dark py-3"></nav>
 
-<!-- Navbar utama -->
-<nav class="navbar navbar-expand-md navbar-dark fixed-top blur-box py-3">
-  <div class="container-fluid px-4">
+    <!-- Navbar utama -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top blur-box py-3">
+        <div class="container-fluid px-4">
 
-    <a href="index.html" class="navbar-brand fw-semibold fs-5 text-white font-concieliancondsemital">
+            <a href="index.html" class="navbar-brand fw-semibold fs-5 text-white font-concieliancondsemital">
       SRPD PORTFOLIO
     </a>
 
-    <button class="navbar-toggler border-0" type="button"
-      data-bs-toggle="collapse" data-bs-target="#mainNav"
-      aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse justify-content-end font-concieliancondsemital" id="mainNav">
-      <ul class="navbar-nav gap-1 align-items-md-center">
+            <div class="collapse navbar-collapse justify-content-end font-concieliancondsemital" id="mainNav">
+                <ul class="navbar-nav gap-1 align-items-md-center">
 
-        <li class="nav-item">
-          <a class="nav-link text-white active fs-5" href="index.html">Home</a>
-        </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active fs-5" href="index.html">Home</a>
+                    </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white active fs-5" href="#"
-            id="showcaseDropdown" role="button"
-            data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-white active fs-5" href="#" id="showcaseDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Showcase
           </a>
-          <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-md-end" aria-labelledby="showcaseDropdown">
-            <li><a class="dropdown-item" href="#professional">Professional Works</a></li>
-            <li><a class="dropdown-item" href="portfolio-personal.html">Personal Projects</a></li>
-          </ul>
-        </li>
+                        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-md-end" aria-labelledby="showcaseDropdown">
+                            <li><a class="dropdown-item" href="#professional">Professional Works</a></li>
+                            <li><a class="dropdown-item" href="portfolio-personal.html">Personal Projects</a></li>
+                        </ul>
+                    </li>
 
-        <li class="nav-item">
-          <a class="nav-link text-white active fs-5" href="about.html">About</a>
-        </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white active fs-5" href="about.html">About</a>
+                    </li>
 
-      </ul>
-    </div>
+                </ul>
+            </div>
 
-  </div>
-</nav>
+        </div>
+    </nav>
 
-<!-- ── HERO BANNER ── -->
-<style>
-  /* ── WRAPPER ── */
-  #hero-banner {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    min-height: 500px;
-    overflow: hidden;
-    background: #020b0e;
-    display: flex;
-    align-items: center;
-  }
-
-  /* ══════════════════════════════
+    <!-- ── HERO BANNER ── -->
+    <style>
+        /* ── WRAPPER ── */
+        
+        #hero-banner {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 500px;
+            overflow: hidden;
+            background: #020b0e;
+            display: flex;
+            align-items: center;
+        }
+        /* ══════════════════════════════
      LAYER 1 — BG BLUR (slideshow)
      Gambar sama, tapi di-blur
   ══════════════════════════════ */
-  .hero-bg-layer {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    overflow: hidden;
-  }
-
-  .hero-bg-slide {
-    position: absolute;
-    inset: -40px; /* extend biar blur tidak muncul edge putih */
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    filter: blur(18px) brightness(0.35) saturate(0.7);
-    transition: opacity 1.5s ease-in-out;
-    will-change: transform, opacity;
-    transform: scale(1.08); /* sedikit scale biar blur edge tidak keliatan */
-  }
-  .hero-bg-slide.active { opacity: 1; }
-
-  /* Overlay gradien gelap kiri untuk teks */
-  .hero-bg-layer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    background:
-      linear-gradient(to right,  rgba(2,11,14,.95) 0%, rgba(2,11,14,.85) 30%, rgba(2,11,14,.5) 55%, rgba(2,11,14,.1) 100%),
-      linear-gradient(to bottom, rgba(2,11,14,.6) 0%, transparent 20%, transparent 80%, rgba(2,11,14,.7) 100%);
-  }
-
-  /* ══════════════════════════════
+        
+        .hero-bg-layer {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+        
+        .hero-bg-slide {
+            position: absolute;
+            inset: -40px;
+            /* extend biar blur tidak muncul edge putih */
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            filter: blur(18px) brightness(0.35) saturate(0.7);
+            transition: opacity 1.5s ease-in-out;
+            will-change: transform, opacity;
+            transform: scale(1.08);
+            /* sedikit scale biar blur edge tidak keliatan */
+        }
+        
+        .hero-bg-slide.active {
+            opacity: 1;
+        }
+        /* Overlay gradien gelap kiri untuk teks */
+        
+        .hero-bg-layer::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: linear-gradient(to right, rgba(2, 11, 14, .95) 0%, rgba(2, 11, 14, .85) 30%, rgba(2, 11, 14, .5) 55%, rgba(2, 11, 14, .1) 100%), linear-gradient(to bottom, rgba(2, 11, 14, .6) 0%, transparent 20%, transparent 80%, rgba(2, 11, 14, .7) 100%);
+        }
+        /* ══════════════════════════════
      LAYER 2 — PREVIEW CARD KANAN
      Gambar sama, tidak blur, animasi slide
      Shadow ikut bergerak bersama gambar (bukan di wrapper)
   ══════════════════════════════ */
-  .hero-preview-wrap {
-    position: absolute;
-    right: 7%;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 5;
-    width: 38%;
-    max-width: 520px;
-    aspect-ratio: 4/3;
-    /* TIDAK ada overflow:hidden di sini — supaya shadow tidak terpotong */
-  }
-
-  .hero-preview-slide {
-    position: absolute;
-    inset: 0;
-    display: none;              /* default: tidak dirender sama sekali */
-    background-size: contain;   /* gambar utuh, tidak dipotong */
-    background-repeat: no-repeat;
-    background-position: center;
-    border-radius: 6px;
-    /* drop-shadow mengikuti bentuk asli gambar (bukan kotak wrapper) */
-    filter: drop-shadow(0 24px 60px rgba(0,0,0,0.55));
-    opacity: 0;
-    transform: translateX(0px);
-  }
-
-  /* Slide yang sedang tampil (baik diam, masuk, atau keluar) harus display:block */
-  .hero-preview-slide.active,
-  .hero-preview-slide.entering,
-  .hero-preview-slide.leaving {
-    display: block;
-  }
-
-  /* State awal sebelum enter dimulai — masuk dari kiri, ease-out jelas */
-  .hero-preview-slide.entering {
-    animation: preview-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  /* State: diam saat aktif — idle pan sangat pelan ke kanan (senada bg blur) */
-  .hero-preview-slide.active {
-    opacity: 1;
-    animation: preview-idle-pan linear forwards;
-  }
-
-  /* State: slide keluar ke kanan — ease-in jelas */
-  .hero-preview-slide.leaving {
-    animation: preview-leave 0.6s cubic-bezier(0.7, 0, 0.84, 0) forwards;
-  }
-
-  /* Enter: dari -60px (agak jauh, jelas kelihatan geraknya) → 0, fade in bareng */
-  @keyframes preview-enter {
-    0%   { transform: translateX(-60px); opacity: 0; }
-    100% { transform: translateX(0px);   opacity: 1; }
-  }
-
-  /* Idle: pan pelan ke kanan selama slide diam, mulai dari 0 (posisi akhir enter) */
-  @keyframes preview-idle-pan {
-    0%   { transform: translateX(0px); }
-    100% { transform: translateX(16px); }
-  }
-
-  /* Leave: lanjut dari posisi --pan-x (posisi idle terakhir) → geser jauh ke kanan + fade out */
-  @keyframes preview-leave {
-    0%   { transform: translateX(var(--pan-x, 0px));        opacity: 1; }
-    100% { transform: translateX(calc(var(--pan-x, 0px) + 60px)); opacity: 0; }
-  }
-
-  /* ══════════════════════════════
+        
+        .hero-preview-wrap {
+            position: absolute;
+            right: 7%;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            width: 38%;
+            max-width: 520px;
+            aspect-ratio: 4/3;
+            /* TIDAK ada overflow:hidden di sini — supaya shadow tidak terpotong */
+        }
+        
+        .hero-preview-slide {
+            position: absolute;
+            inset: 0;
+            display: none;
+            /* default: tidak dirender sama sekali */
+            background-size: contain;
+            /* gambar utuh, tidak dipotong */
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: 6px;
+            /* drop-shadow mengikuti bentuk asli gambar (bukan kotak wrapper) */
+            filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.55));
+            opacity: 0;
+            transform: translateX(0px);
+        }
+        /* Slide yang sedang tampil (baik diam, masuk, atau keluar) harus display:block */
+        
+        .hero-preview-slide.active,
+        .hero-preview-slide.entering,
+        .hero-preview-slide.leaving {
+            display: block;
+        }
+        /* State awal sebelum enter dimulai — masuk dari kiri, ease-out jelas */
+        
+        .hero-preview-slide.entering {
+            animation: preview-enter 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        /* State: diam saat aktif — idle pan sangat pelan ke kanan (senada bg blur) */
+        
+        .hero-preview-slide.active {
+            opacity: 1;
+            animation: preview-idle-pan linear forwards;
+        }
+        /* State: slide keluar ke kanan — ease-in jelas */
+        
+        .hero-preview-slide.leaving {
+            animation: preview-leave 0.6s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+        }
+        /* Enter: dari -60px (agak jauh, jelas kelihatan geraknya) → 0, fade in bareng */
+        
+        @keyframes preview-enter {
+            0% {
+                transform: translateX(-60px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+        /* Idle: pan pelan ke kanan selama slide diam, mulai dari 0 (posisi akhir enter) */
+        
+        @keyframes preview-idle-pan {
+            0% {
+                transform: translateX(0px);
+            }
+            100% {
+                transform: translateX(16px);
+            }
+        }
+        /* Leave: lanjut dari posisi --pan-x (posisi idle terakhir) → geser jauh ke kanan + fade out */
+        
+        @keyframes preview-leave {
+            0% {
+                transform: translateX(var(--pan-x, 0px));
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(calc(var(--pan-x, 0px) + 60px));
+                opacity: 0;
+            }
+        }
+        /* ══════════════════════════════
      RESPONSIF MOBILE / TABLET
   ══════════════════════════════ */
-
-  /* Tablet: preview diperkecil, tetap terlihat */
-  @media (max-width: 1024px) and (min-width: 861px) {
-    .hero-preview-wrap {
-      width: 34%;
-      right: 5%;
-    }
-  }
-
-  /* Mobile & tablet kecil: preview dipindah ke ATAS teks, ukuran mengecil, posisi center */
-  @media (max-width: 860px) {
-    #hero-banner {
-      flex-direction: column;
-      justify-content: flex-start;
-      padding-top: 96px;
-      height: auto;
-      min-height: 100vh;
-    }
-
-    .hero-preview-wrap {
-      position: relative;
-      right: auto;
-      top: auto;
-      transform: none;
-      width: 84%;
-      max-width: 360px;
-      margin: 0 auto 32px;
-      aspect-ratio: 4/3;
-    }
-
-    .hero-content-wrap {
-      padding: 0 24px;
-      max-width: 100%;
-      text-align: left;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .hero-preview-wrap {
-      width: 92%;
-      max-width: 300px;
-      margin-bottom: 24px;
-    }
-    #hero-banner { padding-top: 88px; padding-bottom: 64px; }
-  }
-
-  /* ══════════════════════════════
+        /* Tablet: preview diperkecil, tetap terlihat */
+        
+        @media (max-width: 1024px) and (min-width: 861px) {
+            .hero-preview-wrap {
+                width: 34%;
+                right: 5%;
+            }
+        }
+        /* Mobile & tablet kecil: preview dipindah ke ATAS teks, ukuran mengecil, posisi center */
+        
+        @media (max-width: 860px) {
+            #hero-banner {
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-top: 96px;
+                height: auto;
+                min-height: 100vh;
+            }
+            .hero-preview-wrap {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                width: 84%;
+                max-width: 360px;
+                margin: 0 auto 32px;
+                aspect-ratio: 4/3;
+            }
+            .hero-content-wrap {
+                padding: 0 24px;
+                max-width: 100%;
+                text-align: left;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-preview-wrap {
+                width: 92%;
+                max-width: 300px;
+                margin-bottom: 24px;
+            }
+            #hero-banner {
+                padding-top: 88px;
+                padding-bottom: 64px;
+            }
+        }
+        /* ══════════════════════════════
      KONTEN TEKS KIRI
   ══════════════════════════════ */
-  .hero-content-wrap {
-    position: relative;
-    z-index: 10;
-    padding: 0 56px;
-    max-width: 560px;
-  }
+        
+        .hero-content-wrap {
+            position: relative;
+            z-index: 10;
+            padding: 0 56px;
+            max-width: 560px;
+        }
+        
+        .hero-eyebrow {
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .hero-eyebrow::before {
+            content: '';
+            display: inline-block;
+            width: 28px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+        }
+        
+        .hero-name {
+            font-size: clamp(28px, 4.5vw, 50px);
+            font-weight: 700;
+            line-height: 1.05;
+            color: #ffffff;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        
+        .hero-portfolio-label {
+            font-family: 'Orbitron', 'Courier New', monospace;
+            font-size: clamp(14px, 2.2vw, 28px);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+        
+        .hero-tagline {
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.28);
+            margin-bottom: 10px;
+        }
+        
+        .hero-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.48);
+            line-height: 1.85;
+            margin-bottom: 36px;
+            max-width: 400px;
+        }
+        /* ── DOTS ── */
+        
+        .hero-dots {
+            position: absolute;
+            bottom: 28px;
+            left: 56px;
+            z-index: 13;
+            display: flex;
+            gap: 7px;
+            align-items: center;
+        }
+        
+        .hero-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.3s, transform 0.3s;
+        }
+        
+        .hero-dot.active {
+            background: #fff;
+            transform: scale(1.4);
+        }
+        /* ── COUNTER ── */
+        
+        .hero-counter {
+            position: absolute;
+            bottom: 28px;
+            right: 40px;
+            z-index: 13;
+            font-family: 'Courier New', monospace;
+            font-size: 10px;
+            letter-spacing: 0.14em;
+            color: rgba(255, 255, 255, 0.22);
+        }
+        
+        .hero-counter b {
+            color: rgba(255, 255, 255, 0.55);
+            font-weight: 400;
+        }
+        
+        @media (max-width: 860px) {
+            .hero-dots {
+                left: 24px;
+                bottom: 20px;
+            }
+            .hero-counter {
+                right: 24px;
+                bottom: 20px;
+            }
+            .hero-content-wrap {
+                padding: 0 24px;
+                max-width: 100%;
+            }
+            .hero-eyebrow {
+                margin-bottom: 16px;
+                font-size: 10px;
+            }
+            .hero-name {
+                margin-bottom: 4px;
+            }
+            .hero-portfolio-label {
+                margin-bottom: 18px;
+                letter-spacing: 0.24em;
+            }
+            .hero-tagline {
+                margin-bottom: 8px;
+            }
+            .hero-desc {
+                margin-bottom: 24px;
+                font-size: 13px;
+                max-width: 100%;
+            }
+            /* Tombol full-width stack di layar sempit */
+            .hero-content-wrap .d-flex.gap-2 {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-content-wrap .btn {
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-eyebrow::before {
+                width: 18px;
+            }
+            .hero-name {
+                letter-spacing: 0.03em;
+            }
+        }
+    </style>
 
-  .hero-eyebrow {
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: inline-block;
-    width: 28px; height: 1px;
-    background: rgba(255,255,255,0.2);
-    flex-shrink: 0;
-  }
+    <section id="hero-banner">
 
-  .hero-name {
-    font-family: 'font-concieliancondsemital', 'Courier New', monospace;
-    font-size: clamp(28px, 4.5vw, 58px);
-    font-weight: 700;
-    line-height: 1.05;
-    color: #ffffff;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
+        <!-- LAYER 1: BG BLUR (auto-generated by script dari daftar gambar) -->
+        <div class="hero-bg-layer" id="heroBgLayer"></div>
 
-  .hero-portfolio-label {
-    font-family: 'Orbitron', 'Courier New', monospace;
-    font-size: clamp(14px, 2.2vw, 28px);
-    font-weight: 700;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-  }
+        <!-- LAYER 2: PREVIEW CARD (auto-generated by script dari daftar gambar) -->
+        <div class="hero-preview-wrap" id="heroPreviewWrap"></div>
 
-  .hero-tagline {
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.28);
-    margin-bottom: 10px;
-  }
+        <!-- TEKS KIRI -->
+        <div class="hero-content-wrap">
+            <p class="hero-eyebrow">2017 — 2026</p>
+            <h1 class="hero-name font-concieliancondsemital">Syis Rama<br>Putra Dityo</h1>
+            <p class="hero-portfolio-label">Portfolio</p>
+            <p class="hero-tagline">Creative Archive</p>
+            <p class="hero-desc">
+                A collection of visual projects, experiments, and professional works. From company collaborations to independent creations, each project reflects my exploration in design, motion graphics, and digital creativity.
+            </p>
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="#professional" class="btn btn-dark px-4">Professional Works</a>
+                <a href="portfolio-personal.html" class="btn btn-outline-secondary px-4" style="color: #fdfeff;">Personal Projects</a>
+            </div>
+        </div>
 
-  .hero-desc {
-    font-size: 14px;
-    color: rgba(255,255,255,0.48);
-    line-height: 1.85;
-    margin-bottom: 36px;
-    max-width: 400px;
-  }
+        <!-- DOTS (auto-generated) -->
+        <div class="hero-dots" id="heroDots"></div>
 
-  /* ── DOTS ── */
-  .hero-dots {
-    position: absolute;
-    bottom: 28px; left: 56px;
-    z-index: 13;
-    display: flex; gap: 7px; align-items: center;
-  }
-  .hero-dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.18);
-    border: none; cursor: pointer; padding: 0;
-    transition: background 0.3s, transform 0.3s;
-  }
-  .hero-dot.active { background: #fff; transform: scale(1.4); }
+        <!-- COUNTER -->
+        <div class="hero-counter"><b id="heroCur">01</b> / <span id="heroTotal">10</span></div>
 
-  /* ── COUNTER ── */
-  .hero-counter {
-    position: absolute;
-    bottom: 28px; right: 40px;
-    z-index: 13;
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    letter-spacing: 0.14em;
-    color: rgba(255,255,255,0.22);
-  }
-  .hero-counter b { color: rgba(255,255,255,0.55); font-weight: 400; }
+    </section>
 
-  @media (max-width: 860px) {
-    .hero-dots { left: 24px; bottom: 20px; }
-    .hero-counter { right: 24px; bottom: 20px; }
+    <script>
+        (function() {
 
-    .hero-content-wrap { padding: 0 24px; max-width: 100%; }
-    .hero-eyebrow { margin-bottom: 16px; font-size: 10px; }
-    .hero-name { margin-bottom: 4px; }
-    .hero-portfolio-label { margin-bottom: 18px; letter-spacing: 0.24em; }
-    .hero-tagline { margin-bottom: 8px; }
-    .hero-desc { margin-bottom: 24px; font-size: 13px; max-width: 100%; }
+            /* ═══════════════════════════════════════════════════════
+               📌 DAFTAR GAMBAR SLIDE — GANTI LINK DI SINI SAJA
+               Tambah / hapus / ganti urutan cukup edit array ini.
+            ═══════════════════════════════════════════════════════ */
+            const HERO_IMAGES = [
+                'image/portfolio/local/trans7/imgthumb01.jpg',
+                'image/portfolio/local/sahabatgemarikanid/imgthumb02.jpg',
+                'image/portfolio/local/fishOn/Design0272x.png',
+                'image/portfolio/local/bamuda/page01.png',
+                'image/portfolio/local/issmei/artissmei01.png',
+                'image/portfolio/local/rumahkaryaid/board01.jpg',
+                'image/portfolio/local/greatdealid/board02.jpg',
+                'image/portfolio/local/srpdwebs/Post-Ads-SRPD-Webs.png',
+                'image/portfolio/global/sonicofthering/screenshot1.png',
+                'image/portfolio/global/thundervssupernovacollab/frame1.png'
+            ];
+            /* ═══════════════════════════════════════════════════════ */
 
-    /* Tombol full-width stack di layar sempit */
-    .hero-content-wrap .d-flex.gap-2 {
-      flex-direction: column;
-      align-items: stretch;
-    }
-    .hero-content-wrap .btn { text-align: center; }
-  }
+            const bgLayer = document.getElementById('heroBgLayer');
+            const previewWrap = document.getElementById('heroPreviewWrap');
+            const dotsWrap = document.getElementById('heroDots');
+            const curEl = document.getElementById('heroCur');
+            const totalEl = document.getElementById('heroTotal');
 
-  @media (max-width: 480px) {
-    .hero-eyebrow::before { width: 18px; }
-    .hero-name { letter-spacing: 0.03em; }
-  }
-</style>
+            if (!HERO_IMAGES.length) return;
 
-<section id="hero-banner">
+            // ── Generate elemen dari daftar gambar ──
+            HERO_IMAGES.forEach((src, i) => {
+                const bg = document.createElement('div');
+                bg.className = 'hero-bg-slide' + (i === 0 ? ' active' : '');
+                bg.style.backgroundImage = `url('${src}')`;
+                bgLayer.appendChild(bg);
 
-  <!-- LAYER 1: BG BLUR (auto-generated by script dari daftar gambar) -->
-  <div class="hero-bg-layer" id="heroBgLayer"></div>
+                const prev = document.createElement('div');
+                prev.className = 'hero-preview-slide' + (i === 0 ? ' active' : '');
+                prev.style.backgroundImage = `url('${src}')`;
+                previewWrap.appendChild(prev);
 
-  <!-- LAYER 2: PREVIEW CARD (auto-generated by script dari daftar gambar) -->
-  <div class="hero-preview-wrap" id="heroPreviewWrap"></div>
+                const dot = document.createElement('button');
+                dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+                dot.dataset.i = i;
+                dotsWrap.appendChild(dot);
+            });
 
-  <!-- TEKS KIRI -->
-  <div class="hero-content-wrap">
-    <p class="hero-eyebrow">2017 — 2026</p>
-    <h1 class="hero-name">Syis Rama<br>Putra Dityo</h1>
-    <p class="hero-portfolio-label">Portfolio</p>
-    <p class="hero-tagline">Creative Archive</p>
-    <p class="hero-desc">
-      A collection of visual projects, experiments, and professional works.
-      From company collaborations to independent creations, each project reflects
-      my exploration in design, motion graphics, and digital creativity.
-    </p>
-    <div class="d-flex gap-2 flex-wrap">
-      <a href="#professional" class="btn btn-dark px-4">Professional Works</a>
-      <a href="portfolio-personal.html" class="btn btn-outline-secondary px-4">Personal Projects</a>
-    </div>
-  </div>
+            totalEl.textContent = HERO_IMAGES.length;
 
-  <!-- DOTS (auto-generated) -->
-  <div class="hero-dots" id="heroDots"></div>
+            const bgSlides = Array.from(document.querySelectorAll('.hero-bg-slide'));
+            const prevSlides = Array.from(document.querySelectorAll('.hero-preview-slide'));
+            const dots = Array.from(document.querySelectorAll('.hero-dot'));
 
-  <!-- COUNTER -->
-  <div class="hero-counter"><b id="heroCur">01</b> / <span id="heroTotal">10</span></div>
+            const DISPLAY_MS = 5500;
+            const FADE_MS = 1500;
+            const LEAVE_MS = 550;
+            const ENTER_MS = 650;
 
-</section>
+            // ── Pan untuk bg blur ──
+            const panStates = bgSlides.map(() => ({
+                raf: null,
+                startTs: null
+            }));
 
-<script>
-(function () {
+            function getPanPx() {
+                return window.innerWidth <= 768 ? 8 : 40;
+            }
 
-  /* ═══════════════════════════════════════════════════════
-     📌 DAFTAR GAMBAR SLIDE — GANTI LINK DI SINI SAJA
-     Tambah / hapus / ganti urutan cukup edit array ini.
-  ═══════════════════════════════════════════════════════ */
-  const HERO_IMAGES = [
-    'image/portfolio/local/trans7/imgthumb01.jpg',
-    'image/portfolio/local/sahabatgemarikanid/imgthumb02.jpg',
-    'image/portfolio/local/fishOn/Design0272x.png',
-    'image/portfolio/local/bamuda/page01.png',
-    'image/portfolio/local/issmei/artissmei01.png',
-    'image/portfolio/local/rumahkaryaid/board01.jpg',
-    'image/portfolio/local/greatdealid/board02.jpg',
-    'image/portfolio/local/srpdwebs/Post-Ads-SRPD-Webs.png',
-    'image/portfolio/global/sonicofthering/screenshot1.png',
-    'image/portfolio/global/thundervssupernovacollab/frame1.png'
-  ];
-  /* ═══════════════════════════════════════════════════════ */
+            function startPan(idx) {
+                const state = panStates[idx];
+                const slide = bgSlides[idx];
+                if (state.raf) cancelAnimationFrame(state.raf);
+                state.startTs = null;
+                const panPx = getPanPx();
 
-  const bgLayer      = document.getElementById('heroBgLayer');
-  const previewWrap  = document.getElementById('heroPreviewWrap');
-  const dotsWrap      = document.getElementById('heroDots');
-  const curEl         = document.getElementById('heroCur');
-  const totalEl       = document.getElementById('heroTotal');
+                function tick(ts) {
+                    if (!state.startTs) state.startTs = ts;
+                    const p = (ts - state.startTs) / (DISPLAY_MS + FADE_MS);
+                    slide.style.transform = 'scale(1.08) translateX(' + (p * panPx) + 'px)';
+                    state.raf = requestAnimationFrame(tick);
+                }
+                state.raf = requestAnimationFrame(tick);
+            }
 
-  if (!HERO_IMAGES.length) return;
+            function stopPan(idx) {
+                if (panStates[idx].raf) {
+                    cancelAnimationFrame(panStates[idx].raf);
+                    panStates[idx].raf = null;
+                }
+            }
 
-  // ── Generate elemen dari daftar gambar ──
-  HERO_IMAGES.forEach((src, i) => {
-    const bg = document.createElement('div');
-    bg.className = 'hero-bg-slide' + (i === 0 ? ' active' : '');
-    bg.style.backgroundImage = `url('${src}')`;
-    bgLayer.appendChild(bg);
+            function resetPan(idx) {
+                bgSlides[idx].style.transform = 'scale(1.08) translateX(0px)';
+                panStates[idx].startTs = null;
+            }
 
-    const prev = document.createElement('div');
-    prev.className = 'hero-preview-slide' + (i === 0 ? ' active' : '');
-    prev.style.backgroundImage = `url('${src}')`;
-    previewWrap.appendChild(prev);
+            let cur = 0;
+            let isAnimating = false; // ── guard: cegah race condition kalau goTo() dipanggil sebelum transisi selesai
+            bgSlides.forEach(s => s.style.transform = 'scale(1.08) translateX(0px)');
+            startPan(0);
 
-    const dot = document.createElement('button');
-    dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
-    dot.dataset.i = i;
-    dotsWrap.appendChild(dot);
-  });
+            // Set durasi idle-pan slide pertama supaya sinkron
+            prevSlides[0].style.animationDuration = (DISPLAY_MS + 400) + 'ms';
 
-  totalEl.textContent = HERO_IMAGES.length;
+            function goTo(next) {
+                if (isAnimating) return; // abaikan kalau masih ada animasi berjalan
+                isAnimating = true;
 
-  const bgSlides   = Array.from(document.querySelectorAll('.hero-bg-slide'));
-  const prevSlides = Array.from(document.querySelectorAll('.hero-preview-slide'));
-  const dots       = Array.from(document.querySelectorAll('.hero-dot'));
+                const prev = cur;
+                cur = (next + bgSlides.length) % bgSlides.length;
 
-  const DISPLAY_MS = 5500;
-  const FADE_MS    = 1500;
-  const LEAVE_MS   = 550;
-  const ENTER_MS   = 650;
+                // ── BG BLUR: fade ──
+                bgSlides[prev].classList.remove('active');
+                resetPan(cur);
+                bgSlides[cur].classList.add('active');
+                startPan(cur);
+                setTimeout(() => {
+                    stopPan(prev);
+                    resetPan(prev);
+                }, FADE_MS + 50);
 
-  // ── Pan untuk bg blur ──
-  const panStates = bgSlides.map(() => ({ raf: null, startTs: null }));
+                // ── PREVIEW CARD: leave lama → enter baru ──
+                const prevCard = prevSlides[prev];
+                const nextCard = prevSlides[cur];
 
-  function getPanPx() { return window.innerWidth <= 768 ? 8 : 40; }
+                // Ambil posisi X saat ini dari idle-pan supaya leave mulai dari situ, bukan loncat ke 0
+                const computedStyle = window.getComputedStyle(prevCard);
+                const matrix = new DOMMatrixReadOnly(computedStyle.transform);
+                const currentX = matrix.m41 || 0;
+                prevCard.style.setProperty('--pan-x', currentX + 'px');
 
-  function startPan(idx) {
-    const state = panStates[idx];
-    const slide = bgSlides[idx];
-    if (state.raf) cancelAnimationFrame(state.raf);
-    state.startTs = null;
-    const panPx = getPanPx();
-    function tick(ts) {
-      if (!state.startTs) state.startTs = ts;
-      const p = (ts - state.startTs) / (DISPLAY_MS + FADE_MS);
-      slide.style.transform = 'scale(1.08) translateX(' + (p * panPx) + 'px)';
-      state.raf = requestAnimationFrame(tick);
-    }
-    state.raf = requestAnimationFrame(tick);
-  }
+                // Bersihkan semua state class dulu supaya tidak tumpang tindih
+                prevCard.classList.remove('entering');
+                prevCard.classList.remove('active');
+                prevCard.classList.add('leaving');
 
-  function stopPan(idx) {
-    if (panStates[idx].raf) { cancelAnimationFrame(panStates[idx].raf); panStates[idx].raf = null; }
-  }
+                setTimeout(() => {
+                    // Selesai leave — sembunyikan total via class removal (display:none otomatis dari CSS)
+                    prevCard.classList.remove('leaving');
+                    prevCard.style.removeProperty('--pan-x');
+                    prevCard.style.removeProperty('animation-duration');
+                    // Reset transform inline supaya slide berikutnya mulai bersih dari -60px, bukan posisi leave terakhir
+                    prevCard.style.transform = 'translateX(0px)';
 
-  function resetPan(idx) {
-    bgSlides[idx].style.transform = 'scale(1.08) translateX(0px)';
-    panStates[idx].startTs = null;
-  }
+                    // Mulai enter yang baru — set transform awal eksplisit sebelum animasi jalan
+                    nextCard.classList.remove('active');
+                    nextCard.style.removeProperty('animation-duration');
+                    nextCard.style.transform = 'translateX(-60px)';
+                    nextCard.style.opacity = '0';
+                    // Force reflow supaya animasi 'entering' pasti restart dari awal & baca state di atas
+                    void nextCard.offsetWidth;
+                    nextCard.classList.add('entering');
 
-  let cur = 0;
-  let isAnimating = false; // ── guard: cegah race condition kalau goTo() dipanggil sebelum transisi selesai
-  bgSlides.forEach(s => s.style.transform = 'scale(1.08) translateX(0px)');
-  startPan(0);
+                    setTimeout(() => {
+                        // Set durasi idle-pan SEBELUM ganti class, supaya tidak ada frame tanpa animasi
+                        nextCard.style.animationDuration = (DISPLAY_MS + 400) + 'ms';
+                        nextCard.classList.remove('entering');
+                        nextCard.classList.add('active');
+                        // Bersihkan inline transform/opacity supaya animasi 'active' yang kontrol penuh
+                        nextCard.style.removeProperty('transform');
+                        nextCard.style.removeProperty('opacity');
+                        isAnimating = false; // selesai semua — boleh lanjut slide berikutnya
+                    }, ENTER_MS);
+                }, LEAVE_MS);
 
-  // Set durasi idle-pan slide pertama supaya sinkron
-  prevSlides[0].style.animationDuration = (DISPLAY_MS + 400) + 'ms';
+                // ── DOTS + COUNTER ──
+                dots[prev].classList.remove('active');
+                dots[cur].classList.add('active');
+                curEl.textContent = String(cur + 1).padStart(2, '0');
+            }
 
-  function goTo(next) {
-    if (isAnimating) return; // abaikan kalau masih ada animasi berjalan
-    isAnimating = true;
+            // Auto slide
+            let timer = setInterval(() => goTo(cur + 1), DISPLAY_MS);
 
-    const prev = cur;
-    cur = (next + bgSlides.length) % bgSlides.length;
+            // Klik dot
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    if (isAnimating) return;
+                    clearInterval(timer);
+                    goTo(parseInt(dot.dataset.i));
+                    timer = setInterval(() => goTo(cur + 1), DISPLAY_MS);
+                });
+            });
 
-    // ── BG BLUR: fade ──
-    bgSlides[prev].classList.remove('active');
-    resetPan(cur);
-    bgSlides[cur].classList.add('active');
-    startPan(cur);
-    setTimeout(() => { stopPan(prev); resetPan(prev); }, FADE_MS + 50);
+            // Swipe mobile
+            let tx = 0;
+            const banner = document.getElementById('hero-banner');
+            banner.addEventListener('touchstart', e => {
+                tx = e.touches[0].clientX;
+            }, {
+                passive: true
+            });
+            banner.addEventListener('touchend', e => {
+                const diff = tx - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40 && !isAnimating) {
+                    clearInterval(timer);
+                    goTo(cur + (diff > 0 ? 1 : -1));
+                    timer = setInterval(() => goTo(cur + 1), DISPLAY_MS);
+                }
+            }, {
+                passive: true
+            });
+        })();
+    </script>
+    <!-- ── END HERO ── -->
 
-    // ── PREVIEW CARD: leave lama → enter baru ──
-    const prevCard = prevSlides[prev];
-    const nextCard = prevSlides[cur];
+    <!-- ================================================= timeline =================================================== -->
 
-    // Ambil posisi X saat ini dari idle-pan supaya leave mulai dari situ, bukan loncat ke 0
-    const computedStyle = window.getComputedStyle(prevCard);
-    const matrix = new DOMMatrixReadOnly(computedStyle.transform);
-    const currentX = matrix.m41 || 0;
-    prevCard.style.setProperty('--pan-x', currentX + 'px');
-
-    // Bersihkan semua state class dulu supaya tidak tumpang tindih
-    prevCard.classList.remove('entering');
-    prevCard.classList.remove('active');
-    prevCard.classList.add('leaving');
-
-    setTimeout(() => {
-      // Selesai leave — sembunyikan total via class removal (display:none otomatis dari CSS)
-      prevCard.classList.remove('leaving');
-      prevCard.style.removeProperty('--pan-x');
-      prevCard.style.removeProperty('animation-duration');
-      // Reset transform inline supaya slide berikutnya mulai bersih dari -60px, bukan posisi leave terakhir
-      prevCard.style.transform = 'translateX(0px)';
-
-      // Mulai enter yang baru — set transform awal eksplisit sebelum animasi jalan
-      nextCard.classList.remove('active');
-      nextCard.style.removeProperty('animation-duration');
-      nextCard.style.transform = 'translateX(-60px)';
-      nextCard.style.opacity = '0';
-      // Force reflow supaya animasi 'entering' pasti restart dari awal & baca state di atas
-      void nextCard.offsetWidth;
-      nextCard.classList.add('entering');
-
-      setTimeout(() => {
-        // Set durasi idle-pan SEBELUM ganti class, supaya tidak ada frame tanpa animasi
-        nextCard.style.animationDuration = (DISPLAY_MS + 400) + 'ms';
-        nextCard.classList.remove('entering');
-        nextCard.classList.add('active');
-        // Bersihkan inline transform/opacity supaya animasi 'active' yang kontrol penuh
-        nextCard.style.removeProperty('transform');
-        nextCard.style.removeProperty('opacity');
-        isAnimating = false; // selesai semua — boleh lanjut slide berikutnya
-      }, ENTER_MS);
-    }, LEAVE_MS);
-
-    // ── DOTS + COUNTER ──
-    dots[prev].classList.remove('active');
-    dots[cur].classList.add('active');
-    curEl.textContent = String(cur + 1).padStart(2, '0');
-  }
-
-  // Auto slide
-  let timer = setInterval(() => goTo(cur + 1), DISPLAY_MS);
-
-  // Klik dot
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      if (isAnimating) return;
-      clearInterval(timer);
-      goTo(parseInt(dot.dataset.i));
-      timer = setInterval(() => goTo(cur + 1), DISPLAY_MS);
-    });
-  });
-
-  // Swipe mobile
-  let tx = 0;
-  const banner = document.getElementById('hero-banner');
-  banner.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-  banner.addEventListener('touchend', e => {
-    const diff = tx - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 40 && !isAnimating) {
-      clearInterval(timer);
-      goTo(cur + (diff > 0 ? 1 : -1));
-      timer = setInterval(() => goTo(cur + 1), DISPLAY_MS);
-    }
-  }, { passive: true });
-})();
-</script>
-<!-- ── END HERO ── -->
-
-  <!-- ================================================= timeline =================================================== -->
-
-  <!-- <section class='timeline'>
+    <!-- <section class='timeline'>
     
     <div class="set-timeline" data-title="Trans 7" data-year="2O18"
       data-desc="Field Work Practice at PT Trans 7 Television Station in the field of Promo Design."
@@ -748,23 +841,21 @@
 
   </section> -->
 
-  <main class="inanimate-objects">
+    <main class="inanimate-objects">
 
-    <div class="album py-5">
-      <div class="container">
+        <div class="album py-5">
+            <div class="container">
 
-        <h1 style="margin-bottom: 25px;" id="professional">
-          Professional Works
-          <small class="text-muted">2018-2026</small>
-        </h1>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <h1 style="margin-bottom: 25px;" id="professional">
+                    Professional Works
+                    <small class="text-muted">2018-2026</small>
+                </h1>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-          <!-- =========================================================== Profesional Works =========================================================== -->
+                    <!-- =========================================================== Profesional Works =========================================================== -->
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)"
-              data-desc="Field Work Practice at PT Trans 7 Television Station in the field of Promo Design."
-              data-thumbnail="https://upload.wikimedia.org/wikipedia/id/7/79/Trans_7_2013.svg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Trans 7 (Intership)" data-desc="Field Work Practice at PT Trans 7 Television Station in the field of Promo Design." data-thumbnail="https://upload.wikimedia.org/wikipedia/id/7/79/Trans_7_2013.svg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/trans7/imgthumb01.jpg"},
                 {"type":"image","src":"image/portfolio/local/trans7/imgthumb02.jpg"},
                 {"type":"image","src":"image/portfolio/local/trans7/imgthumb03.jpg"},
@@ -774,12 +865,11 @@
                 {"name":"Graphic Design"}
               ]' data-social='[
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="sahabatgemarikan.id" data-thumbnail="img_mountains.jpg"
-              data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="sahabatgemarikan.id" data-thumbnail="img_mountains.jpg" data-assets='[
               {"type":"image","src":"image/portfolio/local/sahabatgemarikanid/imgthumb02.jpg"},
               {"type":"image","src":"image/portfolio/local/sahabatgemarikanid/imgthumb03.jpg"},
               {"type":"image","src":"image/portfolio/local/sahabatgemarikanid/imgthumb04.jpg"},
@@ -806,11 +896,11 @@
                 "icon":"https://cdn.simpleicons.org/instagram"
               }
             ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="fishOn" data-thumbnail="img_mountains.jpg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="fishOn" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/fishOn/Design0172x.png"},
                 {"type":"image","src":"image/portfolio/local/fishOn/Design0272x.png"},
                 {"type":"image","src":"image/portfolio/local/fishOn/Design0372x.png"},
@@ -824,12 +914,11 @@
                   "icon":"https://cdn.simpleicons.org/youtube"
                 }
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Bamuda Group" data-thumbnail="img_mountains.jpg"
-              data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Bamuda Group" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/bamuda/page01.png"},
                 {"type":"image","src":"image/portfolio/local/bamuda/page02.png"},
                 {"type":"image","src":"image/portfolio/local/bamuda/page03.png"},
@@ -843,24 +932,22 @@
                   "icon":"https://img.icons8.com/color/48/google-drive--v1.png"
                 }
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Pondok Kepiting" data-thumbnail="img_mountains.jpg"
-              data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Pondok Kepiting" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/pondokkepiting/board01.png"},
                 {"type":"image","src":"image/portfolio/local/pondokkepiting/board02.png"},
                 {"type":"image","src":"image/portfolio/local/pondokkepiting/board03.png"},
                 {"type":"image-full","src":"image/portfolio/local/pondokkepiting/board03.png"}
               ]' data-experiences='[
                 {"name":"Graphic Design"}]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Emotes EightEight Design"
-              data-thumbnail="img_mountains.jpg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Emotes EightEight Design" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"video","src":"image/portfolio/local/eightyeightdes/eightyeightdes.mp4"}
               ]' data-experiences='[
                 {"name":"Motion Graphics"}
@@ -871,12 +958,11 @@
                 "icon":"https://unpkg.com/feather-icons/dist/icons/globe.svg"
               }
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="ISSMEI<br>(Integrated Services for SME Indonesia)"
-              data-thumbnail="img_mountains.jpg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="ISSMEI<br>(Integrated Services for SME Indonesia)" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/issmei/artissmei01.png"},
                 {"type":"image","src":"image/portfolio/local/issmei/artissmei02.png"},
                 {"type":"video","src":"image/portfolio/local/issmei/artissmei03.mp4"}
@@ -896,11 +982,11 @@
                   "icon":"https://img.icons8.com/color/48/figma--v1.png"
                 }
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Warungku" data-thumbnail="img_mountains.jpg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Warungku" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/warungku/ui01.jpeg"},
                 {"type":"image","src":"image/portfolio/local/warungku/ui02.jpeg"},
                 {"type":"image-full","src":"image/portfolio/local/warungku/ui01.jpeg"}
@@ -913,12 +999,11 @@
                   "icon":"https://img.icons8.com/color/48/figma--v1.png"
                 }
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Pejuang Devisa Negara" data-thumbnail="img_mountains.jpg"
-              data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Pejuang Devisa Negara" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/pejuangdevisanegara/Juara UI_UX New Proposal_page-0001.jpg"},
                 {"type":"image","src":"image/portfolio/local/pejuangdevisanegara/Juara UI_UX New Proposal_page-0002.jpg"},
                 {"type":"image","src":"image/portfolio/local/pejuangdevisanegara/Juara UI_UX New Proposal_page-0003.jpg"},
@@ -932,12 +1017,11 @@
                   "icon":"https://img.icons8.com/color/48/google-drive--v1.png"
                 }
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="rumahkarya.id" data-thumbnail="img_mountains.jpg"
-              data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="rumahkarya.id" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/rumahkaryaid/board01.jpg"},
                 {"type":"image","src":"image/portfolio/local/rumahkaryaid/board02.jpg"},
                 {"type":"image","src":"image/portfolio/local/rumahkaryaid/board03.jpg"},
@@ -954,12 +1038,11 @@
                   "icon":"https://cdn.simpleicons.org/instagram"
                 }
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="greatdeal.id" data-thumbnail="img_mountains.jpg"
-              data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="greatdeal.id" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/greatdealid/board01.jpg"},
                 {"type":"image","src":"image/portfolio/local/greatdealid/board02.jpg"},
                 {"type":"image","src":"image/portfolio/local/greatdealid/board03.jpg"},
@@ -973,21 +1056,20 @@
                   "icon":"https://cdn.simpleicons.org/instagram"
                 }
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Durian Nusantara Capital"
-              data-thumbnail="img_mountains.jpg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Durian Nusantara Capital" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"video","src":"image/portfolio/local/duriannusantaracapital/duriannusantaracapital.mp4"}
               ]' data-experiences='[
                 {"name":"Motion Graphics"}
               ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="SRPD: Webs" data-thumbnail="img_mountains.jpg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="SRPD: Webs" data-thumbnail="img_mountains.jpg" data-assets='[
                 {"type":"image","src":"image/portfolio/local/srpdwebs/Post-Ads-SRPD-Webs.png"},
                 {"type":"video","src":"image/portfolio/local/srpdwebs/Website Promotion-8.mp4"}
               ]' data-experiences='[
@@ -1021,25 +1103,24 @@
                   "icon":"https://unpkg.com/feather-icons/dist/icons/globe.svg"
                 }
               ]'>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="container" style="margin-top: 92px;">
+            <div class="container" style="margin-top: 92px;">
 
-        <h1 style="margin-bottom: 25px;" id="personal">
-          Personal Projects
-          <small class="text-muted">2014-2026</small>
-        </h1>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <h1 style="margin-bottom: 25px;" id="personal">
+                    Personal Projects
+                    <small class="text-muted">2014-2026</small>
+                </h1>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-          <!-- =========================================================== Personal Projects =========================================================== -->
+                    <!-- =========================================================== Personal Projects =========================================================== -->
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Sonic of the Ring Tutorials Room v0.6"
-              data-desc="Field Work Practice at PT Trans 7 Television Station in the field of Promo Design."
-              data-thumbnail="https://upload.wikimedia.org/wikipedia/id/7/79/Trans_7_2013.svg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Sonic of the Ring Tutorials Room v0.6" data-desc="Field Work Practice at PT Trans 7 Television Station in the field of Promo Design." data-thumbnail="https://upload.wikimedia.org/wikipedia/id/7/79/Trans_7_2013.svg"
+                            data-assets='[
                 {"type":"image","src":"image/portfolio/global/sonicofthering/screenshot1.png"},
                 {"type":"image","src":"image/portfolio/global/sonicofthering/screenshot2.png"},
                 {"type":"image","src":"image/portfolio/global/sonicofthering/screenshot3.png"},
@@ -1064,12 +1145,11 @@
                 "icon":"https://unpkg.com/feather-icons/dist/icons/globe.svg"
               }
             ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Thunder vs Supernova Collaboration"
-              data-thumbnail="img_mountains.jpg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Thunder vs Supernova Collaboration" data-thumbnail="img_mountains.jpg" data-assets='[
               {"type":"image","src":"image/portfolio/global/thundervssupernovacollab/frame1.png"},
               {"type":"image","src":"image/portfolio/global/thundervssupernovacollab/frame2.png"},
               {"type":"image","src":"image/portfolio/global/thundervssupernovacollab/frame3.png"},
@@ -1089,12 +1169,11 @@
                 "icon":"https://cdn.simpleicons.org/youtube"
               }
             ]'>
-            </div>
-          </div>
+                        </div>
+                    </div>
 
-          <div class="col">
-            <div class="card shadow-sm set-card" data-title="Secret Underground Collaboration"
-              data-thumbnail="img_mountains.jpg" data-assets='[
+                    <div class="col">
+                        <div class="card shadow-sm set-card" data-title="Secret Underground Collaboration" data-thumbnail="img_mountains.jpg" data-assets='[
               {"type":"image","src":"image/portfolio/global/secretundergroundcollab/frame1.png"},
               {"type":"image","src":"image/portfolio/global/secretundergroundcollab/frame2.png"},
               {"type":"image","src":"image/portfolio/global/secretundergroundcollab/frame3.png"},
@@ -1115,26 +1194,26 @@
                 "icon":"https://cdn.simpleicons.org/youtube"
               }
               ]'>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+    </main>
+
+    <footer class="bd-footer bg-dark p-3 p-md-5 mt-5 text-center text-sm-start">
+        <div class="container">
+            <p class="lh-1 text-white"> &copy; 2026, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot;
+                <a class="text-start lh-1 fw-light fs-6"> <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap v5.0.0</a> Designed by SRPD
+                </a>
+            </p>
         </div>
-      </div>
-
-  </main>
-
-  <footer class="bd-footer bg-dark p-3 p-md-5 mt-5 text-center text-sm-start">
-    <div class="container">
-      <p class="lh-1 text-white"> &copy; 2026, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a>
-        &middot; <a class="text-start lh-1 fw-light fs-6"> <a
-            href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap v5.0.0</a> Designed by
-          SRPD</a></p>
-    </div>
-  </footer>
+    </footer>
 
 
-  <script src="instancecardimage.js"></script>
+    <script src="instancecardimage.js"></script>
 
-  <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
